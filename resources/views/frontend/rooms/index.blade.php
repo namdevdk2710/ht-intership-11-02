@@ -1,4 +1,5 @@
-@extends('layouts.master-page-other') @section('main')
+@extends('frontend.layouts.master-page-other')
+@section('main')
 <div class="section_accom">
     <div class="section_accom_content">
         <div class="row" style="position:relative">

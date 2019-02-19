@@ -1,4 +1,4 @@
-@extends('layouts.master') 
+@extends('frontend.layouts.master')
 @section('main')
 <div class="main">
     <!-- page 1-->
