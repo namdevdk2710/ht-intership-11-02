@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'UTMAptima';
+  src: url('UTMAptimad41d.eot?#iefix') format('embedded-opentype'),  url('UTMAptima.woff') format('woff'), url('UTMAptima.ttf')  format('truetype'), url('UTMAptima.svg#UTMAptima') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'UTMAptimaBold';
+  src: url('UTMAptimaBoldd41d.eot?#iefix') format('embedded-opentype'),  url('UTMAptimaBold.woff') format('woff'), url('UTMAptimaBold.ttf')  format('truetype'), url('UTMAptimaBold.svg#UTMAptimaBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+	font-family: 'UTM BryantLG';
+	src: url('UTMBryantLG.eot');
+	src: local('UTM BryantLG'), local('UTMBryantLG'),
+		url('UTMBryantLGd41d.eot?#iefix') format('embedded-opentype'),
+		url('UTMBryantLG.woff') format('woff'),
+		url('UTMBryantLG.ttf') format('truetype'),
+		url('UTMBryantLG.svg#UTMBryantLG') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'UTM BryantLG';
+	src: url('UTMBryantLGBold.eot');
+	src: local('UTMBryantLGBold'),
+		url('UTMBryantLGBoldd41d.eot?#iefix') format('embedded-opentype'),
+		url('UTMBryantLGBold.woff') format('woff'),
+		url('UTMBryantLGBold.ttf') format('truetype'),
+		url('UTMBryantLGBold.svg#UTMBryantLGBold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'MYRIADPROREGULAR';
+	src: url('MYRIADPROREGULARd41d.eot?#iefix') format('embedded-opentype'),  url('MYRIADPROREGULAR.woff') format('woff'), url('MYRIADPROREGULAR.ttf')  format('truetype'), url('MYRIADPROREGULAR.svg#MYRIADPROREGULAR') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.fontsforweb_fontid_4410 {
+	font-family: 'MYRIADPROREGULAR' !important;
+}
