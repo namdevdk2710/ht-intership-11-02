@@ -6,6 +6,6 @@ Route::namespace('V1\Web\frontend')->group(function () {
     Route::get('/accommodation', 'RoomController@index')->name('room');
 });
 // backend routes
-Route::get('admin/home',function () {
+Route::get('admin/home', function () {
     return view('backend.home.index');
 });
