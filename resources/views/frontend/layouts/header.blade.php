@@ -36,7 +36,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
-		</button> 
+		</button>
             <a class="navbar-brand" href="vn.html"><img src="{{asset('frontend/images/UploadImages/logo.png')}}" style="width:145px;height:auto" /></a>
         </div>
         <div class="collapse navbar-collapse">
@@ -88,7 +88,7 @@
                 <li class="reservation no-child"><a href="vn/reservation.html">ĐẶT PHÒNG</a></li>
                 <li class="contact no-child"><a href="vn/contact.html">LIÊN HỆ</a></li>
             </ul>
-           
+
         </div>
         <!--/.nav-collapse -->
     </div>

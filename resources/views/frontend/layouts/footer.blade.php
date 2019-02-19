@@ -66,7 +66,6 @@
 <script src="{{asset('../frontend/js/front_as.js')}}"></script>
 <script src="{{asset('../frontend/js/accom_animate.js')}}"></script>
 
-
 </body>
 
 </html>
