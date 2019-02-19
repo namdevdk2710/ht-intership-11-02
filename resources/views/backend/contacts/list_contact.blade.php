@@ -46,7 +46,7 @@
                             </td>
                           </tr>
                       </tbody></table>
-                    </div> 
+                    </div>
                     <div class="box-footer clearfix">
                             <ul class="pagination pagination-sm no-margin pull-right">
                               <li><a href="#">«</a></li>
@@ -61,4 +61,4 @@
               </div>
             </section>
           </div>
-@endsection 
+@endsection
