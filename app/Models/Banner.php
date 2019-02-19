@@ -12,7 +12,7 @@ class Banner extends Model
         'description',
         'image',
         'slug',
-        'link'
+        'link',
     ];
     public $timestamps = true;
 }
