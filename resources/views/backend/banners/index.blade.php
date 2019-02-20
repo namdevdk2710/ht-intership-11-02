@@ -1,9 +1,12 @@
 @extends('backend.layouts.master')
+
 @section('content')
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-th-list"></i> List Banners </h1>
+            <h1>
+                <i class="fa fa-th-list"></i> List Banners
+            </h1>
             <p>Display all lists banners</p>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
@@ -19,20 +22,31 @@
                     <div id="sampleTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                <p><a class="btn btn-primary icon-btn" href=""><i class="fa fa-plus"></i>Create Banner
-                                    </a>
-                                </p>
+                                <a class="btn btn-primary icon-btn" href="">
+                                    <i class="fa fa-plus"></i>Create Banner
+                                </a>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <div id="sampleTable_filter" class="dataTables_filter"><label>Search:<input
-                                            type="search" class="form-control form-control-sm" placeholder=""
-                                            aria-controls="sampleTable"></label></div>
+                                <div id="sampleTable_filter" class="dataTables_filter">
+                                    <label>
+                                        Search:
+                                        <input
+                                            type="search"
+                                            class="form-control form-control-sm"
+                                            aria-controls="sampleTable"
+                                        >
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable"
-                                    role="grid" aria-describedby="sampleTable_info">
+                                <table
+                                    class="table table-hover table-bordered dataTable no-footer"
+                                    id="sampleTable"
+                                    role="grid"
+                                    aria-describedby="sampleTable_info"
+                                >
                                     <thead>
                                         <tr role="row">
                                             <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1"
@@ -54,14 +68,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($banners as $i => $bn)
+                                        @foreach($banners as $key => $baner)
                                         <tr role="row" class="odd">
-                                            <td style="width:5%;">{{ $i+1 }}</td>
-                                            <td>{{ $bn->name }}</td>
-                                            <td>{{ $bn->description }}</td>
+                                            <td style="width:5%;">{{ $key + 1 }}</td>
+                                            <td>{{ $baner->name }}</td>
+                                            <td>{{ $baner->description }}</td>
                                             <td>
-                                                @if(!empty($bn->image))
-                                                <img width="100px" src="backend/upload/images/{{ $bn->image }}">
+                                                @if(!empty($baner->image))
+                                                    <img width="100px" src="backend/upload/images/{{ $baner->image }}">
                                                 @endif
                                             </td>
                                             <td style="width:17%;">
@@ -69,7 +83,7 @@
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
                                                 <a href="#" class="btn btn-warning">
-                                                    <i class="fa fa-pencil" aria-hidden="true" style="color:white;"></i>
+                                                    <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
                                                 <a href="#" class="btn btn-danger">
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>

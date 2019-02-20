@@ -23,7 +23,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = $this->repository->paginate();
-        return view('backend.banners.list_banner', compact('banners'));
+        return view('backend.banners.index', compact('banners'));
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\V1\Web;
 
 use App\Http\Requests\TodoRequest;
 use App\Http\Controllers\Controller;
-use App\Repositories\V1\Todo\BaseRepositoryInterface;
+use App\Repositories\V1\Todo\TodoRepositoryInterFace;
 
 class TodoController extends Controller
 {
