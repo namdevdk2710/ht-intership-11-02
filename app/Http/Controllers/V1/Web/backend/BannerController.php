@@ -25,7 +25,6 @@ class BannerController extends Controller
         $banners = $this->repository->paginate();
         //dd($banners);
         return view('backend.banners.list_banner', compact('banners'));
-
     }
 
     /**
