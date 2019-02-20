@@ -1,28 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\V1\Web;
+namespace App\Http\Controllers\V1\Web\backend;
 
-use App\Http\Requests\TodoRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\V1\Todo\BaseRepositoryInterface;
+use App\Repositories\V1\Banner\BannerRepositoryInterFace;
 
-class TodoController extends Controller
+class BannerController extends Controller
 {
-    protected $repository;
-
-    public function __construct(TodoRepositoryInterFace $repository)
-    {
-        $this->repository = $repository;
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    protected $repository;
+
+    public function __construct(BannerRepositoryInterFace $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function index()
     {
-        return $this->repository->index();
+        $banners = $this->repository->paginate();
+        //dd($banners);
+        return view('backend.banners.list_banner', compact('banners'));
+
     }
 
     /**
@@ -41,7 +44,7 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TodoRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -75,7 +78,7 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TodoRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
     }

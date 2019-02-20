@@ -9,3 +9,10 @@ Route::namespace('V1\Web\frontend')->group(function () {
 Route::get('admin/home', function () {
     return view('backend.home.index');
 });
+
+
+Route::namespace('V1\Web\backend')->group(function () {
+    Route::group(['prefix' => '/admin'], function () {
+        Route::resource('/banner', 'BannerController');
+    });
+});
