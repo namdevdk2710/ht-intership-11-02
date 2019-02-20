@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Repositories\V1\Todo\TodoRepository;
 use App\Repositories\V1\Todo\TodoRepositoryInterface;
+use App\Repositories\V1\Banner\BannerRepository;
+use App\Repositories\V1\Banner\BannerRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(TodoRepositoryInterface::class, TodoRepository::class);
+        $this->app->bind(BannerRepositoryInterface::class, BannerRepository::class);
     }
 }
