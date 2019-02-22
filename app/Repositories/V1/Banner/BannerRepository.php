@@ -21,14 +21,14 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
 
     public function store($request)
     {
-        $banner = new Banner($request->only(['name', 'description','link']));
+        $banner = new Banner($request->only(['name','description','link']));
         $banner->slug = str_slug($request->name);
         if ($request->hasFile('image')) {
             $file = $request->image;
             $forder = '../public/uploadimages/banners';
-            $Filename = explode('.',$file->getClientOriginalName())[0].'-'.time().'.'.$file->getClientOriginalExtension();
-            $file->move($forder, $Filename);
-            $banner->image = $Filename;
+            $filename = explode('.',$file->getClientOriginalName())[0].'-'.time().'.'.$file->getClientOriginalExtension();
+            $file->move($forder, $filename);
+            $banner->image = $filename;
         }
         $banner->save();
         return $banner;
