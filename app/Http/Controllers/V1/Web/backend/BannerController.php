@@ -26,6 +26,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = $this->repository->paginate();
+
         return view('backend.banners.index', compact('banners'));
     }
 
@@ -47,8 +48,9 @@ class BannerController extends Controller
      */
     public function store(CreateBannerRequest $request)
     {
-        $this->repository->store($request);
-        $request->session()->flash('message', 'Creation successful');
+        $this->repository->store($request->all());
+        $request->session()->flash('msg', 'Creation successful');
+
         return redirect()->route('banner.index');
     }
 

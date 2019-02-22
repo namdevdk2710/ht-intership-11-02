@@ -19,20 +19,19 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
         return $this->model->paginate($limit, $columns);
     }
 
-    public function store($request)
+    public function store($data)
     {
-        $banner = new Banner($request->only(['name', 'description', 'link']));
-        $banner->slug = str_slug($request->name);
-        if ($request->hasFile('image')) {
-            $file = $request->image;
-            $forder = '../public/uploadimages/banners';
-            $nameFile = $file-> getClientOriginalName();
-            $extensionFile = $file -> getClientOriginalExtension();
-            $fileName = explode('.', $nameFile)[0].'-'.time().'.'.$extensionFile;
-            $file->move($forder, $fileName);
-            $banner->image = $fileName;
-        }
-        $banner->save();
-        return $banner;
+        $data['slug'] = str_slug($data['name']);
+
+        $file = $data['image'];
+        $forder = 'uploads/images/banners';
+        $extensionFile = $file -> getClientOriginalExtension();
+        $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
+
+        $file->move($forder, $fileName);
+
+        $data['image'] = $fileName;
+
+        return $this->model->create($data);
     }
 }
