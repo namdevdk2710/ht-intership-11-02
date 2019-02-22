@@ -76,14 +76,14 @@
                                             <td style="width:40%;">{{ str_limit($baner["description"], 50) }}</td>
                                             <td>
                                                 @if(!empty($baner->image))
-                                                    <img width="100%" src="backend/upload/images/a.jpg">
+                                                    <img width="100%" src="{{$baner->image}}">
                                                 @endif
                                             </td>
                                             <td style="width:17%;">
                                                 <a href="backend/banners/index/{{ $baner->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $baner->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-warning">
+                                                <a href="{{route('banner.edit', ['id'=>$baner->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
                                                 <a href="#" class="btn btn-danger">
