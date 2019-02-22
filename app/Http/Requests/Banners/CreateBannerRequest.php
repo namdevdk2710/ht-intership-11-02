@@ -37,7 +37,6 @@ class CreateBannerRequest extends FormRequest
             'link.required' => 'Vui lòng nhập trường này',
             'image.required' => 'Vui lòng nhập ít nhất một ảnh',
             'image.image' => 'Vui lòng nhập những ảnh có định dạng sau : jpeg-png-bmp-gif-svg',
-
         ];
     }
 }
