@@ -23,7 +23,7 @@
                     <div id="sampleTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                <a class="btn btn-primary icon-btn" href="">
+                                <a class="btn btn-primary icon-btn" href="{{route('banner.create')}}">
                                     <i class="fa fa-plus"></i>Create Banner
                                 </a>
                             </div>

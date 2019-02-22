@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\V1\Web\backend;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Banners\CreateBannerRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Banner\BannerRepositoryInterFace;
+use App\Models\Banner;
+use Illuminate\Support\Collection;
 
 class BannerController extends Controller
 {
@@ -23,6 +26,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = $this->repository->paginate();
+
         return view('backend.banners.index', compact('banners'));
     }
 
@@ -33,7 +37,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.banners.create');
     }
 
     /**
@@ -42,9 +46,12 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateBannerRequest $request)
     {
-        //
+        $this->repository->store($request->all());
+        $request->session()->flash('msg', 'Creation successful');
+
+        return redirect()->route('banner.index');
     }
 
     /**
