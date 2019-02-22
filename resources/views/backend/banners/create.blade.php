@@ -48,19 +48,6 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        {!!Form::label('slug', 'Slug',['class'=>'control-label'])!!}
-                        {!!Form::text('slug',null,['class'=>'form-control'])!!}
-                    </div>
-                    @if ($errors->has('slug'))
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->get('slug') as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        </div>
-                    @endif
-                    <div class="form-group">
                         {!!Form::label('link', 'Link',['class'=>'control-label'])!!}
                         {!!Form::text('link',null,['class'=>'form-control'])!!}
                     </div>
