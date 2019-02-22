@@ -24,25 +24,39 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
     public function update($id, $data)
     {
         $banner = $this->model->find($id);
-        $banner->name = $data['name'];
-        $banner->description = $data['description'];
+        $data['slug'] = str_slug($data['name']);
 
-        $nameImageOld = $banner->image;
-        $pathImageOld = 'public/'.$nameImageOld;
+        $nameImageOld = 'uploads/images/banners/' . $banner->image;
         if(file_exists(public_path($nameImageOld))) {
             unlink(public_path($nameImageOld));
         }
-        if ($data['image']!='') {
-            $file = $data['image'];
-            $forder = '../public';
-            $Filename = explode('.',$file->getClientOriginalName())[0].'-'.time().'.'.$file->getClientOriginalExtension();
-            $file->move($forder, $Filename);
-            $banner->image = $Filename;
-        }
-        $banner->slug=str_slug($data['name']);
-        $banner->link=$data['link'];
-        return $banner->update();
 
-        // return $this->model->update($id, $data);
+        if ($data['image']) {
+            $file = $data['image'];
+            $forder = ('uploads/images/banners');
+            $extensionFile = $file -> getClientOriginalExtension();
+            $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
+            $file->move($forder, $fileName);
+            $data['image'] = $fileName;
+        } else {
+            $data['image'] = $banner->imange;
+        }
+
+        return $banner->update($data);
+    }
+    public function store($data)
+    {
+        $data['slug'] = str_slug($data['name']);
+
+        $file = $data['image'];
+        $forder = 'uploads/images/banners';
+        $extensionFile = $file -> getClientOriginalExtension();
+        $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
+        $file->move($forder, $fileName);
+
+        $data['image'] = $fileName;
+
+        return $this->model->create($data);
+
     }
 }
