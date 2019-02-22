@@ -9,7 +9,6 @@ use App\Repositories\V1\Banner\BannerRepositoryInterFace;
 use App\Models\Banner;
 use Illuminate\Support\Collection;
 
-
 class BannerController extends Controller
 {
     /**
