@@ -1,6 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('content')
+
 <main class="app-content">
     <div class="app-title">
         <div>
@@ -71,15 +72,15 @@
                                         @foreach($banners as $key => $baner)
                                         <tr role="row" class="odd">
                                             <td style="width:5%;">{{ $key + 1 }}</td>
-                                            <td>{{ $baner->name }}</td>
-                                            <td>{{ $baner->description }}</td>
+                                            <td style="width:17%;">{{ $baner->name }}</td>
+                                            <td style="width:40%;">{{ str_limit($baner["description"], 50) }}</td>
                                             <td>
                                                 @if(!empty($baner->image))
-                                                    <img width="100px" src="backend/upload/images/{{ $baner->image }}">
+                                                    <img width="100%" src="backend/upload/images/a.jpg">
                                                 @endif
                                             </td>
                                             <td style="width:17%;">
-                                                <a href="#" class="btn btn-info">
+                                                <a href="backend/banners/index/{{ $baner->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $baner->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
                                                 <a href="#" class="btn btn-warning">
@@ -90,6 +91,7 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        @include('backend.banners.detail')
                                         @endforeach
                                     </tbody>
                                 </table>
