@@ -26,7 +26,7 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
         if ($request->hasFile('image')) {
             $file = $request->image;
             $forder = '../public/uploadimages/banners';
-            $nameFile = $file- > getClientOriginalName();
+            $nameFile = $file-> getClientOriginalName();
             $extensionFile = $file -> getClientOriginalExtension();
             $fileName = explode('.', $nameFile)[0].'-'.time().'.'.$extensionFile;
             $file->move($forder, $fileName);
