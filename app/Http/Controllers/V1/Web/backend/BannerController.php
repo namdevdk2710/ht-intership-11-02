@@ -49,9 +49,8 @@ class BannerController extends Controller
     public function store(CreateBannerRequest $request)
     {
         $this->repository->store($request->all());
-        $request->session()->flash('msg', 'Creation successful');
 
-        return redirect()->route('banner.index');
+        return redirect()->route('banner.index')->with('msg', 'Creation successful');
     }
 
     /**
@@ -94,11 +93,10 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy($id)
     {
         $this->repository->delete($id);
-        $request->session()->flash('msg', 'Delete successful');
 
-        return redirect()->route('banner.index');
+        return redirect()->route('banner.index')->with('msg', 'Delete successful');
     }
 }
