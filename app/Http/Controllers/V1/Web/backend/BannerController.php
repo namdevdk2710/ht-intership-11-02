@@ -94,8 +94,11 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,Request $request)
     {
-        //
+        $this->repository->delete($id);
+        $request->session()->flash('msg', 'Delete successful');
+
+        return redirect()->route('banner.index');
     }
 }

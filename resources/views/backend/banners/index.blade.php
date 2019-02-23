@@ -17,6 +17,13 @@
         </ul>
     </div>
     <div class="row">
+        @if(session()->has('msg'))
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">{{ session()->get('msg') }}</div>
+            </div>
+        </div>
+        @endif
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
@@ -83,12 +90,13 @@
                                                 <a href="backend/banners/index/{{ $baner->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $baner->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-warning">
+                                                <a href="" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-danger">
-                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                </a>
+                                                {!!Form::open(['method' => 'DELETE','route' => ['banner.destroy',$baner->id],
+                                                'onsubmit' => 'return ConfirmDelete()'])!!}
+                                                {!!Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )!!}
+                                                {!! Form::close() !!}
                                             </td>
                                         </tr>
                                         @include('backend.banners.detail')
@@ -106,4 +114,14 @@
         </div>
     </div>
 </main>
+<script>
+    function ConfirmDelete()
+    {
+        var x = confirm("Are you sure you want to delete?");
+        if (x)
+        return true;
+        else
+        return false;
+    }
+  </script>
 @endsection
