@@ -37,8 +37,7 @@
                         {!!Form::textarea('description',null,['class'=>'form-control'])!!}
                     </div>
                     <div class="form-group">
-                        {!!Form::label('image', 'Image: ',['class'=>'control-label'])!!}
-                        {!!Form::file('image',null,['class'=>'form-control'])!!}
+                        <img src="" width="150" height="150" alt="Image Gallery" style="display: none" id="image">
                     </div>
                     @if ($errors->has('image'))
                     <div class="alert alert-danger">
