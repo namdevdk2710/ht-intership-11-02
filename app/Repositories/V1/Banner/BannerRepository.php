@@ -41,7 +41,7 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
         if (!empty($data['image'])) {
             $file = $data['image'];
             $nameImageOld = 'uploads/images/banners/' . $banner->image;
-            if(file_exists(public_path($nameImageOld))) {
+            if( file_exists(public_path($nameImageOld))) {
                 unlink(public_path($nameImageOld));
             }
             $forder = ('uploads/images/banners');
@@ -49,8 +49,7 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
             $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
             $file->move($forder, $fileName);
             $data['image'] = $fileName;
-        }
-        else {
+        }else {
             $data['image'] = $banner->image;
         }
 
