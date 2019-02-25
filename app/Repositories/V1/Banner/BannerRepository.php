@@ -32,7 +32,6 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
         $data['image'] = $fileName;
 
         return $this->model->create($data);
-
     }
     public function update($id, $data)
     {
@@ -41,16 +40,17 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
 
         if (!empty($data['image'])) {
             $file = $data['image'];
-                $nameImageOld = 'uploads/images/banners/' . $banner->image;
-                if(file_exists(public_path($nameImageOld))) {
-                    unlink(public_path($nameImageOld));
-                }
+            $nameImageOld = 'uploads/images/banners/' . $banner->image;
+            if(file_exists(public_path($nameImageOld))) {
+                unlink(public_path($nameImageOld));
+            }
             $forder = ('uploads/images/banners');
             $extensionFile = $file -> getClientOriginalExtension();
             $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
             $file->move($forder, $fileName);
             $data['image'] = $fileName;
-        } else {
+        }
+        else {
             $data['image'] = $banner->image;
         }
 
