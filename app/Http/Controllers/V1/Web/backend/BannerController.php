@@ -74,6 +74,7 @@ class BannerController extends Controller
     public function edit($id)
     {
         $banner = $this->repository->find($id);
+
         return view('backend.banners.edit', compact('banner'));
     }
 
