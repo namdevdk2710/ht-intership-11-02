@@ -19,31 +19,6 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
 
         return $this->model->paginate($limit, $columns);
     }
-
-
-    public function update($id, $data)
-    {
-        $banner = $this->model->find($id);
-        $data['slug'] = str_slug($data['name']);
-
-        $nameImageOld = 'uploads/images/banners/' . $banner->image;
-        if(file_exists(public_path($nameImageOld))) {
-            unlink(public_path($nameImageOld));
-        }
-
-        if ($data['image']) {
-            $file = $data['image'];
-            $forder = ('uploads/images/banners');
-            $extensionFile = $file -> getClientOriginalExtension();
-            $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
-            $file->move($forder, $fileName);
-            $data['image'] = $fileName;
-        } else {
-            $data['image'] = $banner->imange;
-        }
-
-        return $banner->update($data);
-    }
     public function store($data)
     {
         $data['slug'] = str_slug($data['name']);
@@ -58,5 +33,27 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
 
         return $this->model->create($data);
 
+    }
+    public function update($id, $data)
+    {
+        $banner = $this->model->find($id);
+        $data['slug'] = str_slug($data['name']);
+
+        if (!empty($data['image'])) {
+            $file = $data['image'];
+                $nameImageOld = 'uploads/images/banners/' . $banner->image;
+                if(file_exists(public_path($nameImageOld))) {
+                    unlink(public_path($nameImageOld));
+                }
+            $forder = ('uploads/images/banners');
+            $extensionFile = $file -> getClientOriginalExtension();
+            $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
+            $file->move($forder, $fileName);
+            $data['image'] = $fileName;
+        } else {
+            $data['image'] = $banner->image;
+        }
+
+        return $banner->update($data);
     }
 }

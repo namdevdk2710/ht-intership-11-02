@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Banners\CreateBannerRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Banner\BannerRepositoryInterFace;
-use App\Http\Requests\BannerRequest;
+use App\Http\Requests\Banners\EditBannerRequest;
 use App\Models\Banner;
 use Illuminate\Support\Collection;
 
@@ -86,29 +86,15 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BannerRequest $request, $id)
+    public function update(EditBannerRequest $request, $id)
     {
-
-        $data = $request->all();
+       $data = $request->all();
         $this->repository->update($id, $data);
 
-        $request->session()->flash('msg', 'Creation successful');
+        $request->session()->flash('msg', 'Update Successful');
 
         return redirect()->route('banner.index');
 
-
-        // try {
-        //     $data = $request->all();
-        //     $result = $this->repository->update($id, $data);
-
-        //     if ($result) {
-        //         return redirect()->route('banner.index')->with('status', 'Successfull!');
-        //     }
-        // } catch (Exception $e) {
-        //     Log::error($e);
-
-        //     return back()->withErrors('Update failed!');
-        // }
     }
 
     /**

@@ -26,9 +26,16 @@
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body class="app sidebar-mini rtl">
+        @if(session('msg'))
+        <div class="alert alert-success alert-dismissible fade show thongbao ">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{session('msg')}}
+              </div>
+        @endif
         @include('backend.layouts.header')
         @include('backend.layouts.menu')
         @yield('content')
@@ -100,6 +107,9 @@
             ga('create', 'UA-72504830-1', 'auto');
             ga('send', 'pageview');
         }
+    </script>
+    <script>
+            $("div.alert-success").delay(4000).slideUp();
     </script>
      @show
 </body>

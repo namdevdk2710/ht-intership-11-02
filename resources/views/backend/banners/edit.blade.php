@@ -33,28 +33,56 @@
                         {{ Form::label('name', 'Name:',['class'=>'control-label']) }}
                         {{ Form::text('name',$banner->name,['class'=>'form-control']) }}
                     </div>
+                    @if ($errors->has('name'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('name') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="form-group">
                         {{ Form::label('description', 'Description:',['class'=>'control-label']) }}
                         {{ Form::textarea('description',$banner->description,['class'=>'form-control']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('image','Image:') }}<br>
-                            @if(!empty($banner->image))
-                            <img src="{{ $banner->image }}" height="150" width="150px" alt="Ảnh đại diện" id="">
-                            @else
-                            <img src="" width="150" height="150" alt="Ảnh đại diện" id="avatarup" style="display: none">
-                            @endif
-                            <br>
-                            <br>
-                        {{ Form::file('image',['class'=>'fileimage']) }}
+                        {{ Form::label('avatar','Avatar',['for'=>'exampleInputFile']) }}
+                        <div>
+                          @if(!empty($banner->image))
+                            <img src="uploads/images/banners/{{ $banner->image}} " height="150" width="150px" alt="Image Banner" id="image">
+                          @else
+                            <img src="" width="150" height="150" alt="Image Banner" id="image" style="display: none">
+                          @endif
+                          <br>
+                            <input type="file" class="fileimage" id="exampleInputFile" name="image" value="{{ old('image', isset($banner) ? $banner->image : '') }}">
+                        </div>
                     </div>
+                    @if ($errors->has('image'))
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->get('image') as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        </div>
+                    @endif
                     <div class="form-group">
                         {{ Form::label('link', 'Link:',['class'=>'control-label']) }}
-                        {{ Form::text('link',null,['class'=>'form-control']) }}
+                        {{ Form::text('link',$banner->link,['class'=>'form-control']) }}
                     </div>
+                    @if ($errors->has('link'))
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->get('link') as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="tile-footer">
-                    {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit',
+                    {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Update', ['type' => 'submit',
                     'class' => 'btn btn-primary'] ) }} &nbsp;&nbsp;&nbsp;
                     <a href="{{route('banner.index')}}" class="btn btn-secondary"><i
                             class="fa fa-fw fa-lg fa-times-circle"></i>Cancle</a>

@@ -76,7 +76,7 @@
                                             <td style="width:40%;">{{ str_limit($baner["description"], 50) }}</td>
                                             <td>
                                                 @if(!empty($baner->image))
-                                                    <img width="100%" src="{{$baner->image}}">
+                                                    <img width="100%" src="uploads/images/banners/{{ $baner->image }}">
                                                 @endif
                                             </td>
                                             <td style="width:17%;">
