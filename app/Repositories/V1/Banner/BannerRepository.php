@@ -60,6 +60,10 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
     public function delete($id)
     {
         $banner = $this->model->find($id);
+        $nameImageOld = 'uploads/images/banners/' . $banner->image;
+        if (file_exists(public_path($nameImageOld))) {
+            unlink(public_path($nameImageOld));
+        }
         $banner->delete();
     }
 }
