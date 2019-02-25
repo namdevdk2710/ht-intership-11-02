@@ -93,8 +93,7 @@
     </div>
 </main>
 @endsection
-@section('script')
-@parent
+@push('script')
 <script>
     $(document).ready(function () {
         function readURL(input) {
@@ -111,4 +110,4 @@
         });
     });
 </script>
-@endsection
+@endpush

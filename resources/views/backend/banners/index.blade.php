@@ -17,6 +17,13 @@
         </ul>
     </div>
     <div class="row">
+        @if(Session::has('msg'))
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">{{ Session::get('msg') }}</div>
+            </div>
+        </div>
+        @endif
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
@@ -86,9 +93,20 @@
                                                 <a href="{{route('banner.edit', ['id'=>$baner->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-danger">
+                                                <a
+                                                    href="{{route('banner.destroy', ['id'=>$baner->id])}}"
+                                                    class="btn btn-danger btn-delete"
+                                                    onclick=""
+                                                >
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 </a>
+                                                {!!Form::open([
+                                                    'method' => 'DELETE',
+                                                    'route' => ['banner.destroy',$baner->id],
+                                                    'onsubmit' => 'return confirmDelete()',
+                                                    'id' => 'form-delete'
+                                                ])!!}
+                                                {!! Form::close() !!}
                                             </td>
                                         </tr>
                                         @include('backend.banners.detail')
@@ -107,3 +125,23 @@
     </div>
 </main>
 @endsection
+
+@push('script')
+<script type="text/javascript">
+    $('.btn-delete').on('click', function(e) {
+        e.preventDefault();
+        $('#form-delete').submit();
+    });
+
+    function confirmDelete()
+    {
+        var x = confirm("Are you sure you want to delete?");
+        if (x) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+@endpush

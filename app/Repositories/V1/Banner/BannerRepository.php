@@ -19,6 +19,7 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
 
         return $this->model->paginate($limit, $columns);
     }
+
     public function store($data)
     {
         $data['slug'] = str_slug($data['name']);
@@ -33,6 +34,7 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
 
         return $this->model->create($data);
     }
+
     public function update($id, $data)
     {
         $banner = $this->model->find($id);
@@ -54,5 +56,11 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
         }
 
         return $banner->update($data);
+    }
+
+    public function delete($id)
+    {
+        $banner = $this->model->find($id);
+        $banner->delete();
     }
 }

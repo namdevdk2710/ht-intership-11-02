@@ -39,7 +39,7 @@
         @include('backend.layouts.header')
         @include('backend.layouts.menu')
         @yield('content')
-        @section('script')
+
     <script src="backend/js/jquery-3.2.1.min.js"></script>
     <script src="backend/js/popper.min.js"></script>
     <script src="backend/js/bootstrap.min.js"></script>
@@ -111,7 +111,7 @@
     <script>
             $("div.alert-success").delay(4000).slideUp();
     </script>
-     @show
+    @stack('script')
 </body>
 
 </html>
