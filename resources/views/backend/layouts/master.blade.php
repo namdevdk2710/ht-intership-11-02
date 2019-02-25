@@ -31,15 +31,15 @@
 
 <body class="app sidebar-mini rtl">
         @if(session('msg'))
-        <div class="alert alert-success alert-dismissible fade show thongbao ">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{session('msg')}}
-              </div>
+        <div class="alert alert-success alert-dismissible fade show messag ">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{session('msg')}}
+        </div>
         @endif
         @include('backend.layouts.header')
         @include('backend.layouts.menu')
         @yield('content')
-        @section('script')
+
     <script src="backend/js/jquery-3.2.1.min.js"></script>
     <script src="backend/js/popper.min.js"></script>
     <script src="backend/js/bootstrap.min.js"></script>
@@ -111,7 +111,7 @@
     <script>
             $("div.alert-success").delay(4000).slideUp();
     </script>
-     @show
+    @stack('script')
 </body>
 
 </html>
