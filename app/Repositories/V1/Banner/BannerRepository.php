@@ -4,7 +4,6 @@ namespace App\Repositories\V1\Banner;
 
 use App\Repositories\BaseRepository;
 use App\Models\Banner;
-use File;
 
 class BannerRepository extends BaseRepository implements BannerRepositoryInterface
 {
@@ -19,6 +18,7 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
 
         return $this->model->paginate($limit, $columns);
     }
+
     public function store($data)
     {
         $data['slug'] = str_slug($data['name']);
@@ -32,8 +32,8 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
         $data['image'] = $fileName;
 
         return $this->model->create($data);
-
     }
+
     public function update($id, $data)
     {
         $banner = $this->model->find($id);
@@ -41,10 +41,10 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
 
         if (!empty($data['image'])) {
             $file = $data['image'];
-                $nameImageOld = 'uploads/images/banners/' . $banner->image;
-                if(file_exists(public_path($nameImageOld))) {
-                    unlink(public_path($nameImageOld));
-                }
+            $nameImageOld = 'uploads/images/banners/' . $banner->image;
+            if (file_exists(public_path($nameImageOld))) {
+                unlink(public_path($nameImageOld));
+            }
             $forder = ('uploads/images/banners');
             $extensionFile = $file -> getClientOriginalExtension();
             $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
@@ -55,5 +55,15 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
         }
 
         return $banner->update($data);
+    }
+
+    public function delete($id)
+    {
+        $banner = $this->model->find($id);
+        $nameImageOld = 'uploads/images/banners/' . $banner->image;
+        if (file_exists(public_path($nameImageOld))) {
+            unlink(public_path($nameImageOld));
+        }
+        $banner->delete();
     }
 }

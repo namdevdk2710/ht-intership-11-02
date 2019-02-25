@@ -50,9 +50,8 @@ class BannerController extends Controller
     public function store(CreateBannerRequest $request)
     {
         $this->repository->store($request->all());
-        $request->session()->flash('msg', 'Creation successful');
 
-        return redirect()->route('banner.index');
+        return redirect()->route('banner.index')->with('msg', 'Creation successful');
     }
 
     /**
@@ -64,7 +63,6 @@ class BannerController extends Controller
     public function show($id)
     {
         //
-        // return view('backend.banners.index', compact('banners'));
     }
 
     /**
@@ -76,7 +74,8 @@ class BannerController extends Controller
     public function edit($id)
     {
         $banner = $this->repository->find($id);
-        return view( 'backend.banners.edit', compact('banner'));
+
+        return view('backend.banners.edit', compact('banner'));
     }
 
     /**
@@ -88,13 +87,10 @@ class BannerController extends Controller
      */
     public function update(EditBannerRequest $request, $id)
     {
-       $data = $request->all();
+        $data = $request->all();
         $this->repository->update($id, $data);
 
-        $request->session()->flash('msg', 'Update Successful');
-
-        return redirect()->route('banner.index');
-
+        return redirect()->route('banner.index')->with('msg', 'Edit successful');
     }
 
     /**
@@ -105,6 +101,8 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repository->delete($id);
+
+        return redirect()->route('banner.index')->with('msg', 'Delete successful');
     }
 }

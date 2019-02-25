@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="treeview-item" href="form-custom.html">
+                    <a class="treeview-item" href="{{route('banner.create')}}">
                         <i class="icon fa fa-circle-o"></i>Create Banner
                     </a>
                 </li>
