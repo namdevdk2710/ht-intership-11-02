@@ -33,4 +33,9 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
 
         return $this->model->create($data);
     }
+    public function delete($id)
+    {
+        $banner = $this->model->find($id);
+        $banner->delete();
+    }
 }
