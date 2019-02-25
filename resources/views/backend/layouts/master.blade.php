@@ -31,10 +31,10 @@
 
 <body class="app sidebar-mini rtl">
         @if(session('msg'))
-        <div class="alert alert-success alert-dismissible fade show message ">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{session('msg')}}
-              </div>
+        <div class="alert alert-success alert-dismissible fade show messag ">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{session('msg')}}
+        </div>
         @endif
         @include('backend.layouts.header')
         @include('backend.layouts.menu')

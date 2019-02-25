@@ -17,13 +17,6 @@
         </ul>
     </div>
     <div class="row">
-        @if(Session::has('msg'))
-        <div class="col-md-12">
-            <div class="tile">
-                <div class="tile-body">{{ Session::get('msg') }}</div>
-            </div>
-        </div>
-        @endif
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">

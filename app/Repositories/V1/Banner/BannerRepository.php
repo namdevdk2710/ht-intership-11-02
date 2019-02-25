@@ -4,7 +4,6 @@ namespace App\Repositories\V1\Banner;
 
 use App\Repositories\BaseRepository;
 use App\Models\Banner;
-use File;
 
 class BannerRepository extends BaseRepository implements BannerRepositoryInterface
 {
