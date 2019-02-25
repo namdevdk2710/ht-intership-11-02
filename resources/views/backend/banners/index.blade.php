@@ -17,10 +17,10 @@
         </ul>
     </div>
     <div class="row">
-        @if(session()->has('msg'))
+        @if(Session::has('msg'))
         <div class="col-md-12">
             <div class="tile">
-                <div class="tile-body">{{ session()->get('msg') }}</div>
+                <div class="tile-body">{{ Session::get('msg') }}</div>
             </div>
         </div>
         @endif
@@ -94,7 +94,7 @@
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
                                                 {!!Form::open(['method' => 'DELETE','route' => ['banner.destroy',$baner->id],
-                                                'onsubmit' => 'return ConfirmDelete()'])!!}
+                                                'onsubmit' => 'return confirmDelete()'])!!}
                                                 {!!Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )!!}
                                                 {!! Form::close() !!}
                                             </td>
@@ -114,14 +114,16 @@
         </div>
     </div>
 </main>
-<script>
-    function ConfirmDelete()
+<script type="text/javascript">
+    function confirmDelete()
     {
         var x = confirm("Are you sure you want to delete?");
-        if (x)
-        return true;
-        else
-        return false;
+        if (x) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
   </script>
 @endsection
