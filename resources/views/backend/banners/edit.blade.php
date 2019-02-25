@@ -30,8 +30,8 @@
                 {{ Form::open(['method' => 'PUT', 'route' => ['banner.update', $banner->id],'files' => true]) }}
                 <div class="tile-body">
                     <div class="form-group">
-                        {{ Form::label('name', 'Name:',['class'=>'control-label']) }}
-                        {{ Form::text('name',$banner->name,['class'=>'form-control']) }}
+                        {{ Form::label('name', 'Name:', ['class'=>'control-label']) }}
+                        {{ Form::text('name', $banner->name, ['class'=>'form-control']) }}
                     </div>
                     @if ($errors->has('name'))
                         <div class="alert alert-danger">
@@ -43,11 +43,11 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        {{ Form::label('description', 'Description:',['class'=>'control-label']) }}
-                        {{ Form::textarea('description',$banner->description,['class'=>'form-control']) }}
+                        {{ Form::label('description', 'Description:', ['class'=>'control-label']) }}
+                        {{ Form::textarea('description', $banner->description, ['class'=>'form-control']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('avatar','Avatar',['for'=>'exampleInputFile']) }}
+                        {{ Form::label('avatar', 'Avatar', ['for'=>'exampleInputFile']) }}
                         <div>
                           @if(!empty($banner->image))
                             <img src="uploads/images/banners/{{ $banner->image}} " height="150" width="150px" alt="Image Banner" id="image">
@@ -68,8 +68,8 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        {{ Form::label('link', 'Link:',['class'=>'control-label']) }}
-                        {{ Form::text('link',$banner->link,['class'=>'form-control']) }}
+                        {{ Form::label('link', 'Link:', ['class'=>'control-label']) }}
+                        {{ Form::text('link', $banner->link, ['class'=>'form-control']) }}
                     </div>
                     @if ($errors->has('link'))
                     <div class="alert alert-danger">

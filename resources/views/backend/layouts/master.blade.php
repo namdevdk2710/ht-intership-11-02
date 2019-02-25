@@ -31,7 +31,7 @@
 
 <body class="app sidebar-mini rtl">
         @if(session('msg'))
-        <div class="alert alert-success alert-dismissible fade show thongbao ">
+        <div class="alert alert-success alert-dismissible fade show message ">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 {{session('msg')}}
               </div>

@@ -90,9 +90,7 @@ class BannerController extends Controller
         $data = $request->all();
         $this->repository->update($id, $data);
 
-        $request->session()->flash('msg', 'Update Successful');
-
-        return redirect()->route('banner.index');
+        return redirect()->route('banner.index')->with('msg', 'Creation successful');;
     }
 
     /**
