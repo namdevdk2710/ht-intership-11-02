@@ -17,19 +17,19 @@
         <div class="col-md-12">
             <div class="tile">
                 <h3 class="tile-title">Create Gallery</h3>
-                {!! Form::open(['method' => 'POST', 'route' => 'gallery.store','files' => true]) !!}
+                {{ Form::open(['method' => 'POST', 'route' => 'gallery.store','files' => true]) }}
                 <div class="tile-body">
                     <div class="form-group">
-                        {!!Form::label('name', 'Name: ',['class'=>'control-label'])!!}
-                        {!!Form::text('name',null,['class'=>'form-control'])!!}
+                        {{ Form::label('name', 'Name: ', ['class'=>'control-label']) }}
+                        {{ Form::text('name', null, ['class'=>'form-control']) }}
                     </div>
                     @if ($errors->has('name'))
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->get('name') as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('name') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
                     <div class="form-group">
@@ -37,7 +37,7 @@
                         {{ Form::textarea('description', null, ['class'=>'form-control']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('image', 'Image: ',['class'=>'control-label']) }}
+                        {{ Form::label('image', 'Image: ', ['class'=>'control-label']) }}
                         <br>
                         <img src="" width="150" height="150" alt="Image Banner" id="img" style="display: none">
                         <br>
