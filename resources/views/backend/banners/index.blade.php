@@ -17,13 +17,6 @@
         </ul>
     </div>
     <div class="row">
-        @if(session()->has('msg'))
-        <div class="col-md-12">
-            <div class="tile">
-                <div class="tile-body">{{ session()->get('msg') }}</div>
-            </div>
-        </div>
-        @endif
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
@@ -83,19 +76,29 @@
                                             <td style="width:40%;">{{ str_limit($baner["description"], 50) }}</td>
                                             <td>
                                                 @if(!empty($baner->image))
-                                                    <img width="100%" src="backend/upload/images/a.jpg">
+                                                    <img width="100%" src="uploads/images/banners/{{ $baner->image }}">
                                                 @endif
                                             </td>
                                             <td style="width:17%;">
                                                 <a href="backend/banners/index/{{ $baner->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $baner->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="" class="btn btn-warning">
+                                                <a href="{{route('banner.edit', ['id'=>$baner->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
-                                                {!!Form::open(['method' => 'DELETE','route' => ['banner.destroy',$baner->id],
-                                                'onsubmit' => 'return ConfirmDelete()'])!!}
-                                                {!!Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )!!}
+                                                <a
+                                                    href="{{route('banner.destroy', ['id'=>$baner->id])}}"
+                                                    class="btn btn-danger btn-delete"
+                                                    onclick=""
+                                                >
+                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                </a>
+                                                {!!Form::open([
+                                                    'method' => 'DELETE',
+                                                    'route' => ['banner.destroy',$baner->id],
+                                                    'onsubmit' => 'return confirmDelete()',
+                                                    'id' => 'form-delete'
+                                                ])!!}
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>
@@ -114,14 +117,24 @@
         </div>
     </div>
 </main>
-<script>
-    function ConfirmDelete()
+@endsection
+
+@push('script')
+<script type="text/javascript">
+    $('.btn-delete').on('click', function(e) {
+        e.preventDefault();
+        $('#form-delete').submit();
+    });
+
+    function confirmDelete()
     {
         var x = confirm("Are you sure you want to delete?");
-        if (x)
-        return true;
-        else
-        return false;
+        if (x) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
-  </script>
-@endsection
+</script>
+@endpush

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Banners\CreateBannerRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Banner\BannerRepositoryInterFace;
+use App\Http\Requests\Banners\EditBannerRequest;
 use App\Models\Banner;
 use Illuminate\Support\Collection;
 
@@ -72,7 +73,9 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $banner = $this->repository->find($id);
+
+        return view('backend.banners.edit', compact('banner'));
     }
 
     /**
@@ -82,9 +85,12 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditBannerRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->repository->update($id, $data);
+
+        return redirect()->route('banner.index')->with('msg', 'Edit successful');
     }
 
     /**
