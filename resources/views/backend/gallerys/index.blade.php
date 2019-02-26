@@ -83,7 +83,7 @@
                                                 <a href="backend/gallerys/index/{{ $gallery->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $gallery->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="" class="btn btn-warning">
+                                                <a href="{{route('gallery.edit', ['id'=>$gallery->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
 

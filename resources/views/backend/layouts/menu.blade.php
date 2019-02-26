@@ -13,7 +13,7 @@
     </div>
     <ul class="app-menu">
         <li>
-            <a class="app-menu__item active" href="index.html">
+            <a class="app-menu__item active" href="{{asset('/admin/home')}}">
                 <i class="app-menu__icon fa fa-dashboard"></i>
                 <span class="app-menu__label">Dashboard</span>
             </a>
@@ -53,6 +53,25 @@
                 <li>
                     <a class="treeview-item" href="{{route('banner.create')}}">
                         <i class="icon fa fa-circle-o"></i>Create Banner
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a class="app-menu__item" href="#" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-edit"></i>
+                <span class="app-menu__label">Gallery</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="#">
+                        <i class="icon fa fa-circle-o"></i> List Gallery
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="{{route('gallery.create')}}">
+                        <i class="icon fa fa-circle-o"></i>Create Gallery
                     </a>
                 </li>
             </ul>

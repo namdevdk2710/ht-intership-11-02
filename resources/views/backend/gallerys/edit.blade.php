@@ -5,8 +5,7 @@
     <div class="app-title">
         <div>
             <h1>
-                <i class="fa fa-edit"></i>
-                Edit Gallery
+                <i class="fa fa-edit"></i> Edit Gallery
             </h1>
             <p>Form Edit Gallery</p>
         </div>
@@ -16,10 +15,10 @@
             </li>
             <li class="breadcrumb-item">Gallerys</li>
             <li class="breadcrumb-item">
-                <a href="#">Edit Gallery </a>
+                <a href="{{route('gallery.index')}}">Edit Gallery </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="#">{{ $gallery->name }} </a>
+                <a href="{{route('gallery.edit', ['id'=>$gallery->id])}}">{{ $gallery->name }} </a>
             </li>
         </ul>
     </div>
@@ -34,45 +33,45 @@
                         {{ Form::text('name', $gallery->name, ['class'=>'form-control']) }}
                     </div>
                     @if ($errors->has('name'))
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->get('name') as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->get('name') as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
                     <div class="form-group">
                         {{ Form::label('description', 'Description:', ['class'=>'control-label']) }}
                         {{ Form::textarea('description', $gallery->description, ['class'=>'form-control']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('avatar', 'Avatar', ['for'=>'exampleInputFile']) }}
+                        {{ Form::label('avatar', 'Image', ['for'=>'exampleInputFile']) }}
                         <div>
-                          @if(!empty($gallery->image))
-                            <img src="uploads/images/gallery/{{ $gallery->image}} " height="150" width="150px" alt="Image Gallery" id="image">
-                          @else
-                            <img src="" width="150" height="150" alt="Image Gallery" id="image" style="display: none">
-                          @endif
-                          <br>
-                            <input type="file" class="fileimage" id="exampleInputFile" name="image" value="{{ old('image', isset($Gallery) ? $Gallery->image : '') }}">
+                            <img src="uploads/images/gallerys/{{ $gallery->image}} "
+                            height="150" width="150px" alt="{{ $gallery->name }}"
+                            id="image">
+                            <br>
+                            <input type="file" class="fileimage" id="exampleInputFile"
+                            name="image" value="{{ old('image', isset($gallery) ? $gallery->image : '') }}">
                         </div>
                     </div>
-                    @if ($errors->has('image'))
+                    @if ($errors -> has('image'))
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->get('image') as $error)
-                                <li>{{ $error }}</li>
+                            <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                        </div>
+                    </div>
                     @endif
                 </div>
                 <div class="tile-footer">
-                    {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Update', ['type' => 'submit',
-                    'class' => 'btn btn-primary'] ) }} &nbsp;&nbsp;&nbsp;
-                    <a href="{{route('gallery.index')}}" class="btn btn-secondary"><i
-                            class="fa fa-fw fa-lg fa-times-circle"></i>Cancle</a>
+                    {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Update',
+                    ['type' => 'submit', 'class' => 'btn btn-primary'] ) }} &nbsp;&nbsp;&nbsp;
+                    <a href="{{route('gallery.index')}}" class="btn btn-secondary">
+                        <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancle
+                    </a>
                 </div>
                 {{ Form::close() }}
             </div>
@@ -80,19 +79,20 @@
     </div>
 </main>
 @endsection
+
 @push('script')
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     $('#image').attr('src', e.target.result).show();
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $(".fileimage").change(function () {
+        $(".fileimage").change(function() {
             readURL(this);
         });
     });

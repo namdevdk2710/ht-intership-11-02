@@ -1,14 +1,16 @@
-@extends('backend.layouts.master') @section('content')
+@extends('backend.layouts.master')
+
+@section('content')
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-edit"></i> Create banners</h1>
-            <p>Sample forms</p>
+            <h1><i class="fa fa-edit"></i> Create Gallery</h1>
+            <p>Form Create Gallery</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">Banners</li>
-            <li class="breadcrumb-item"><a href="#">Create banners</a></li>
+            <li class="breadcrumb-item">Gallery</li>
+            <li class="breadcrumb-item"><a href="#">Create Gallery</a></li>
         </ul>
     </div>
     <div class="row">
@@ -47,19 +49,6 @@
                         </ul>
                         </div>
                     @endif
-                    <div class="form-group">
-                        {!!Form::label('link', 'Link',['class'=>'control-label'])!!}
-                        {!!Form::text('link',null,['class'=>'form-control'])!!}
-                    </div>
-                    @if ($errors->has('link'))
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->get('link') as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        </div>
-                    @endif
                 </div>
                 <div class="tile-footer">
                     {!!Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] )!!}
@@ -70,3 +59,21 @@
     </div>
 </main>
 @endsection
+@push('script')
+<script>
+    $(document).ready(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#image").change(function () {
+            readURL(this);
+        });
+    });
+</script>
+@endpush
