@@ -11,6 +11,7 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
     {
         return Gallery::class;
     }
+
     public function store($data)
     {
         $file = $data['image'];
