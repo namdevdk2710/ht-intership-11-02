@@ -26,6 +26,6 @@ $factory->define(App\Models\Gallery::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'description' => $faker->text,
-        'image' => $faker->image('public/uploads/images/gallerys',400,300)
+        'image' => $faker->image('public/uploads/images/gallerys'),
     ];
 });
