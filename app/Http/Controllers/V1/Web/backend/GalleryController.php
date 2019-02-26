@@ -90,6 +90,8 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repository->delete($id);
+
+        return redirect()->route('gallery.index')->with('msg', 'Delete Gallery successful');
     }
 }
