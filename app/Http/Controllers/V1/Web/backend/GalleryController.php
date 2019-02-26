@@ -20,6 +20,7 @@ class GalleryController extends Controller
     {
         $this->repository = $repository;
     }
+
     public function index()
     {
         //
