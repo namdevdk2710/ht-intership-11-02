@@ -25,7 +25,7 @@ class GalleryController extends Controller
 
     public function index()
     {
-        $Gallerys = $this->repoGallery->paginate();
+        $gallerys = $this->repoGallery->paginate();
 
         return view('backend.gallerys.index', compact('gallerys'));
     }

@@ -31,6 +31,7 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
 
         return $this->model->create($data);
     }
+
     public function delete($id)
     {
         $gallery = $this->model->find($id);
