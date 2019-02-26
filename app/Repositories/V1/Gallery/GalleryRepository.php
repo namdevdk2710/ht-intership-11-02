@@ -13,10 +13,8 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
     }
     public function store($data)
     {
-        // $data['slug'] = str_slug($data['name']);
-
         $file = $data['image'];
-        $forder = 'uploads/images/banners';
+        $forder = 'uploads/images/gallerys';
         $extensionFile = $file -> getClientOriginalExtension();
         $fileName = $data['name'] . '-' . time() . '.' . $extensionFile;
         $file->move($forder, $fileName);

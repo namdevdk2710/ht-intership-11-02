@@ -46,7 +46,7 @@ class GalleryController extends Controller
         $this->repository->store($request->all());
         $request->session()->flash('msg', 'Creation successful');
 
-        return redirect()->route('gallery.create');
+        return redirect()->route('gallery.index')->with('msg', 'Creation Gallery successful');
     }
 
     /**

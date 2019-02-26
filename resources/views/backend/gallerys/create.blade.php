@@ -33,11 +33,15 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        {!!Form::label('description', 'Description',['class'=>'control-label'])!!}
-                        {!!Form::textarea('description',null,['class'=>'form-control'])!!}
+                        {{ Form::label('description', 'Description', ['class'=>'control-label']) }}
+                        {{ Form::textarea('description', null, ['class'=>'form-control']) }}
                     </div>
                     <div class="form-group">
-                        <img src="" width="150" height="150" alt="Image Gallery" style="display: none" id="image">
+                        {{ Form::label('image', 'Image: ',['class'=>'control-label']) }}
+                        <br>
+                        <img src="" width="150" height="150" alt="Image Banner" id="img" style="display: none">
+                        <br>
+                        {{ Form::file('image', null, ['class'=>'form-control fileimage']) }}
                     </div>
                     @if ($errors->has('image'))
                     <div class="alert alert-danger">
@@ -50,11 +54,29 @@
                     @endif
                 </div>
                 <div class="tile-footer">
-                    {!!Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] )!!}
+                    {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] ) }}
                 </div>
-                {!! Form::close() !!}
+                {{ Form::close() }}
             </div>
         </div>
     </div>
 </main>
 @endsection
+@push('script')
+<script>
+    $(document).ready(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#image").change(function () {
+            readURL(this);
+        });
+    });
+</script>
+@endpush
