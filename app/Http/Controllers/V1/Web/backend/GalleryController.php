@@ -25,7 +25,7 @@ class GalleryController extends Controller
 
     public function index()
     {
-        $Gallerys = $this->repoGallery->paginate();
+        $gallerys = $this->repoGallery->paginate();
 
         return view('backend.gallerys.index', compact('gallerys'));
     }
@@ -50,7 +50,7 @@ class GalleryController extends Controller
     {
         $this->repoGallery->store($request->all());
 
-        return redirect()->route('gallerys.index')->with('msg', 'Creation successful');
+        return redirect()->route('gallery.index')->with('msg', 'Creation Gallery successful');
     }
 
     /**
@@ -97,6 +97,6 @@ class GalleryController extends Controller
     {
         $this->repoGallery->delete($id);
 
-        return redirect()->route('gallerys.index')->with('msg', 'Delete successful');
+        return redirect()->route('gallery.index')->with('msg', 'Delete successful');
     }
 }
