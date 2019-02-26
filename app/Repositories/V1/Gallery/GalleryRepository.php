@@ -33,7 +33,11 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
     }
     public function delete($id)
     {
-        $Gallery = $this->model->find($id);
-        $Gallery->delete();
+        $gallery = $this->model->find($id);
+        $nameImageOld = 'uploads/images/gallerys/' . $gallery->image;
+        if (file_exists(public_path($nameImageOld))) {
+            unlink(public_path($nameImageOld));
+        }
+        $gallery->delete();
     }
 }
