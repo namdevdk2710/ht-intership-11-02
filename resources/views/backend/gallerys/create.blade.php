@@ -1,4 +1,6 @@
-@extends('backend.layouts.master') @section('content')
+@extends('backend.layouts.master')
+
+@section('content')
 <main class="app-content">
     <div class="app-title">
         <div>
@@ -56,7 +58,9 @@
         </div>
     </div>
 </main>
-@endsection @push('script')
+@endsection
+
+@push('script')
 <script>
     $(document).ready(function() {
         function readURL(input) {
@@ -74,3 +78,4 @@
     });
 </script>
 @endpush
+

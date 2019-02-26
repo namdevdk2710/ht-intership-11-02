@@ -1,4 +1,6 @@
-@extends('backend.layouts.master') @section('content')
+@extends('backend.layouts.master')
+
+@section('content')
 
 <main class="app-content">
     <div class="app-title">
@@ -87,7 +89,9 @@
         </div>
     </div>
 </main>
-@endsection @push('script')
+@endsection
+
+@push('script')
 <script type="text/javascript">
     $('.btn-delete').on('click', function(e) {
         e.preventDefault();
@@ -104,3 +108,4 @@
     }
 </script>
 @endpush
+
