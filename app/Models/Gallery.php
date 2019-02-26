@@ -10,7 +10,12 @@ class Gallery extends Model
     protected $fillable =[
         'name',
         'description',
+        'content',
         'image',
     ];
     public $timestamps = true;
+
+    public function gallery_details() {
+        return $this->hasMany('App\Models\GalleryDetail', 'gallery_id', 'id');
+    }
 }
