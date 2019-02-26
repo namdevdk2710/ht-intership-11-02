@@ -20,7 +20,8 @@
                 {{ Form::open(['method' => 'POST', 'route' => 'gallery.store','files' => true]) }}
                 <div class="tile-body">
                     <div class="form-group">
-                        {{ Form::label('name', 'Name: ', ['class'=>'control-label']) }} {{ Form::text('name', null, ['class'=>'form-control']) }}
+                        {{ Form::label('name', 'Name: ', ['class'=>'control-label']) }}
+                        {{ Form::text('name', null, ['class'=>'form-control']) }}
                     </div>
                     @if ($errors->has('name'))
                     <div class="alert alert-danger">
@@ -32,7 +33,8 @@
                     </div>
                     @endif
                     <div class="form-group">
-                        {{ Form::label('description', 'Description', ['class'=>'control-label']) }} {{ Form::textarea('description', null, ['class'=>'form-control']) }}
+                        {{ Form::label('description', 'Description', ['class'=>'control-label']) }}
+                        {{ Form::textarea('description', null, ['class'=>'form-control']) }}
                     </div>
                     <div class="form-group">
                         {{ Form::label('image', 'Image: ', ['class'=>'control-label']) }}
