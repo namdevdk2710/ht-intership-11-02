@@ -22,6 +22,5 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
         $data['image'] = $fileName;
 
         return $this->model->create($data);
-
     }
 }

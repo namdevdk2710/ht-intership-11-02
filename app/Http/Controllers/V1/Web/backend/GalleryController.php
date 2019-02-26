@@ -44,7 +44,6 @@ class GalleryController extends Controller
     public function store(CreateGalleryRequest $request)
     {
         $this->repository->store($request->all());
-        $request->session()->flash('msg', 'Creation successful');
 
         return redirect()->route('gallery.index')->with('msg', 'Creation Gallery successful');
     }
