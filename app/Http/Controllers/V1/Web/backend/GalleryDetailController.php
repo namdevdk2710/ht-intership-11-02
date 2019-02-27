@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\V1\Web\backend;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\gallery_detail\CreateGalleryDetailRequest;
-use App\Http\Requests\gallery_detail\EditGalleryDetailRequest;
+use App\Http\Requests\GalleryDetail\CreateGalleryDetailRequest;
+use App\Http\Requests\GalleryDetail\EditGalleryDetailRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\GalleryDetail\GalleryDetailRepositoryInterFace;
 use App\Models\GalleryDetail;
