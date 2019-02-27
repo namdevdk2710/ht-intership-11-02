@@ -12,6 +12,8 @@ use App\Repositories\V1\Gallery\GalleryRepository;
 use App\Repositories\V1\Gallery\GalleryRepositoryInterface;
 use App\Repositories\V1\GalleryDetail\GalleryDetailRepository;
 use App\Repositories\V1\GalleryDetail\GalleryDetailRepositoryInterface;
+use App\Repositories\V1\Module\ModuleRepository;
+use App\Repositories\V1\Module\ModuleRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,5 +38,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(BannerRepositoryInterface::class, BannerRepository::class);
         $this->app->bind(GalleryRepositoryInterface::class, GalleryRepository::class);
         $this->app->bind(GalleryDetailRepositoryInterface::class, GalleryDetailRepository::class);
+        $this->app->bind(ModuleRepositoryInterface::class, ModuleRepository::class);
     }
 }
