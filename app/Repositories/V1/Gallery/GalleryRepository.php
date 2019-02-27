@@ -63,4 +63,11 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
         }
         $gallery->delete();
     }
+
+    public function listCreate()
+    {
+        $galleryList = $this->model::all();
+
+        return $galleryList;
+    }
 }

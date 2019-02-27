@@ -23,6 +23,7 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="backend/css/main.css">
     <link rel="stylesheet" type="text/css" href="backend/css/style.css">
+    <script type="text/javascript" language="javascript" src="backend/ckeditor/ckeditor.js"></script>
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -109,7 +110,22 @@
         }
     </script>
     <script>
-            $("div.alert-success").delay(4000).slideUp();
+        $("div.alert-success").delay(4000).slideUp();
+
+        $(document).ready(function() {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#img').attr('src', e.target.result).show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#image").change(function() {
+                readURL(this);
+            });
+        });
     </script>
     @stack('script')
 </body>
