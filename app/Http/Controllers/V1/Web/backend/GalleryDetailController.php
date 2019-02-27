@@ -23,8 +23,7 @@ class GalleryDetailController extends Controller
     public function __construct(
         GalleryDetailRepositoryInterFace $repoGalleryDetail,
         GalleryRepositoryInterFace $repoGallery
-    )
-    {
+    ) {
         $this->repoGalleryDetail = $repoGalleryDetail;
         $this->repoGallery = $repoGallery;
     }
