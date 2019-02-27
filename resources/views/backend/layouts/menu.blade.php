@@ -76,6 +76,25 @@
                 </li>
             </ul>
         </li>
+        <li class="treeview">
+            <a class="app-menu__item" href="#" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-th-list"></i>
+                <span class="app-menu__label">Gallery Detail</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="table-basic.html">
+                        <i class="icon fa fa-circle-o"></i>List Gallery Detail
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="{{ route('gallery_detail.create') }}">
+                        <i class="icon fa fa-circle-o"></i> Create Gallery Detail
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li>
             <a class="app-menu__item" href="charts.html">
                 <i class="app-menu__icon fa fa-pie-chart"></i>

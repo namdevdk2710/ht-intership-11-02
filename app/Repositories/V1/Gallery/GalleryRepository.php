@@ -11,6 +11,7 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
     {
         return Gallery::class;
     }
+
     public function store($data)
     {
         $file = $data['image'];
@@ -32,5 +33,12 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
             unlink(public_path($nameImageOld));
         }
         $banner->delete();
+    }
+
+    public function listCreate()
+    {
+        $galleryList = $this->model::all();
+
+        return $galleryList;
     }
 }
