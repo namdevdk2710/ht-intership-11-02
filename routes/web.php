@@ -16,4 +16,5 @@ Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend'], function (
     Route::resource('/banner', 'BannerController');
     Route::resource('/gallery', 'GalleryController');
     Route::resource('/gallery_detail', 'GalleryDetailController');
+    Route::resource('/module', 'ModuleController');
 });
