@@ -80,9 +80,10 @@ class GalleryDetailController extends Controller
      */
     public function edit($id)
     {
+        $gallery = $this->repoGallery->listCreate();
         $galleryDetail = $this->repoGalleryDetail->find($id);
 
-        return view('backend.gallery_detail.edit', compact('galleryDetail'));
+        return view('backend.gallery-details.edit', compact('galleryDetail','gallery'));
     }
 
     /**
