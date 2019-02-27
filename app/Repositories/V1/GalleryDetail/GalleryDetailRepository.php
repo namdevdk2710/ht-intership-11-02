@@ -18,4 +18,14 @@ class GalleryDetailRepository extends BaseRepository implements GalleryDetailRep
 
         return $this->model->paginate($limit, $columns);
     }
+
+    public function delete($id)
+    {
+        $galleryDetail = $this->model->find($id);
+        $nameImageOld = 'uploads/images/gallerydetails/' . $galleryDetail->image;
+        if (file_exists(public_path($nameImageOld))) {
+            unlink(public_path($nameImageOld));
+        }
+        $galleryDetail->delete();
+    }
 }
