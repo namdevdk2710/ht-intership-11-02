@@ -20,9 +20,9 @@ class GalleryDetailController extends Controller
      */
     protected $repoGalleryDetail;
     protected $repoGallery;
-    public function __construct (
-        GalleryDetailRepositoryInterFace $repoGalleryDetail,
-        GalleryRepositoryInterFace $repoGallery)
+    public function __construct(GalleryDetailRepositoryInterFace $repoGalleryDetail,
+                        GalleryRepositoryInterFace $repoGallery
+    )
     {
         $this->repoGalleryDetail = $repoGalleryDetail;
         $this->repoGallery = $repoGallery;
