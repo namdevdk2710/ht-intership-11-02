@@ -24,7 +24,6 @@ class GalleryDetailController extends Controller
         GalleryDetailRepositoryInterFace $repoGalleryDetail,
         GalleryRepositoryInterFace $repoGallery
     )
-
     {
         $this->repoGalleryDetail = $repoGalleryDetail;
         $this->repoGallery = $repoGallery;
