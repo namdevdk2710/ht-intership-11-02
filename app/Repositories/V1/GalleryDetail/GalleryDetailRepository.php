@@ -15,7 +15,7 @@ class GalleryDetailRepository extends BaseRepository implements GalleryDetailRep
     public function store($data)
     {
         $file = $data['image'];
-        $forder = 'uploads/images/gallerys';
+        $forder = 'uploads/images/gallerydetails';
         $extensionFile = $file -> getClientOriginalExtension();
         $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
         $file->move($forder, $fileName);
@@ -23,5 +23,22 @@ class GalleryDetailRepository extends BaseRepository implements GalleryDetailRep
         $data['image'] = $fileName;
 
         return $this->model->create($data);
+    }
+
+    public function paginate($limit = null, $columns = ['*'])
+    {
+        $limit = is_null($limit) ? config('repository.pagination.limit', 5) : $limit;
+
+        return $this->model->paginate($limit, $columns);
+    }
+
+    public function delete($id)
+    {
+        $galleryDetail = $this->model->find($id);
+        $nameImageOld = 'uploads/images/gallerydetails/' . $galleryDetail->image;
+        if (file_exists(public_path($nameImageOld))) {
+            unlink(public_path($nameImageOld));
+        }
+        $galleryDetail->delete();
     }
 }

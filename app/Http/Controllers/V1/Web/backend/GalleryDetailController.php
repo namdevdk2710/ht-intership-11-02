@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\V1\Web\backend;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\GalleryDetails\CreateGalleryDetailRequest;
+use App\Http\Requests\GalleryDetails\EditGalleryDetailRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\GalleryDetail\GalleryDetailRepositoryInterFace;
-use App\Repositories\V1\Gallery\GalleryRepositoryInterFace;
-use App\Http\Requests\GalleryDetails\CreateGalleryDetailRequest;
+use App\Models\GalleryDetail;
+use Illuminate\Support\Collection;
 
 class GalleryDetailController extends Controller
 {
@@ -28,7 +30,7 @@ class GalleryDetailController extends Controller
 
     public function index()
     {
-        $galleryDetails = $this->repoGalleryDetail->index();
+        $galleryDetails = $this->repoGalleryDetail->paginate();
 
         return view('backend.gallery-details.index', compact('galleryDetails'));
     }
@@ -55,7 +57,7 @@ class GalleryDetailController extends Controller
     {
         $this->repoGalleryDetail->store($request->all());
 
-        return redirect()->route('gallery_detail.index')->with('msg', 'Creation Gallery Detail successful');
+        return redirect()->route('gallery_detail.index')->with('msg', 'Creation successful');
     }
 
     /**
@@ -77,7 +79,9 @@ class GalleryDetailController extends Controller
      */
     public function edit($id)
     {
-        //
+        $galleryDetail = $this->repoGalleryDetail->find($id);
+
+        return view('backend.gallery_detail.edit', compact('galleryDetail'));
     }
 
     /**
@@ -87,9 +91,12 @@ class GalleryDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditGalleryDetailRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->repoGalleryDetail->update($id, $data);
+
+        return redirect()->route('gallery_detail.index')->with('msg', 'Edit successful');
     }
 
     /**
@@ -100,6 +107,8 @@ class GalleryDetailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repoGalleryDetail->delete($id);
+
+        return redirect()->route('gallery_detail.index')->with('msg', 'Delete successful');
     }
 }

@@ -6,14 +6,14 @@
     <div class="app-title">
         <div>
             <h1>
-                <i class="fa fa-th-list"></i> List Gallery Details
+                <i class="fa fa-th-list"></i> List Modules
             </h1>
-            <p>Display all lists gallery details</p>
+            <p>Display all lists modules</p>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item">admin</li>
-            <li class="breadcrumb-item active"><a href="#">gallery details</a></li>
+            <li class="breadcrumb-item active"><a href="#">module</a></li>
         </ul>
     </div>
     <div class="row">
@@ -23,8 +23,8 @@
                     <div id="sampleTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                <a class="btn btn-primary icon-btn" href="{{route('gallery_detail.create')}}">
-                                    <i class="fa fa-plus"></i>Create
+                                <a class="btn btn-primary icon-btn" href="{{route('module.create')}}">
+                                    <i class="fa fa-plus"></i>Create module
                                 </a>
                             </div>
                             <div class="col-sm-12 col-md-6">
@@ -53,43 +53,43 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($galleryDetails as $key => $galleryDetail)
+                                        @foreach($modules as $key => $module)
                                         <tr role="row" class="odd">
                                             <td style="width:5%;">{{ $key + 1 }}</td>
-                                            <td style="width:17%;">{{ $galleryDetail->name }}</td>
-                                            <td style="width:40%;">{{ str_limit($galleryDetail["description"], 50) }}</td>
+                                            <td style="width:17%;">{{ $module->name }}</td>
+                                            <td style="width:40%;">{{ str_limit($module["description"], 50) }}</td>
                                             <td>
-                                                <img width="50%" src="uploads/images/gallerydetails/{{ $galleryDetail->image }}">
+                                                <img width="50%" src="uploads/images/modules/{{ $module->image }}">
                                             </td>
                                             <td style="width:17%;">
-                                                <a href="backend/gallery_detail/index/{{ $galleryDetail->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $galleryDetail->id }}">
+                                                <a href="backend/Modules/index/{{ $module->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $module->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{route('gallery_detail.edit', ['id'=>$galleryDetail->id])}}" class="btn btn-warning">
+                                                <a href="{{route('module.edit', ['id'=>$module->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
                                                 <a
-                                                href="{{route('gallery_detail.destroy', ['id'=>$galleryDetail->id])}}"
-                                                class="btn btn-danger btn-delete"
-                                                onclick=""
+                                                    href="{{route('module.destroy', ['id'=>$module->id])}}"
+                                                    class="btn btn-danger btn-delete"
+                                                    onclick=""
                                                 >
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 </a>
                                                 {!!Form::open([
                                                     'method' => 'DELETE',
-                                                    'route' => ['gallery_detail.destroy',$galleryDetail->id],
+                                                    'route' => ['module.destroy',$module->id],
                                                     'onsubmit' => 'return confirmDelete()',
                                                     'id' => 'form-delete'
                                                 ])!!}
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>
-                                        @include('backend.gallery-details.detail')
-                                    @endforeach
+                                        @include('backend.modules.detail')
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <div style="float: right;">
-                                    {{ $galleryDetails->links() }}
+                                    {{ $modules->links() }}
                                 </div>
                             </div>
                         </div>
@@ -108,15 +108,14 @@
         $('#form-delete').submit();
     });
 
-    function confirmDelete()
-    {
+    function confirmDelete() {
         var x = confirm("Are you sure you want to delete?");
         if (x) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 </script>
 @endpush
+
