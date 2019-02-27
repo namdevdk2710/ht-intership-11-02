@@ -12,6 +12,7 @@ class Module extends Model
         'image',
         'description',
         'slug',
+        'status',
     ];
 
     public $timestamps = true;
