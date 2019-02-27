@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\GalleryDetail;
 
-class GalleryTableSeeder extends Seeder
+class GalleryDetailsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +12,6 @@ class GalleryTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Gallery::class, 20)->create();
+        factory(GalleryDetail::class, 20)->create();
     }
 }

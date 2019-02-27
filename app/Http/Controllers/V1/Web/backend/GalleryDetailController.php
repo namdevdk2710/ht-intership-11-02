@@ -28,8 +28,6 @@ class GalleryDetailController extends Controller
     public function index()
     {
         $galleryDetails = $this->repoGalleryDetail->index();
-
-
     }
 
     /**
@@ -41,7 +39,7 @@ class GalleryDetailController extends Controller
     {
         $galleryDetails = $this->repoGallery->listCreate();
 
-        return view('backend.gallery_details.create',compact('galleryDetails'));
+        return view('backend.gallery-details.create',compact('galleryDetails'));
     }
 
     /**

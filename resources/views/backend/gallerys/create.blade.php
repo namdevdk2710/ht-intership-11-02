@@ -47,36 +47,38 @@
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->get('image') as $error)
-                                <li>{{ $error }}</li>
+                            <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                    </div>
+                        </div>
                     @endif
                 </div>
                 <div class="tile-footer">
-                    {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] ) }}
+                    {!!Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] )!!}
                 </div>
-                {{ Form::close() }}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
 </main>
 @endsection
+
 @push('script')
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     $('#img').attr('src', e.target.result).show();
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $("#image").change(function () {
+        $("#image").change(function() {
             readURL(this);
         });
     });
 </script>
 @endpush
+

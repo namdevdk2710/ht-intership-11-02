@@ -20,12 +20,14 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'banner.store','files' => true]) !!}
                 <div class="tile-body">
                     <div class="form-group">
-
                         {!!Form::label('gallery_id', 'Gallery Group')!!}
-                        {!! Form::select('gallery',
-                        $galleryDetails->pluck('name', 'id'),
-                        null,['class' => 'form-control border-input'],['multiple' => true]) !!}
-
+                        {!! Form::select(
+                            'gallery',
+                            $galleryDetails->pluck('name', 'id'),
+                            null,
+                            ['class' => 'form-control border-input'],
+                            ['multiple' => true])
+                        !!}
                 </div>
                     <div class="form-group">
                         {!!Form::label('name', 'Name',['class'=>'control-label'])!!}
@@ -43,6 +45,10 @@
                     <div class="form-group">
                         {!!Form::label('description', 'Description',['class'=>'control-label'])!!}
                         {!!Form::textarea('description',null,['class'=>'form-control'])!!}
+                    </div>
+                    <div class="form-group">
+                        {!!Form::label('description', 'Description',['class'=>'control-label'])!!}
+                        {!! Form::textarea('body',null,['class' => 'form-control ckeditor'] ) !!}
                     </div>
                     <div class="form-group">
                         {!!Form::label('image', 'Image',['class'=>'control-label'])!!}
