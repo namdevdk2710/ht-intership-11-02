@@ -62,6 +62,7 @@
     </div>
 </main>
 @endsection
+
 @push('script')
 <script>
     $(document).ready(function() {
