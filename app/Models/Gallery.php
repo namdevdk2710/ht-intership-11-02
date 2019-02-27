@@ -13,9 +13,11 @@ class Gallery extends Model
         'content',
         'image',
     ];
+
     public $timestamps = true;
 
-    public function galleryDetails() {
+    public function galleryDetails()
+    {
 
         return $this->hasMany('App\Models\GalleryDetail', 'gallery_id', 'id');
     }

@@ -15,7 +15,8 @@ class GalleryDetail extends Model
         'image',
     ];
 
-    public function gallery(){
+    public function gallery()
+    {
 
         return $this->belongsTo('App\Models\Gallery','gallery_id','id');
     }
