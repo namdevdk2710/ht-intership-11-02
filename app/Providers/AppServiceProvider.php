@@ -10,6 +10,8 @@ use App\Repositories\V1\Banner\BannerRepository;
 use App\Repositories\V1\Banner\BannerRepositoryInterface;
 use App\Repositories\V1\Gallery\GalleryRepository;
 use App\Repositories\V1\Gallery\GalleryRepositoryInterface;
+use App\Repositories\V1\GalleryDetail\GalleryDetailRepository;
+use App\Repositories\V1\GalleryDetail\GalleryDetailRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,5 +35,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(TodoRepositoryInterface::class, TodoRepository::class);
         $this->app->bind(BannerRepositoryInterface::class, BannerRepository::class);
         $this->app->bind(GalleryRepositoryInterface::class, GalleryRepository::class);
+        $this->app->bind(GalleryDetailRepositoryInterface::class, GalleryDetailRepository::class);
     }
 }
