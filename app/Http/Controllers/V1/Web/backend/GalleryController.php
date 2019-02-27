@@ -4,6 +4,7 @@ namespace App\Http\Controllers\V1\Web\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Gallerys\CreateGalleryRequest;
+use App\Http\Requests\Gallerys\EditGalleryRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Gallery\GalleryRepositoryInterFace;
 use App\Models\Gallery;
@@ -72,7 +73,9 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $gallery = $this->repoGallery->find($id);
+
+        return view('backend.gallerys.edit', compact('gallery'));
     }
 
     /**
@@ -82,9 +85,12 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditGalleryRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->repoGallery->update($id, $data);
+
+        return redirect()->route('gallery.index')->with('msg', 'Edit successful');
     }
 
     /**
