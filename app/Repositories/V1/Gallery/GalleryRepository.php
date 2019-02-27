@@ -24,7 +24,7 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
         $file = $data['image'];
         $forder = 'uploads/images/gallerys';
         $extensionFile = $file -> getClientOriginalExtension();
-        $fileName = $data['name'] . '-' . time() . '.' . $extensionFile;
+        $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
         $file->move($forder, $fileName);
 
         $data['image'] = $fileName;

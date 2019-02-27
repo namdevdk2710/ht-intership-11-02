@@ -42,30 +42,14 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table
-                                    class="table table-hover table-bordered dataTable no-footer"
-                                    id="sampleTable"
-                                    role="grid"
-                                    aria-describedby="sampleTable_info"
-                                >
+                                <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
                                     <thead>
                                         <tr role="row">
-                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1"
-                                                aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"
-                                                style="width: 154px;">#</th>
-                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1"
-                                                aria-label="Position: activate to sort column ascending"
-                                                style="width: 254px;">Name</th>
-                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1"
-                                                aria-label="Office: activate to sort column ascending"
-                                                style="width: 107px;">Description</th>
-                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1"
-                                                aria-label="Age: activate to sort column ascending"
-                                                style="width: 51px;">Image</th>
-                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1"
-                                                aria-label="Salary: activate to sort column ascending"
-                                                style="width: 91px;">Action</th>
+                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 154px;">#</th>
+                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 254px;">Name</th>
+                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 107px;">Description</th>
+                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Image</th>
+                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 91px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -75,9 +59,7 @@
                                             <td style="width:17%;">{{ $gallery->name }}</td>
                                             <td style="width:40%;">{{ str_limit($gallery["description"], 50) }}</td>
                                             <td>
-                                                @if(!empty($gallery->image))
-                                                    <img width="100%" src="backend/upload/images/a.jpg">
-                                                @endif
+                                                <img width="50%" src="uploads/images/gallerys/{{ $gallery->image }}">
                                             </td>
                                             <td style="width:17%;">
                                                 <a href="backend/gallerys/index/{{ $gallery->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $gallery->id }}">
@@ -86,11 +68,10 @@
                                                 <a href="{{route('gallery.edit', ['id'=>$gallery->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
-
                                                 <a
-                                                    href="{{route('gallery.destroy', ['id'=>$gallery->id])}}"
-                                                    class="btn btn-danger btn-delete"
-                                                    onclick=""
+                                                href="{{route('gallery.destroy', ['id'=>$gallery->id])}}"
+                                                class="btn btn-danger btn-delete"
+                                                onclick=""
                                                 >
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 </a>
@@ -103,8 +84,7 @@
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>
-                                        @include('backend.gallerys.detail')
-                                        @endforeach
+                                        @include('backend.gallerys.detail') @endforeach
                                     </tbody>
                                 </table>
                                 <div style="float: right;">
@@ -119,7 +99,6 @@
     </div>
 </main>
 @endsection
-
 @push('script')
 <script type="text/javascript">
     $('.btn-delete').on('click', function(e) {

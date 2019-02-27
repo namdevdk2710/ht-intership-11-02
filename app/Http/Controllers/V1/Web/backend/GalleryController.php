@@ -103,6 +103,6 @@ class GalleryController extends Controller
     {
         $this->repoGallery->delete($id);
 
-        return redirect()->route('gallerys.index')->with('msg', 'Delete successful');
+        return redirect()->route('gallery.index')->with('msg', 'Delete successful');
     }
 }

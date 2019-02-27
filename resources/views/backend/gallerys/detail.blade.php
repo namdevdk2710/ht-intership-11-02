@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">
-                    Detail Banner: {{ $gallery->name }}
+                    Detail Gallery: {{ $gallery->name }}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -18,9 +18,7 @@
                 <hr>
                 <h5>Images: </h5>
                 <p>
-                    @if(!empty($gallery->image))
-                    <img class="avatar" style=" width:100%;height:100%;" src="backend/upload/images/a.jpg">
-                    @endif
+                <img class="avatar" style=" width:100%;height:100%;" src="/uploads/images/gallerys/{{$gallery->image}}">
                 </p>
             </div>
             <div class="modal-footer">
