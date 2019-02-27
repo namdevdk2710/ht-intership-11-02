@@ -18,7 +18,6 @@ class Gallery extends Model
 
     public function galleryDetails()
     {
-
         return $this->hasMany('App\Models\GalleryDetail', 'gallery_id', 'id');
     }
 }
