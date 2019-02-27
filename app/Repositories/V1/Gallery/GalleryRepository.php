@@ -12,16 +12,33 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
         return Gallery::class;
     }
 
+    public function paginate($limit = null, $columns = ['*'])
+    {
+        $limit = is_null($limit) ? config('repository.pagination.limit', 5) : $limit;
+
+        return $this->model->paginate($limit, $columns);
+    }
+
     public function store($data)
     {
         $file = $data['image'];
         $forder = 'uploads/images/gallerys';
         $extensionFile = $file -> getClientOriginalExtension();
-        $fileName = $data['name'] . '-' . time() . '.' . $extensionFile;
+        $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
         $file->move($forder, $fileName);
 
         $data['image'] = $fileName;
 
         return $this->model->create($data);
+    }
+
+    public function delete($id)
+    {
+        $gallery = $this->model->find($id);
+        $nameImageOld = 'uploads/images/gallerys/' . $gallery->image;
+        if (file_exists(public_path($nameImageOld))) {
+            unlink(public_path($nameImageOld));
+        }
+        $gallery->delete();
     }
 }

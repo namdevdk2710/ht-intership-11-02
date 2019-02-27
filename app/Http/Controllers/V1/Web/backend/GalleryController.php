@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\V1\Web\backend;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Gallerys\CreateGalleryRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Gallery\GalleryRepositoryInterFace;
-use App\Http\Requests\Gallerys\CreateGalleryRequest;
+use App\Models\Gallery;
+use Illuminate\Support\Collection;
 
 class GalleryController extends Controller
 {
@@ -14,16 +16,18 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $repository;
+    protected $repoGallery;
 
-    public function __construct(GalleryRepositoryInterFace $repository)
+    public function __construct(GalleryRepositoryInterFace $repositoryGallery)
     {
-        $this->repository = $repository;
+        $this->repoGallery = $repositoryGallery;
     }
 
     public function index()
     {
-        //
+        $gallerys = $this->repoGallery->paginate();
+
+        return view('backend.gallerys.index', compact('gallerys'));
     }
 
     /**
@@ -44,7 +48,7 @@ class GalleryController extends Controller
      */
     public function store(CreateGalleryRequest $request)
     {
-        $this->repository->store($request->all());
+        $this->repoGallery->store($request->all());
 
         return redirect()->route('gallery.index')->with('msg', 'Creation Gallery successful');
     }
@@ -91,6 +95,8 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repoGallery->delete($id);
+
+        return redirect()->route('gallery.index')->with('msg', 'Delete successful');
     }
 }
