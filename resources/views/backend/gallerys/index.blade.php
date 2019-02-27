@@ -68,10 +68,20 @@
                                                 <a href="{{route('gallery.edit', ['id'=>$gallery->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{route('gallery.destroy', ['id'=>$gallery->id])}}" class="btn btn-danger btn-delete" onclick="">
+                                                <a
+                                                    href="{{route('gallery.destroy', ['id'=>$gallery->id])}}"
+                                                    class="btn btn-danger btn-delete"
+                                                    onclick=""
+                                                >
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 </a>
-                                                {!!Form::open([ 'method' => 'DELETE', 'route' => ['gallery.destroy',$gallery->id], 'onsubmit' => 'return confirmDelete()', 'id' => 'form-delete' ])!!} {!! Form::close() !!}
+                                                {!!Form::open([
+                                                    'method' => 'DELETE',
+                                                    'route' => ['gallery.destroy',$gallery->id],
+                                                    'onsubmit' => 'return confirmDelete()',
+                                                    'id' => 'form-delete'
+                                                ])!!}
+                                                {!! Form::close() !!}
                                             </td>
                                         </tr>
                                         @include('backend.gallerys.detail') @endforeach
