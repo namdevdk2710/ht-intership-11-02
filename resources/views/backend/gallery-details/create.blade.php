@@ -17,12 +17,12 @@
         <div class="col-md-12">
             <div class="tile">
                 <h3 class="tile-title">Create Galery Detail</h3>
-                {!! Form::open(['method' => 'POST', 'route' => 'banner.store','files' => true]) !!}
+                {!! Form::open(['method' => 'POST', 'route' => 'gallery_detail.store','files' => true]) !!}
                 <div class="tile-body">
                     <div class="form-group">
                         {!!Form::label('gallery_id', 'Gallery Group')!!}
                         {!! Form::select(
-                            'gallery',
+                            'gallery_id',
                             $galleryDetails->pluck('name', 'id'),
                             null,
                             ['class' => 'form-control border-input'],
@@ -34,43 +34,42 @@
                         {!!Form::text('name',null,['class'=>'form-control'])!!}
                     </div>
                     @if ($errors->has('name'))
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->get('name') as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('name') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
                     <div class="form-group">
-                        {!!Form::label('description', 'Description',['class'=>'control-label'])!!}
-                        {!!Form::textarea('description',null,['class'=>'form-control'])!!}
+                        {!!Form::label('description', 'Description', ['class'=>'control-label'])!!}
+                        {!!Form::textarea('description',null, ['class'=>'form-control'])!!}
                     </div>
                     <div class="form-group">
-                        {!!Form::label('description', 'Description',['class'=>'control-label'])!!}
-                        {!! Form::textarea('body',null,['class' => 'form-control ckeditor'] ) !!}
+                        {!!Form::label('content', 'Content', ['class'=>'control-label'])!!}
+                        {!! Form::textarea('content', null, ['class' => 'form-control ckeditor'] ) !!}
                     </div>
+                    @if ($errors->has('content'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('name') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                     @endif
                     <div class="form-group">
-                        {!!Form::label('image', 'Image',['class'=>'control-label'])!!}
-                        {!!Form::file('image',null,['class'=>'form-control'])!!}
+                        {{ Form::label('image', 'Image: ', ['class'=>'control-label']) }}
+                        <br>
+                        <img src="" width="150" height="150" alt="Image Gallery Detail" id="img" style="display: none">
+                        <br>
+                        {{ Form::file('image', null, ['class'=>'form-control fileimage']) }}
                     </div>
                     @if ($errors->has('image'))
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->get('image') as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        </div>
-                    @endif
-                    <div class="form-group">
-                        {!!Form::label('link', 'Link',['class'=>'control-label'])!!}
-                        {!!Form::text('link',null,['class'=>'form-control'])!!}
-                    </div>
-                    @if ($errors->has('link'))
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->get('link') as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>

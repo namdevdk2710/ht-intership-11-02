@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\GalleryDetail\GalleryDetailRepositoryInterFace;
 use App\Repositories\V1\Gallery\GalleryRepositoryInterFace;
+use App\Http\Requests\GalleryDetails\CreateGalleryDetailRequest;
 
 class GalleryDetailController extends Controller
 {
@@ -28,6 +29,8 @@ class GalleryDetailController extends Controller
     public function index()
     {
         $galleryDetails = $this->repoGalleryDetail->index();
+
+        return view('backend.gallery-details.index', compact('galleryDetails'));
     }
 
     /**
@@ -48,9 +51,11 @@ class GalleryDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateGalleryDetailRequest $request)
     {
-        //
+        $this->repoGalleryDetail->store($request->all());
+
+        return redirect()->route('gallery_detail.index')->with('msg', 'Creation Gallery Detail successful');
     }
 
     /**
