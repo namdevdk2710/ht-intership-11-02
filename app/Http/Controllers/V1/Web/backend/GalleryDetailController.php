@@ -20,7 +20,8 @@ class GalleryDetailController extends Controller
      */
     protected $repoGalleryDetail;
     protected $repoGallery;
-    public function __construct(
+    public function __construct
+    (
         GalleryDetailRepositoryInterFace $repoGalleryDetail,
         GalleryRepositoryInterFace $repoGallery
     )
