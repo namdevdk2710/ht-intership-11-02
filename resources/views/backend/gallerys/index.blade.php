@@ -69,9 +69,9 @@
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
                                                 <a
-                                                href="{{route('gallery.destroy', ['id'=>$gallery->id])}}"
-                                                class="btn btn-danger btn-delete"
-                                                onclick=""
+                                                    href="{{route('gallery.destroy', ['id'=>$gallery->id])}}"
+                                                    class="btn btn-danger btn-delete"
+                                                    onclick=""
                                                 >
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 </a>
@@ -99,6 +99,7 @@
     </div>
 </main>
 @endsection
+
 @push('script')
 <script type="text/javascript">
     $('.btn-delete').on('click', function(e) {
@@ -106,15 +107,14 @@
         $('#form-delete').submit();
     });
 
-    function confirmDelete()
-    {
+    function confirmDelete() {
         var x = confirm("Are you sure you want to delete?");
         if (x) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 </script>
 @endpush
+
