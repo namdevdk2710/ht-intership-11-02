@@ -7,6 +7,7 @@ use App\Http\Requests\GalleryDetails\CreateGalleryDetailRequest;
 use App\Http\Requests\GalleryDetails\EditGalleryDetailRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\GalleryDetail\GalleryDetailRepositoryInterFace;
+use App\Repositories\V1\Gallery\GalleryRepositoryInterFace;
 use App\Models\GalleryDetail;
 use Illuminate\Support\Collection;
 
@@ -19,10 +20,7 @@ class GalleryDetailController extends Controller
      */
     protected $repoGalleryDetail;
     protected $repoGallery;
-
-    public function __construct(GalleryDetailRepositoryInterFace $repoGalleryDetail,
-                        GalleryRepositoryInterFace $repoGallery
-    )
+    public function __construct(GalleryDetailRepositoryInterFace $repoGalleryDetail, GalleryRepositoryInterFace $repoGallery)
     {
         $this->repoGalleryDetail = $repoGalleryDetail;
         $this->repoGallery = $repoGallery;
