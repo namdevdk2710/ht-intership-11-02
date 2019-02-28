@@ -22,9 +22,9 @@ class AboutRepository extends BaseRepository implements AboutRepositoryInterface
 
     public function search($key)
     {
-        $About = About::where('name', 'LIKE', '%' . $key . '%')->paginate(5);
-        $About->appends(['key' => $key]);
+        $about = About::where('name', 'LIKE', '%' . $key . '%')->paginate(5);
+        $about->appends(['key' => $key]);
 
-        return $About;
+        return $about;
     }
 }
