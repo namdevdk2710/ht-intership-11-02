@@ -56,4 +56,14 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
 
         return $module->update($data);
     }
+
+    public function changestatus($data)
+    {
+        $id = $data['id'];
+        $module = $this->model->find($id);
+        $module->status = !$module->status;
+        $module->save();
+
+        return response()->json($module);
+    }
 }

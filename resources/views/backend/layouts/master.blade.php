@@ -9,6 +9,7 @@
     <meta property="twitter:site" content="@pratikborsadiya">
     <meta property="twitter:creator" content="@pratikborsadiya">
     <!-- Open Graph Meta-->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Vali Admin">
     <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
@@ -49,6 +50,8 @@
     <script src="backend/js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="backend/js/plugins/chart.js"></script>
+    <script type="text/javascript" src="backend/js/plugins/bootstrap-notify.min.js"></script>
+
     <script type="text/javascript">
         var data = {
             labels: ["January", "February", "March", "April", "May"],
@@ -89,12 +92,6 @@
                 label: "In-Progress"
             }
         ]
-
-        var ctxl = $("#lineChartDemo").get(0).getContext("2d");
-        var lineChart = new Chart(ctxl).Line(data);
-
-        var ctxp = $("#pieChartDemo").get(0).getContext("2d");
-        var pieChart = new Chart(ctxp).Pie(pdata);
     </script>
     <!-- Google analytics script-->
     <script type="text/javascript">

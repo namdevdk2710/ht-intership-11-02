@@ -105,4 +105,11 @@ class ModuleController extends Controller
 
         return redirect()->route('module.index')->with('msg', 'Delete successful');
     }
+
+    public function changestatus(Request $request)
+    {
+        $data = $request->all();
+
+        return $this->repoModule->changestatus($data);
+    }
 }
