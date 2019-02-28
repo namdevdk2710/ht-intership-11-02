@@ -22,8 +22,9 @@ class CuisineDetailRepository extends BaseRepository implements CuisineDetailRep
 
     public function search($key)
     {
-        $cuisinedetail = CuisineDetail::where('name','LIKE','%'.$key.'%')->paginate(5);
+        $cuisinedetail = CuisineDetail::where('name', 'LIKE', '%'.$key.'%')->paginate(5);
         $cuisinedetail->appends(['key' => $key]);
+
         return $cuisinedetail;
     }
 }
