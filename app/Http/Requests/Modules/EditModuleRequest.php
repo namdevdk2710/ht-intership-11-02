@@ -4,7 +4,7 @@ namespace App\Http\Requests\Modules;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateModuleRequest extends FormRequest
+class EditModuleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,8 @@ class CreateModuleRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image' => 'required|image',
+            'image' => 'image',
+            'status' => 'required',
         ];
     }
 
@@ -33,7 +34,7 @@ class CreateModuleRequest extends FormRequest
     {
         return [
             'name.required' => 'Vui lòng nhập trường này',
-            'image.required' => 'Vui lòng nhập ít nhất một ảnh',
+            'status.required' => 'Vui lòng nhập trường này',
             'image.image' => 'Định dạng không đúng file ảnh',
         ];
     }

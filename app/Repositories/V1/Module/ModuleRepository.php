@@ -34,4 +34,27 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
 
         return $this->model->create($data);
     }
+
+    public function update($id, $data)
+    {
+        $module = $this->model->find($id);
+        $data['slug'] = str_slug($data['name']);
+
+        if (!empty($data['image'])) {
+            $file = $data['image'];
+            $nameImageOld = 'uploads/images/modules/' . $module->image;
+            if (file_exists(public_path($nameImageOld))) {
+                unlink(public_path($nameImageOld));
+            }
+            $forder = ('uploads/images/modules');
+            $extensionFile = $file -> getClientOriginalExtension();
+            $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
+            $file->move($forder, $fileName);
+            $data['image'] = $fileName;
+        } else {
+            $data['image'] = $module->image;
+        }
+
+        return $module->update($data);
+    }
 }
