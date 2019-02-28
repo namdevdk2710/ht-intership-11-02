@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\V1\Web\backend;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\Cuisineys\CreateCuisineyRequest;
-use App\Http\Requests\Cuisineys\EditCuisineyRequest;
+use App\Http\Requests\Cuisines\CreateCuisineRequest;
+use App\Http\Requests\Cuisines\EditCuisineRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Cuisine\CuisineRepositoryInterFace;
 use App\Models\Cuisine;
