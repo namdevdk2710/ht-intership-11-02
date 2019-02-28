@@ -135,6 +135,7 @@
       		type: "info"
       	})
     }
+
     function changeStatus(id) {
         $.ajax({
             headers: {
