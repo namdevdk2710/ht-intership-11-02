@@ -43,6 +43,7 @@
                                             <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" >Name</th>
                                             <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" >Description</th>
                                             <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" >Image</th>
+                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" >Price</th>
                                             <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" >Action</th>
                                         </tr>
                                     </thead>
@@ -56,6 +57,7 @@
                                             <td>
                                                 <img width="100%" src="uploads/images/cuisinedetails/{{ $cuisineDetail->image }}">
                                             </td>
+                                            <td style="width:5%;">{{ $cuisineDetail->price }}</td>
                                             <td style="width:17%;">
                                                 <a href="backend/cuisine_detail/index/{{ $cuisineDetail->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $cuisineDetail->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>

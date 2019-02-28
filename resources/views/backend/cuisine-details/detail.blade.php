@@ -30,7 +30,7 @@
                 <hr>
                 <h5>Content: </h5>
                 <p>
-                    {{ $cuisineDetail->content }}
+                    {{ strip_tags($cuisineDetail->content) }}
                 </p>
             </div>
             <div class="modal-footer">

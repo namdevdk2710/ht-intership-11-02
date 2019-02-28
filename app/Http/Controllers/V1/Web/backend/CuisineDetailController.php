@@ -5,8 +5,10 @@ namespace App\Http\Controllers\V1\Web\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\CuisineDetail\CuisineDetailRepositoryInterFace;
+use App\Repositories\V1\Cuisine\CuisineRepositoryInterFace;
 use App\Models\CuisineDetail;
 use Illuminate\Support\Collection;
+use App\Http\Requests\CuisineDetails\CreateCuisineDetailRequest;
 
 class CuisineDetailController extends Controller
 {
@@ -18,9 +20,11 @@ class CuisineDetailController extends Controller
     protected $repoCuisineDetail;
 
     public function __construct(
-        CuisineDetailRepositoryInterFace $repoCuisineDetail
+        CuisineDetailRepositoryInterFace $repoCuisineDetail,
+        CuisineRepositoryInterFace $repoCuisine
     ) {
         $this->repoCuisineDetail = $repoCuisineDetail;
+        $this->repoCuisine = $repoCuisine;
     }
 
     public function index(Request $request)
@@ -40,7 +44,9 @@ class CuisineDetailController extends Controller
      */
     public function create()
     {
-        //
+        $cuisineDetails = $this->repoCuisine->listCreate();
+
+        return view('backend.cuisine-details.create', compact('cuisineDetails'));
     }
 
     /**
@@ -49,9 +55,11 @@ class CuisineDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateGalleryDetailRequest $request)
+    public function store(CreateCuisineDetailRequest $request)
     {
-        //
+        $this->repoCuisineDetail->store($request->all());
+
+        return redirect()->route('cuisine_detail.index')->with('msg', 'Creation successful');
     }
 
     /**
