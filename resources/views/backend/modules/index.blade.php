@@ -29,14 +29,7 @@
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div id="sampleTable_filter" class="dataTables_filter">
-                                    <label>
-                                        Search:
-                                        <input
-                                            type="search"
-                                            class="form-control form-control-sm"
-                                            aria-controls="sampleTable"
-                                        >
-                                    </label>
+                                    @include('backend.layouts.search', ['route' => route('module.index')])
                                 </div>
                             </div>
                         </div>
@@ -50,7 +43,7 @@
                                             <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 200px;">Description</th>
                                             <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 100px;">Image</th>
                                             <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 100px;">Status</th>
-                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 130px;">Action</th>
+                                            <th tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 90px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -78,19 +71,6 @@
                                                 <a href="{{route('module.edit', ['id'=>$module->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
-                                                <a
-                                                    href="{{route('module.destroy', ['id'=>$module->id])}}"
-                                                    class="btn btn-danger btn-delete"
-                                                >
-                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                </a>
-                                                {!!Form::open([
-                                                    'method' => 'DELETE',
-                                                    'route' => ['module.destroy',$module->id],
-                                                    'onsubmit' => 'return confirmDelete()',
-                                                    'id' => 'form-delete'
-                                                ])!!}
-                                                {!! Form::close() !!}
                                             </td>
                                         </tr>
                                         @include('backend.modules.detail')
@@ -112,20 +92,6 @@
 
 @push('script')
 <script type="text/javascript">
-    $('.btn-delete').on('click', function(e) {
-        e.preventDefault();
-        $('#form-delete').submit();
-    });
-
-    function confirmDelete() {
-        var x = confirm("Are you sure you want to delete?");
-        if (x) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function notification() {
         $.notify({
       		title: "Update Complete : ",
