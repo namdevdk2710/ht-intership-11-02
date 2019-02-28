@@ -16,6 +16,7 @@ use App\Repositories\V1\Module\ModuleRepository;
 use App\Repositories\V1\Module\ModuleRepositoryInterface;
 use App\Repositories\V1\Cuisine\CuisineRepository;
 use App\Repositories\V1\Cuisine\CuisineRepositoryInterface;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
