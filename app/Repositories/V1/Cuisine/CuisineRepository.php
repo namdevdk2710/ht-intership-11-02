@@ -47,5 +47,4 @@ class CuisineRepository extends BaseRepository implements CuisineRepositoryInter
         $cuisine = $this->model->find($id);
         $cuisine->delete();
     }
-
 }
