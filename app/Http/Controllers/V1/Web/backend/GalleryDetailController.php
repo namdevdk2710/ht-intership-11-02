@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\V1\Web\backend;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\GalleryDetail\CreateGalleryDetailRequest;
-use App\Http\Requests\GalleryDetail\EditGalleryDetailRequest;
+use App\Http\Requests\GalleryDetails\CreateGalleryDetailRequest;
+use App\Http\Requests\GalleryDetails\EditGalleryDetailRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\GalleryDetail\GalleryDetailRepositoryInterFace;
+use App\Repositories\V1\Gallery\GalleryRepositoryInterFace;
 use App\Models\GalleryDetail;
 use Illuminate\Support\Collection;
 
@@ -18,10 +19,14 @@ class GalleryDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $repoGalleryDetail;
+    protected $repoGallery;
 
-    public function __construct(GalleryDetailRepositoryInterFace $repositoryGalleryDetail)
-    {
-        $this->repoGalleryDetail = $repositoryGalleryDetail;
+    public function __construct(
+        GalleryDetailRepositoryInterFace $repoGalleryDetail,
+        GalleryRepositoryInterFace $repoGallery
+    ) {
+        $this->repoGalleryDetail = $repoGalleryDetail;
+        $this->repoGallery = $repoGallery;
     }
 
     public function index()
@@ -38,7 +43,9 @@ class GalleryDetailController extends Controller
      */
     public function create()
     {
-        return view('backend.gallery_detail.create');
+        $galleryDetails = $this->repoGallery->listCreate();
+
+        return view('backend.gallery-details.create', compact('galleryDetails'));
     }
 
     /**
@@ -73,9 +80,10 @@ class GalleryDetailController extends Controller
      */
     public function edit($id)
     {
+        $gallery = $this->repoGallery->listCreate();
         $galleryDetail = $this->repoGalleryDetail->find($id);
 
-        return view('backend.gallery_detail.edit', compact('galleryDetail'));
+        return view('backend.gallery-details.edit', compact('galleryDetail', 'gallery'));
     }
 
     /**
