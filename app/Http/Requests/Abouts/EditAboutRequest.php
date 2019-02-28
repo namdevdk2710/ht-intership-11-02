@@ -25,8 +25,8 @@ class EditAboutRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'content' => 'required',
             'image' => 'image',
-            'content' => 'content',
         ];
     }
 
