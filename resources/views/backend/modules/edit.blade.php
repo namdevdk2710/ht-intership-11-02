@@ -98,10 +98,14 @@
                     @endif
                 </div>
                 <div class="tile-footer">
-                    {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Update', ['type' => 'submit',
-                    'class' => 'btn btn-primary'] ) }} &nbsp;&nbsp;&nbsp;
-                    <a href="{{route('module.index')}}" class="btn btn-secondary"><i
-                            class="fa fa-fw fa-lg fa-times-circle"></i>Cancle</a>
+                    {{ Form::button('
+                        <i class="fa fa-fw fa-lg fa-check-circle"></i> Update',
+                        ['type' => 'submit', 'class' => 'btn btn-primary']
+                     ) }}
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="{{route('module.index')}}" class="btn btn-secondary">
+                        <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancle
+                    </a>
                 </div>
                 {{ Form::close() }}
             </div>
