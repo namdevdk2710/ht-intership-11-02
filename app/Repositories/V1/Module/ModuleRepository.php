@@ -70,7 +70,7 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
 
     public function search($key)
     {
-        $module = Module::where('name','LIKE','%'.$key.'%')->paginate(5);
+        $module = Module::where('name', 'LIKE', '%' . $key . '%')->paginate(5);
         $module->appends(['key' => $key]);
 
         return $module;
