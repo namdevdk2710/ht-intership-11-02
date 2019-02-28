@@ -65,7 +65,7 @@
                         {{ Form::label('image', 'Image', ['for'=>'exampleInputFile']) }}
                         <div>
                           @if(!empty($galleryDetail->image))
-                            <img src="uploads/images/gallerydetails/{{ $galleryDetail->image}} " height="150" width="150px" alt="Image galleryDetail" id="image">
+                            <img src="uploads/images/gallerydetails/{{ $galleryDetail->image}} " height="150" width="150px" alt="Image galleryDetail" id="img">
                           @else
                             <img src="" width="150" height="150" alt="Image Banner" id="img" style="display: none">
                           @endif
