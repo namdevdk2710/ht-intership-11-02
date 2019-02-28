@@ -24,9 +24,13 @@ class ModuleController extends Controller
         $this->repoModule = $repositoryModule;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $modules = $this->repoModule->paginate();
+
+        if ($request['key']) {
+            $modules = $this->repoModule->search($request['key']);
+        }
 
         return view('backend.modules.index', compact('modules'));
     }
