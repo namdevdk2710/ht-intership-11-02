@@ -16,6 +16,6 @@ $factory->define(Introduce::class, function (Faker $faker) {
         'name' => $faker->name,
         'address' => $faker->address,
         'email' => $faker->email,
-        'phone' => $faker->isbn10,
+        'phone' => $faker->ean8,
     ];
 });
