@@ -22,7 +22,6 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
     public function store($data)
     {
         $data['slug'] = str_slug($data['name']);
-        $data['status'] = 1;
 
         $file = $data['image'];
         $forder = 'uploads/images/modules';

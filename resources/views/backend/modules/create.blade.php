@@ -17,11 +17,11 @@
         <div class="col-md-12">
             <div class="tile">
                 <h3 class="tile-title">Create Module</h3>
-                {!! Form::open(['method' => 'POST', 'route' => 'module.store','files' => true]) !!}
+                {{ Form::open(['method' => 'POST', 'route' => 'module.store', 'files' => true]) }}
                 <div class="tile-body">
                     <div class="form-group">
-                        {!!Form::label('name', 'Name',['class'=>'control-label'])!!}
-                        {!!Form::text('name',null,['class'=>'form-control'])!!}
+                        {{ Form::label('name', 'Name', ['class'=>'control-label']) }}
+                        {{ Form::text('name', null, ['class'=>'form-control']) }}
                     </div>
                     @if ($errors->has('name'))
                         <div class="alert alert-danger">
@@ -33,8 +33,8 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        {!!Form::label('description', 'Description:', ['class'=>'control-label'])!!}
-                        {!!Form::textarea('description',null, ['class'=>'form-control'])!!}
+                        {{ Form::label('description', 'Description:', ['class'=>'control-label']) }}
+                        {{ Form::textarea('description',null, ['class'=>'form-control']) }}
                     </div>
                     <div class="form-group">
                         {{ Form::label('image', 'Image: ', ['class'=>'control-label']) }}
@@ -50,13 +50,13 @@
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                        </div>
+                    </div>
                     @endif
                 </div>
                 <div class="tile-footer">
-                    {!!Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] )!!}
+                    {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] ) }}
                 </div>
-                {!! Form::close() !!}
+                {{ Form::close() }}
             </div>
         </div>
     </div>
