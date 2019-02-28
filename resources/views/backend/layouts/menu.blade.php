@@ -146,7 +146,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="treeview-item" href="#">
+                    <a class="treeview-item" href="{{ route('cuisine_detail.create') }}">
                         <i class="icon fa fa-circle-o"></i> Create Cuisine Detail
                     </a>
                 </li>

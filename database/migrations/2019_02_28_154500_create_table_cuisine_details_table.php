@@ -20,7 +20,7 @@ class CreateTableCuisineDetailsTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->longText('content');
-            $table->decimal('price', 8, 2);
+            $table->decimal('price', 20, 3);
             $table->longText('image');
             $table->timestamps();
         });
