@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\V1\Web\backend;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Cuisines\CreateCuisineRequest;
+use App\Http\Requests\Cuisines\EditCuisineRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Cuisine\CuisineRepositoryInterFace;
 use App\Models\Cuisine;
@@ -39,7 +41,7 @@ class CuisineController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.cuisines.create');
     }
 
     /**
@@ -48,9 +50,11 @@ class CuisineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCuisineRequest $request)
     {
-        //
+        $this->repoCuisine->store($request->all());
+
+        return redirect()->route('cuisine.index')->with('msg', 'Creation successful');
     }
 
     /**
@@ -72,7 +76,9 @@ class CuisineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cuisine = $this->repoCuisine->find($id);
+
+        return view('backend.cuisines.edit', compact('cuisine'));
     }
 
     /**
@@ -82,9 +88,12 @@ class CuisineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditCuisineRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->repoCuisine->update($id, $data);
+
+        return redirect()->route('cuisine.index')->with('msg', 'Edit successful');
     }
 
     /**
@@ -95,6 +104,8 @@ class CuisineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repoCuisine->delete($id);
+
+        return redirect()->route('cuisine.index')->with('msg', 'Delete successful');
     }
 }
