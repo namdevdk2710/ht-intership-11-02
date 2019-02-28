@@ -14,6 +14,8 @@ use App\Repositories\V1\GalleryDetail\GalleryDetailRepository;
 use App\Repositories\V1\GalleryDetail\GalleryDetailRepositoryInterface;
 use App\Repositories\V1\Module\ModuleRepository;
 use App\Repositories\V1\Module\ModuleRepositoryInterface;
+use App\Repositories\V1\Cuisine\CuisineRepository;
+use App\Repositories\V1\Cuisine\CuisineRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,5 +41,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(GalleryRepositoryInterface::class, GalleryRepository::class);
         $this->app->bind(GalleryDetailRepositoryInterface::class, GalleryDetailRepository::class);
         $this->app->bind(ModuleRepositoryInterface::class, ModuleRepository::class);
+        $this->app->bind(CuisineRepositoryInterface::class, CuisineRepository::class);
     }
 }
