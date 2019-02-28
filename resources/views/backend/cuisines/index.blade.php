@@ -65,6 +65,7 @@
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>
+                                        @include('backend.cuisines.detail')
                                         @endforeach
                                     </tbody>
                                 </table>
