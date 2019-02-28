@@ -4,31 +4,21 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-edit"></i> Create Detail Gallery</h1>
-            <p>Form create detail gallery</p>
+            <h1><i class="fa fa-edit"></i> Create About</h1>
+            <p>Form create about</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">Gallery Detail</li>
+            <li class="breadcrumb-item">About</li>
             <li class="breadcrumb-item"><a href="#">Create</a></li>
         </ul>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <h3 class="tile-title">Create Galery Detail</h3>
-                {!! Form::open(['method' => 'POST', 'route' => 'gallery_detail.store','files' => true]) !!}
+                <h3 class="tile-title">Create About</h3>
+                {!! Form::open(['method' => 'POST', 'route' => 'about.store','files' => true]) !!}
                 <div class="tile-body">
-                    <div class="form-group">
-                        {!!Form::label('gallery_id', 'Gallery Group')!!}
-                        {!! Form::select(
-                            'gallery_id',
-                            $galleryDetails->pluck('name', 'id'),
-                            null,
-                            ['class' => 'form-control border-input'],
-                            ['multiple' => true])
-                        !!}
-                </div>
                     <div class="form-group">
                         {!!Form::label('name', 'Name',['class'=>'control-label'])!!}
                         {!!Form::text('name',null,['class'=>'form-control'])!!}
@@ -62,7 +52,7 @@
                     <div class="form-group">
                         {{ Form::label('image', 'Image: ', ['class'=>'control-label']) }}
                         <br>
-                        <img src="" width="150" height="150" alt="Image Gallery Detail" id="img" style="display: none">
+                        <img src="" width="150" height="150" alt="Image About Detail" id="img" style="display: none">
                         <br>
                         {{ Form::file('image', null, ['class'=>'form-control fileimage']) }}
                     </div>

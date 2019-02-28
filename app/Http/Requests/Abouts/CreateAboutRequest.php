@@ -34,7 +34,7 @@ class CreateAboutRequest extends FormRequest
     {
         return [
             'name.required' => 'Vui lòng nhập trường này',
-            'content.required' => 'Vui lòng nhập trường này'
+            'content.required' => 'Vui lòng nhập trường này',
             'image.required' => 'Vui lòng nhập ít nhất một ảnh',
             'image.image' => 'Định dạng không đúng file ảnh',
         ];
