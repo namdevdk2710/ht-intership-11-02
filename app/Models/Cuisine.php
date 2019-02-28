@@ -12,4 +12,9 @@ class Cuisine extends Model
         'description',
     ];
     public $timestamps = true;
+
+    public function cuisineDetails()
+    {
+        return $this->hasMany('App\Models\CuisineDetail', 'cuisine_id', 'id');
+    }
 }
