@@ -4,6 +4,7 @@ namespace App\Repositories\V1\Cuisine;
 
 use App\Repositories\BaseRepository;
 use App\Models\Cuisine;
+use Illuminate\Support\Facades\DB;
 
 class CuisineRepository extends BaseRepository implements CuisineRepositoryInterface
 {
@@ -17,5 +18,13 @@ class CuisineRepository extends BaseRepository implements CuisineRepositoryInter
         $limit = is_null($limit) ? config('repository.pagination.limit', 5) : $limit;
 
         return $this->model->orderBy('created_at', 'Desc')->paginate($limit, $columns);
+    }
+
+    public function search($key)
+    {
+        $cuisine = Cuisine::where('name', 'LIKE', '%' . $key . '%')->paginate(5);
+        $cuisine->appends(['key' => $key]);
+
+        return $cuisine;
     }
 }

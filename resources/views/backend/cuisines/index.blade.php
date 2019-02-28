@@ -28,14 +28,7 @@
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div id="sampleTable_filter" class="dataTables_filter">
-                                    <label>
-                                        Search:
-                                        <input
-                                            type="search"
-                                            class="form-control form-control-sm"
-                                            aria-controls="sampleTable"
-                                        >
-                                    </label>
+                                    @include('backend.layouts.search', ['route' => route('cuisine.index')])
                                 </div>
                             </div>
                         </div>

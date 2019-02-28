@@ -15,16 +15,19 @@ class CuisineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $repository;
+    protected $repoCuisine;
 
-    public function __construct(CuisineRepositoryInterFace $repository)
+    public function __construct(CuisineRepositoryInterFace $repoCuisine)
     {
-        $this->repository = $repository;
+        $this->repoCuisine = $repoCuisine;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $cuisines = $this->repository->paginate();
+        $cuisines = $this->repoCuisine->paginate();
+        if ($request['key']) {
+            $cuisines = $this->repoCuisine->search($request['key']);
+        }
 
         return view('backend.cuisines.index', compact('cuisines'));
     }
