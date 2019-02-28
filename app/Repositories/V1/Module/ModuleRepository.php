@@ -18,4 +18,15 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
 
         return $this->model->paginate($limit, $columns);
     }
+
+    public function changestatus($data)
+    {
+        $id = $data['id'];
+        $module = $this->model->find($id);
+        $module->status = !$module->status;
+        $module->save();
+
+        return response()->json($module);
+    }
+
 }
