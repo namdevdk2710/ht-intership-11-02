@@ -133,6 +133,25 @@
                 </li>
             </ul>
         </li>
+        <li class="treeview">
+            <a class="app-menu__item" href="{{ route('cuisine_detail.index') }}" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-th-list"></i>
+                <span class="app-menu__label">Cuisine Detail</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="{{ route('cuisine_detail.index') }}">
+                        <i class="icon fa fa-circle-o"></i>List Cuisine Detail
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="#">
+                        <i class="icon fa fa-circle-o"></i> Create Cuisine Detail
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li>
             <a class="app-menu__item" href="charts.html">
                 <i class="app-menu__icon fa fa-pie-chart"></i>
