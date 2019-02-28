@@ -66,5 +66,4 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
 
         return response()->json($module);
     }
-
 }
