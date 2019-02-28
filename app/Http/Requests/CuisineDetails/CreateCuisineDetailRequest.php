@@ -27,7 +27,7 @@ class CreateCuisineDetailRequest extends FormRequest
             'name' => 'required',
             'image' => 'required|image',
             'content' => 'required',
-            'price' => 'required|max:20'
+            'price' => 'required|max:20',
         ];
     }
 
