@@ -4,6 +4,7 @@ namespace App\Repositories\V1\Module;
 
 use App\Repositories\BaseRepository;
 use App\Models\Module;
+use Illuminate\Support\Facades\DB;
 
 class ModuleRepository extends BaseRepository implements ModuleRepositoryInterface
 {
@@ -65,5 +66,13 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
         $module->save();
 
         return response()->json($module);
+    }
+
+    public function search($key)
+    {
+        $module = Module::where('name', 'LIKE', '%' . $key . '%')->paginate(5);
+        $module->appends(['key' => $key]);
+
+        return $module;
     }
 }
