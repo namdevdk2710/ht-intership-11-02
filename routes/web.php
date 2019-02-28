@@ -18,4 +18,5 @@ Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend'], function (
     Route::resource('/gallery_detail', 'GalleryDetailController');
     Route::resource('/module', 'ModuleController');
     Route::post('/module/changestatus', 'ModuleController@changestatus')->name('module.changestatus');
+    Route::resource('/cuisine', 'CuisineController');
 });
