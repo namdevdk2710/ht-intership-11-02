@@ -20,11 +20,31 @@ class CuisineRepository extends BaseRepository implements CuisineRepositoryInter
         return $this->model->orderBy('created_at', 'Desc')->paginate($limit, $columns);
     }
 
+    public function update($id, $data)
+    {
+        $cuisine = $this->model->find($id);
+
+        return $cuisine->update($data);
+    }
+
+    public function listCreate()
+    {
+        $cuisineList = $this->model::all();
+
+        return $cuisineList;
+    }
+
     public function search($key)
     {
         $cuisine = Cuisine::where('name', 'LIKE', '%' . $key . '%')->paginate(5);
         $cuisine->appends(['key' => $key]);
 
         return $cuisine;
+    }
+
+    public function delete($id)
+    {
+        $cuisine = $this->model->find($id);
+        $cuisine->delete();
     }
 }
