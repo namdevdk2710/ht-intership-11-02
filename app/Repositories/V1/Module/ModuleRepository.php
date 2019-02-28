@@ -16,6 +16,21 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
     {
         $limit = is_null($limit) ? config('repository.pagination.limit', 5) : $limit;
 
-        return $this->model->paginate($limit, $columns);
+        return $this->model->orderBy('created_at', 'Desc')->paginate($limit, $columns);
+    }
+
+    public function store($data)
+    {
+        $data['slug'] = str_slug($data['name']);
+
+        $file = $data['image'];
+        $forder = 'uploads/images/modules';
+        $extensionFile = $file -> getClientOriginalExtension();
+        $fileName = $data['slug'] . '-' . time() . '.' . $extensionFile;
+        $file->move($forder, $fileName);
+
+        $data['image'] = $fileName;
+
+        return $this->model->create($data);
     }
 }

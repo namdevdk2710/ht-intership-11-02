@@ -95,6 +95,25 @@
                 </li>
             </ul>
         </li>
+        <li class="treeview">
+            <a class="app-menu__item" href="{{ route('gallery.index') }}" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-edit"></i>
+                <span class="app-menu__label">Module</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="{{ route('module.index') }}">
+                        <i class="icon fa fa-circle-o"></i> List Module
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="{{ route('module.create') }}">
+                        <i class="icon fa fa-circle-o"></i>Create Module
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li>
             <a class="app-menu__item" href="charts.html">
                 <i class="app-menu__icon fa fa-pie-chart"></i>
