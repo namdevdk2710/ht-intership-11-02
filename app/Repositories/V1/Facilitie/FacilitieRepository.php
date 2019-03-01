@@ -22,8 +22,9 @@ class FacilitieRepository extends BaseRepository implements FacilitieRepositoryI
 
     public function search($key)
     {
-        $facilitie = Facilitie::where('name','LIKE','%'.$key.'%')->paginate(5);
+        $facilitie = Facilitie::where('name', 'LIKE', '%'.$key.'%')->paginate(5);
         $facilitie->appends(['key' => $key]);
+
         return $facilitie;
     }
 }
