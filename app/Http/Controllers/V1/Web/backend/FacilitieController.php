@@ -104,6 +104,8 @@ class FacilitieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repoFacilitie->delete($id);
+
+        return redirect()->route('facilitie.index')->with('msg', 'Delete successful');
     }
 }

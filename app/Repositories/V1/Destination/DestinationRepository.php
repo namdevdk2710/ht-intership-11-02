@@ -17,7 +17,7 @@ class DestinationRepository extends BaseRepository implements DestinationReposit
     {
         $limit = is_null($limit) ? config('repository.pagination.limit', 5) : $limit;
 
-        return $this->model->orderBy('created_at', 'Desc')->paginate($limit, $columns);
+        return $this->model->orderBy('updated_at', 'Desc')->paginate($limit, $columns);
     }
 
     public function store($data)
