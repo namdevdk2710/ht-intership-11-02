@@ -67,17 +67,17 @@
                                                 </a>
                                                 <a
                                                 href="{{route('facilitie_detail.destroy', ['id'=>$facilitieDetail->id])}}"
-                                                class="btn btn-danger btn-delete"
-                                                onclick=""
-                                                >
-                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                </a>
-                                                {!!Form::open([
-                                                    'method' => 'DELETE',
-                                                    'route' => ['facilitie_detail.destroy',$facilitieDetail->id],
-                                                    'onsubmit' => 'return confirmDelete()',
-                                                    'id' => 'form-delete'
-                                                ])!!}
+                                                class="btn btn-danger"
+                                                onclick="deleteItem({{ $facilitieDetail->id }}, event)"
+                                            >
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            </a>
+                                            {!!Form::open([
+                                                'method' => 'DELETE',
+                                                'route' => ['facilitie_detail.destroy',$facilitieDetail->id],
+                                                'onsubmit' => 'return confirmDelete()',
+                                                'id' => "form-delete-$facilitieDetail->id"
+                                            ])!!}
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>
@@ -100,10 +100,10 @@
 
 @push('script')
 <script type="text/javascript">
-    $('.btn-delete').on('click', function(e) {
+    function deleteItem(id,e) {
         e.preventDefault();
-        $('#form-delete').submit();
-    });
+        $('#form-delete-' + id).submit();
+    }
 
     function confirmDelete()
     {
