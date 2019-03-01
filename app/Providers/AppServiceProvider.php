@@ -24,6 +24,8 @@ use App\Repositories\V1\Introduce\IntroduceRepository;
 use App\Repositories\V1\Introduce\IntroduceRepositoryInterface;
 use App\Repositories\V1\Contact\ContactRepository;
 use App\Repositories\V1\Contact\ContactRepositoryInterface;
+use App\Repositories\V1\Offer\OfferRepository;
+use App\Repositories\V1\Offer\OfferRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -54,5 +56,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AboutRepositoryInterface::class, AboutRepository::class);
         $this->app->bind(IntroduceRepositoryInterface::class, IntroduceRepository::class);
         $this->app->bind(ContactRepositoryInterface::class, ContactRepository::class);
+        $this->app->bind(OfferRepositoryInterface::class, OfferRepository::class);
     }
 }
