@@ -22,10 +22,10 @@ class RoomRepository extends BaseRepository implements RoomRepositoryInterface
     public function changestatus($data)
     {
         $id = $data['id'];
-        $module = $this->model->find($id);
-        $module->status = !$module->status;
-        $module->save();
+        $room = $this->model->find($id);
+        $room->status = !$room->status;
+        $room->save();
 
-        return response()->json($module);
+        return response()->json($room);
     }
 }

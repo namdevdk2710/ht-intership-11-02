@@ -108,6 +108,6 @@ class RoomController extends Controller
     {
         $data = $request->all();
 
-        return $this->repoModule->changestatus($data);
+        return $this->repoRoom->changestatus($data);
     }
 }

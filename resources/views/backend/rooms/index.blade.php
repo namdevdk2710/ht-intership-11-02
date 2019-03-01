@@ -104,7 +104,6 @@
                 'id': id
             },
             success: function(data) {
-                console.log(data.status)
                 var	button = "";
                 if (data.status) {
                     button = "<button class='btn btn-warning' onclick='changeStatus("+ data.id +")'> ON </button>";
