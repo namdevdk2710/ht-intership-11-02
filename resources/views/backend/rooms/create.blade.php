@@ -4,19 +4,19 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-edit"></i> Create Cuisine Detail</h1>
-            <p>Form create cuisine detail</p>
+            <h1><i class="fa fa-edit"></i> Create Room</h1>
+            <p>Form Create Room</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">Cuisine Detail</li>
+            <li class="breadcrumb-item">Room</li>
             <li class="breadcrumb-item"><a href="#">Create</a></li>
         </ul>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <h3 class="tile-title">Create Cuisine Detail</h3>
+                <h3 class="tile-title">Create Room</h3>
                 {{ Form::open(['method' => 'POST', 'route' => 'cuisine_detail.store', 'files' => true]) }}
                 <div class="tile-body">
                     <div class="form-group">
@@ -69,7 +69,7 @@
                     <div class="form-group">
                         {{ Form::label('image', 'Image: ', ['class'=>'control-label']) }}
                         <br>
-                        <img src="" width="150" height="150" alt="Image Cuisine Detail" id="img" style="display: none">
+                        <img src="" width="150" height="150" alt="Image Room" id="img" style="display: none">
                         <br>
                         {{ Form::file('image', null, ['class'=>'form-control fileimage']) }}
                     </div>
