@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div class="tile">
                 <h3 class="tile-title">Create Room</h3>
-                {{ Form::open(['method' => 'POST', 'route' => 'cuisine_detail.store', 'files' => true]) }}
+                {{ Form::open(['method' => 'POST', 'route' => 'room.store', 'files' => true]) }}
                 <div class="tile-body">
                     <div class="form-group">
                         {{ Form::label('name', 'Name', ['class'=>'control-label']) }}
@@ -36,6 +36,15 @@
                         {{ Form::label('description', 'Description', ['class'=>'control-label']) }}
                         {{ Form::textarea('description', null, ['class'=>'form-control', 'placeholder'=>'Import Description']) }}
                     </div>
+                    @if ($errors->has('description'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('description') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="form-group">
                         {{ Form::label('content', 'Content', ['class'=>'control-label']) }}
                         {{  Form::textarea('content', null, ['class' => 'form-control ckeditor', 'placeholder'=>'Import Content'] )  }}
@@ -44,6 +53,32 @@
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->get('content') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="form-group">
+                        {{ Form::label('amount', 'Amount', ['class'=>'control-label']) }}
+                        {{ Form::number('amount', null, ['class'=>'form-control']) }}
+                    </div>
+                    @if ($errors->has('amount'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('amount') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="form-group">
+                        {{ Form::label('area', 'Area', ['class'=>'control-label']) }}
+                        {{ Form::text('area', null, ['class'=>'form-control']) }}
+                    </div>
+                    @if ($errors->has('area'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('area') as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
@@ -61,6 +96,23 @@
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->get('price') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="input-group">
+                        {{ Form::label('discount', 'Discount:', ['class'=>'control-label']) }}
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                            {{ Form::number('discount', null, ['class'=>'form-control',]) }}
+                        <div class="input-group-append"><span class="input-group-text">.000</span></div>
+                    </div>
+                    @if ($errors->has('discount'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('discount') as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>

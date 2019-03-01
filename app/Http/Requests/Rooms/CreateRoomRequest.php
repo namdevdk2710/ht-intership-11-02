@@ -25,9 +25,13 @@ class CreateCuisineDetailRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image' => 'required|image',
+            'description' => 'required',
             'content' => 'required',
-            'price' => 'required|max:20',
+            'image' => 'required|image',
+            'amount' => 'required',
+            'area' => 'required',
+            'price' => 'required|max:10',
+            'discount' => 'required|max:10',
         ];
     }
 
@@ -35,11 +39,16 @@ class CreateCuisineDetailRequest extends FormRequest
     {
         return [
             'name.required' => 'Vui lòng nhập trường này',
+            'description.required' => 'Vui lòng nhập trường này',
             'content.required' => 'Vui lòng nhập trường này',
-            'price.required' => 'Vui lòng nhập trường này',
             'image.required' => 'Vui lòng nhập ít nhất một ảnh',
             'image.image' => 'Định dạng không đúng file ảnh',
-            'price.max' => 'Không vượt quá 20 số',
+            'amount.required' => 'Vui lòng nhập trường này',
+            'area.required' => 'Vui lòng nhập trường này',
+            'price.required' => 'Vui lòng nhập trường này',
+            'price.max' => 'Không vượt quá 10 số',
+            'discount.required' => 'Vui lòng nhập trường này',
+            'discount.max' => 'Không vượt quá 10 số',
         ];
     }
 }
