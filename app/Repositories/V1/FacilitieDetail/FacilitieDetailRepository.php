@@ -47,4 +47,26 @@ class FacilitieDetailRepository extends BaseRepository implements FacilitieDetai
 
         return $this->model->create($data);
     }
+
+    public function update($id, $data)
+    {
+        $gacilitie = $this->model->find($id);
+
+        if (!empty($data['image'])) {
+            $file = $data['image'];
+            $nameImageOld = 'uploads/images/facilitiedetails/' . $gacilitie->image;
+            if (file_exists(public_path($nameImageOld))) {
+                unlink(public_path($nameImageOld));
+            }
+            $forder = ('uploads/images/facilitiedetails');
+            $extensionFile = $file -> getClientOriginalExtension();
+            $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
+            $file->move($forder, $fileName);
+            $data['image'] = $fileName;
+        } else {
+            $data['image'] = $gacilitie->image;
+        }
+
+        return $gacilitie->update($data);
+    }
 }
