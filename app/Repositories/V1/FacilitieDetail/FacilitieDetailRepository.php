@@ -27,4 +27,24 @@ class FacilitieDetailRepository extends BaseRepository implements FacilitieDetai
 
         return $facilitiedetail;
     }
+
+    public function listCreate()
+    {
+        $facilitieList = $this->model::all();
+
+        return $facilitieList;
+    }
+
+    public function store($data)
+    {
+        $file = $data['image'];
+        $forder = 'uploads/images/facilitiedetails';
+        $extensionFile = $file -> getClientOriginalExtension();
+        $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
+        $file->move($forder, $fileName);
+
+        $data['image'] = $fileName;
+
+        return $this->model->create($data);
+    }
 }

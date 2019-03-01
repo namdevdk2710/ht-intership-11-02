@@ -40,4 +40,11 @@ class FacilitieRepository extends BaseRepository implements FacilitieRepositoryI
         $facilitie = $this->model->find($id);
         $facilitie->delete();
     }
+
+    public function listCreate()
+    {
+        $facilitieList = $this->model::all();
+
+        return $facilitieList;
+    }
 }
