@@ -19,11 +19,12 @@ class CreateRoomsTable extends Migration
             $table->string('description');
             $table->longText('content');
             $table->longText('image');
-            $table->decimal('amount', 20, 3);
+            $table->integer('amount');
             $table->decimal('price', 20, 3);
             $table->decimal('discount', 20, 3);
-            $table->string('are');
+            $table->string('area');
             $table->string('slug');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

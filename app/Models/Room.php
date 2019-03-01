@@ -13,7 +13,7 @@ class Room extends Model
         'content',
         'image',
         'amount',
-        'are',
+        'area',
         'price',
         'discount',
         'slug',
