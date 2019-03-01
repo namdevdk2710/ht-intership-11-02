@@ -13,7 +13,7 @@
     </div>
     <ul class="app-menu">
         <li>
-            <a class="app-menu__item active" href="{{asset('/admin/home')}}">
+            <a class="app-menu__item active" href="{{ asset('/admin/home') }}">
                 <i class="app-menu__icon fa fa-dashboard"></i>
                 <span class="app-menu__label">Dashboard</span>
             </a>
@@ -39,39 +39,115 @@
             </ul>
         </li>
         <li class="treeview">
-            <a class="app-menu__item" href="{{route('banner.index')}}" data-toggle="treeview">
+            <a class="app-menu__item" href="{{ route('banner.index') }}" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-edit"></i>
                 <span class="app-menu__label">Banner</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <a class="treeview-item" href="{{route('banner.index')}}">
+                    <a class="treeview-item" href="{{ route('banner.index') }}">
                         <i class="icon fa fa-circle-o"></i> List Banner
                     </a>
                 </li>
                 <li>
-                    <a class="treeview-item" href="{{route('banner.create')}}">
+                    <a class="treeview-item" href="{{ route('banner.create') }}">
                         <i class="icon fa fa-circle-o"></i>Create Banner
                     </a>
                 </li>
             </ul>
         </li>
         <li class="treeview">
-            <a class="app-menu__item" href="#" data-toggle="treeview">
+            <a class="app-menu__item" href="{{ route('gallery.index') }}" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-edit"></i>
                 <span class="app-menu__label">Gallery</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <a class="treeview-item" href="#">
+                    <a class="treeview-item" href="{{ route('gallery.index') }}">
                         <i class="icon fa fa-circle-o"></i> List Gallery
                     </a>
                 </li>
                 <li>
-                    <a class="treeview-item" href="{{route('gallery.create')}}">
+                    <a class="treeview-item" href="{{ route('gallery.create') }}">
                         <i class="icon fa fa-circle-o"></i>Create Gallery
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a class="app-menu__item" href="{{ route('gallery_detail.index') }}" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-th-list"></i>
+                <span class="app-menu__label">Gallery Detail</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="{{ route('gallery_detail.index') }}">
+                        <i class="icon fa fa-circle-o"></i>List Gallery Detail
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="{{ route('gallery_detail.create') }}">
+                        <i class="icon fa fa-circle-o"></i> Create Gallery Detail
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a class="app-menu__item" href="{{ route('gallery.index') }}" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-edit"></i>
+                <span class="app-menu__label">Module</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="{{ route('module.index') }}">
+                        <i class="icon fa fa-circle-o"></i> List Module
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="{{ route('module.create') }}">
+                        <i class="icon fa fa-circle-o"></i>Create Module
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a class="app-menu__item" href="{{ route('cuisine.index') }}" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-edit"></i>
+                <span class="app-menu__label">Cuisine</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="{{ route('cuisine.index') }}">
+                        <i class="icon fa fa-circle-o"></i> List Cuisine
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="{{ route('cuisine.create') }}">
+                        <i class="icon fa fa-circle-o"></i>Create cuisine
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a class="app-menu__item" href="{{ route('cuisine_detail.index') }}" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-th-list"></i>
+                <span class="app-menu__label">Cuisine Detail</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item" href="{{ route('cuisine_detail.index') }}">
+                        <i class="icon fa fa-circle-o"></i>List Cuisine Detail
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="{{ route('cuisine_detail.create') }}">
+                        <i class="icon fa fa-circle-o"></i> Create Cuisine Detail
                     </a>
                 </li>
             </ul>

@@ -9,6 +9,7 @@
     <meta property="twitter:site" content="@pratikborsadiya">
     <meta property="twitter:creator" content="@pratikborsadiya">
     <!-- Open Graph Meta-->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Vali Admin">
     <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
@@ -23,6 +24,7 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="backend/css/main.css">
     <link rel="stylesheet" type="text/css" href="backend/css/style.css">
+    <script type="text/javascript" language="javascript" src="backend/ckeditor/ckeditor.js"></script>
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,6 +50,8 @@
     <script src="backend/js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="backend/js/plugins/chart.js"></script>
+    <script type="text/javascript" src="backend/js/plugins/bootstrap-notify.min.js"></script>
+
     <script type="text/javascript">
         var data = {
             labels: ["January", "February", "March", "April", "May"],
@@ -88,12 +92,6 @@
                 label: "In-Progress"
             }
         ]
-
-        var ctxl = $("#lineChartDemo").get(0).getContext("2d");
-        var lineChart = new Chart(ctxl).Line(data);
-
-        var ctxp = $("#pieChartDemo").get(0).getContext("2d");
-        var pieChart = new Chart(ctxp).Pie(pdata);
     </script>
     <!-- Google analytics script-->
     <script type="text/javascript">
@@ -109,7 +107,22 @@
         }
     </script>
     <script>
-            $("div.alert-success").delay(4000).slideUp();
+        $("div.alert-success").delay(4000).slideUp();
+
+        $(document).ready(function() {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#img').attr('src', e.target.result).show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#image").change(function() {
+                readURL(this);
+            });
+        });
     </script>
     @stack('script')
 </body>

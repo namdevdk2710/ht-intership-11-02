@@ -24,13 +24,13 @@
                         {{ Form::text('name', null, ['class'=>'form-control']) }}
                     </div>
                     @if ($errors->has('name'))
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->get('name') as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('name') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     @endif
                     <div class="form-group">
                         {{ Form::label('description', 'Description', ['class'=>'control-label']) }}
@@ -40,7 +40,8 @@
                         {{ Form::label('image', 'Image: ', ['class'=>'control-label']) }}
                         <br>
                         <img src="" width="150" height="150" alt="Image Banner" id="img" style="display: none">
-                        <br> {{ Form::file('image', null, ['class'=>'form-control fileimage']) }}
+                        <br>
+                        {{ Form::file('image', null, ['class'=>'form-control fileimage']) }}
                     </div>
                     @if ($errors->has('image'))
                     <div class="alert alert-danger">
@@ -49,35 +50,16 @@
                             <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                    </div>
+                        </div>
                     @endif
                 </div>
                 <div class="tile-footer">
-                    {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] ) }}
+                    {!!Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] )!!}
                 </div>
-                {{ Form::close() }}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
 </main>
 @endsection
-
-@push('script')
-<script>
-    $(document).ready(function() {
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#img').attr('src', e.target.result).show();
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#image").change(function() {
-            readURL(this);
-        });
-    });
-</script>
-@endpush
 
