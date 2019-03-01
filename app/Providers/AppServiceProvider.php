@@ -30,6 +30,8 @@ use App\Repositories\V1\Offer\OfferRepository;
 use App\Repositories\V1\Offer\OfferRepositoryInterface;
 use App\Repositories\V1\Destination\DestinationRepository;
 use App\Repositories\V1\Destination\DestinationRepositoryInterface;
+use App\Repositories\V1\FacilitieDetail\FacilitieDetailRepository;
+use App\Repositories\V1\FacilitieDetail\FacilitieDetailRepositoryInterface;
 use App\Repositories\V1\Room\RoomRepository;
 use App\Repositories\V1\Room\RoomRepositoryInterface;
 
@@ -65,6 +67,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ContactRepositoryInterface::class, ContactRepository::class);
         $this->app->bind(OfferRepositoryInterface::class, OfferRepository::class);
         $this->app->bind(DestinationRepositoryInterface::class, DestinationRepository::class);
+        $this->app->bind(FacilitieDetailRepositoryInterface::class, FacilitieDetailRepository::class);
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
     }
 }

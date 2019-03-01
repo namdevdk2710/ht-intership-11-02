@@ -19,8 +19,8 @@ $factory->define(Room::class, function (Faker $faker) {
         'image' => $faker->image('public/uploads/images/rooms',1000,1000, null, false),
         'price' => $faker->randomFloat(3, 0, 1000),
         'discount' => $faker->randomFloat(3, 0, 1000),
-        'amount' => $faker->randomFloat(3, 0, 1000),
-        'are' => $faker->text,
+        'amount' => $faker->numberBetween(1, 5),
+        'area' => $faker->text,
         'slug' => $faker->slug,
     ];
 });
