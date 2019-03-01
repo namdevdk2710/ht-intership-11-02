@@ -11,4 +11,10 @@ class Facilitie extends Model
         'name',
         'description',
     ];
+    public $timestamps = true;
+
+    public function facilitieDetails()
+    {
+        return $this->hasMany('App\Models\FacilitieDetail', 'facilitie_id', 'id');
+    }
 }
