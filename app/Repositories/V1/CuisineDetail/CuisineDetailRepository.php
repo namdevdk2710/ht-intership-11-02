@@ -47,4 +47,26 @@ class CuisineDetailRepository extends BaseRepository implements CuisineDetailRep
 
         return $this->model->create($data);
     }
+
+    public function update($id, $data)
+    {
+        $cuisine = $this->model->find($id);
+
+        if (!empty($data['image'])) {
+            $file = $data['image'];
+            $nameImageOld = 'uploads/images/cuisinedetails/' . $cuisine->image;
+            if (file_exists(public_path($nameImageOld))) {
+                unlink(public_path($nameImageOld));
+            }
+            $forder = ('uploads/images/cuisinedetails');
+            $extensionFile = $file -> getClientOriginalExtension();
+            $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
+            $file->move($forder, $fileName);
+            $data['image'] = $fileName;
+        } else {
+            $data['image'] = $cuisine->image;
+        }
+
+        return $cuisine->update($data);
+    }
 }

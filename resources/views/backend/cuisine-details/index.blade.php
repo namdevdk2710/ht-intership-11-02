@@ -53,12 +53,12 @@
                                             <td style="width:5%;">{{ $key + 1 }}</td>
                                             <td style="width:15%;">{{ $cuisineDetail->cuisine->name }}</td>
                                             <td style="width:17%;">{{ $cuisineDetail->name }}</td>
-                                            <td style="width:25%;">{{ str_limit($cuisineDetail["description"], 30) }}</td>
-                                            <td>
+                                            <td style="width:15%;">{{ str_limit($cuisineDetail["description"], 30) }}</td>
+                                            <td style="width:20%;">
                                                 <img width="100%" src="uploads/images/cuisinedetails/{{ $cuisineDetail->image }}">
                                             </td>
                                             <td style="width:5%;">{{ $cuisineDetail->price }}</td>
-                                            <td style="width:17%;">
+                                            <td style="width:20%;">
                                                 <a href="backend/cuisine_detail/index/{{ $cuisineDetail->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $cuisineDetail->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
