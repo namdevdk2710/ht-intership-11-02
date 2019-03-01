@@ -25,10 +25,10 @@
                         {!!Form::label('cuisine_id', 'Cuisine Group:')!!}
                         {!! Form::select(
                             'cuisine_id',
-                                $cuisine->pluck('name', 'id'),
-                                $cuisineDetail->cuisine_id,
-                                ['class' => 'form-control border-input'],
-                                ['multiple' => true])
+                            $cuisine->pluck('name', 'id'),
+                            $cuisineDetail->cuisine_id,
+                            ['class' => 'form-control border-input'],
+                            ['multiple' => true])
                         !!}
                     </div>
                     <div class="form-group">
