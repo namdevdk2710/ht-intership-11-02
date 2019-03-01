@@ -20,16 +20,6 @@
                 {{ Form::open(['method' => 'POST', 'route' => 'cuisine_detail.store', 'files' => true]) }}
                 <div class="tile-body">
                     <div class="form-group">
-                        {{ Form::label('cuisine_id', 'Cuisine Group:') }}
-                        {{  Form::select(
-                            'cuisine_id',
-                            $cuisineDetails->pluck('name', 'id'),
-                            null,
-                            ['class' => 'form-control border-input'],
-                            ['multiple' => true])
-                         }}
-                    </div>
-                    <div class="form-group">
                         {{ Form::label('name', 'Name', ['class'=>'control-label']) }}
                         {{ Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Import Name']) }}
                     </div>
