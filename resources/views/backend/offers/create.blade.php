@@ -4,20 +4,20 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-edit"></i> Create About</h1>
-            <p>Form create about</p>
+            <h1><i class="fa fa-edit"></i> Create Offer</h1>
+            <p>Form create Offer</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">About</li>
+            <li class="breadcrumb-item">Offer</li>
             <li class="breadcrumb-item"><a href="#">Create</a></li>
         </ul>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <h3 class="tile-title">Create About</h3>
-                {!! Form::open(['method' => 'POST', 'route' => 'about.store','files' => true]) !!}
+                <h3 class="tile-title">Create Offer</h3>
+                {!! Form::open(['method' => 'POST', 'route' => 'offer.store','files' => true]) !!}
                 <div class="tile-body">
                     <div class="form-group">
                         {!!Form::label('name', 'Name',['class'=>'control-label'])!!}
@@ -32,10 +32,6 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="form-group">
-                        {!!Form::label('description', 'Description', ['class'=>'control-label'])!!}
-                        {!!Form::textarea('description',null, ['class'=>'form-control'])!!}
-                    </div>
                     <div class="form-group">
                         {!!Form::label('content', 'Content', ['class'=>'control-label'])!!}
                         {!! Form::textarea('content', null, ['class' => 'form-control ckeditor'] ) !!}
@@ -52,7 +48,7 @@
                     <div class="form-group">
                         {{ Form::label('image', 'Image: ', ['class'=>'control-label']) }}
                         <br>
-                        <img src="" width="150" height="150" alt="Image About Detail" id="img" style="display: none">
+                        <img src="" width="150" height="150" alt="Image Offer Detail" id="img" style="display: none">
                         <br>
                         {{ Form::file('image', null, ['class'=>'form-control fileimage']) }}
                     </div>
