@@ -8,6 +8,7 @@ use App\Repositories\V1\Facilitie\FacilitieRepositoryInterFace;
 use App\Models\Facilitie;
 use Illuminate\Support\Collection;
 use App\Http\Requests\Facilities\CreateFacilitieRequest;
+use App\Http\Requests\Facilities\EditFacilitieRequest;
 
 class FacilitieController extends Controller
 {
@@ -75,7 +76,9 @@ class FacilitieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $facilitie = $this->repoFacilitie->find($id);
+
+        return view('backend.facilities.edit', compact('facilitie'));
     }
 
     /**
@@ -85,9 +88,12 @@ class FacilitieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditCuisineRequest $request, $id)
+    public function update(EditFacilitieRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->repoFacilitie->update($id, $data);
+
+        return redirect()->route('facilitie.index')->with('msg', 'Edit successful');
     }
 
     /**
