@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\V1\Facilitie\FacilitieRepositoryInterFace;
 use App\Models\Facilitie;
 use Illuminate\Support\Collection;
+use App\Http\Requests\Facilities\CreateFacilitieRequest;
 
 class FacilitieController extends Controller
 {
@@ -39,7 +40,7 @@ class FacilitieController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.facilities.create');
     }
 
     /**
@@ -48,9 +49,11 @@ class FacilitieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCuisineRequest $request)
+    public function store(CreateFacilitieRequest $request)
     {
-        //
+        $this->repoFacilitie->store($request->all());
+
+        return redirect()->route('facilitie.index')->with('msg', 'Creation successful');
     }
 
     /**
