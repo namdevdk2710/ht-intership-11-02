@@ -61,7 +61,7 @@
                                                 <a
                                                     href="{{route('introduce.destroy', ['id'=>$introduce->id])}}"
                                                     class="btn btn-danger btn-delete"
-                                                    onclick=""
+                                                    onclick="deleteItem({{$introduce->id}},event)"
                                                 >
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 </a>
@@ -69,7 +69,7 @@
                                                     'method' => 'DELETE',
                                                     'route' => ['introduce.destroy',$introduce->id],
                                                     'onsubmit' => 'return confirmDelete()',
-                                                    'id' => 'form-delete'
+                                                    'id' => "form-delete-$introduce->id"
                                                 ])!!}
                                                 {!! Form::close() !!}
                                             </td>
@@ -92,10 +92,10 @@
 
 @push('script')
 <script type="text/javascript">
-    $('.btn-delete').on('click', function(e) {
+    function deleteItem(id,e) {
         e.preventDefault();
-        $('#form-delete').submit();
-    });
+        $('#form-delete-' + id).submit();
+    }
 
     function confirmDelete() {
         var x = confirm("Are you sure you want to delete?");
