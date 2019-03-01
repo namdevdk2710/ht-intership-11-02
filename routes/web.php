@@ -28,4 +28,6 @@ Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend'], function (
     Route::resource('/offer', 'OfferController');
     Route::resource('/destination', 'DestinationController');
     Route::resource('/facilitie_detail', 'FacilitieDetailController');
+    Route::resource('/room', 'RoomController');
+    Route::post('/room/changestatus', 'RoomController@changestatus')->name('room.changestatus');
 });
