@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\CuisineDetails;
+namespace App\Http\Requests\Rooms;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCuisineDetailRequest extends FormRequest
+class CreateRoomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
