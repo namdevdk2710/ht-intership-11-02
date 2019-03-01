@@ -9,6 +9,7 @@ use App\Repositories\V1\Facilitie\FacilitieRepositoryInterFace;
 use App\Models\FacilitieDetail;
 use Illuminate\Support\Collection;
 use App\Http\Requests\FacilitieDetails\CreateFacilitieDetailRequest;
+use App\Http\Requests\FacilitieDetails\EditFacilitieDetailRequest;
 
 class FacilitieDetailController extends Controller
 {
@@ -83,7 +84,10 @@ class FacilitieDetailController extends Controller
      */
     public function edit($id)
     {
-        //
+        $facilitie = $this->repoFacilitie->listCreate();
+        $facilitieDetail = $this->repoFacilitieDetail->find($id);
+
+        return view('backend.facilitie-details.edit', compact('facilitieDetail', 'facilitie'));
     }
 
     /**
@@ -93,9 +97,12 @@ class FacilitieDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditFacilitieDetailRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->repoFacilitieDetail->update($id, $data);
+
+        return redirect()->route('facilitie_detail.index')->with('msg', 'Edit successful');
     }
 
     /**
