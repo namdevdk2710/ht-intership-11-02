@@ -53,7 +53,7 @@
                                                 <a href="backend/facilities/index/{{ $facilitie->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $facilitie->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-warning">
+                                                <a href="{{ route('facilitie.edit', ['id'=>$facilitie->id]) }}" class="btn btn-warning">
                                                         <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                     </a>
                                                 <a
