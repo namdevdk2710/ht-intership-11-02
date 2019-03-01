@@ -20,6 +20,8 @@ use App\Repositories\V1\CuisineDetail\CuisineDetailRepository;
 use App\Repositories\V1\CuisineDetail\CuisineDetailRepositoryInterface;
 use App\Repositories\V1\About\AboutRepository;
 use App\Repositories\V1\About\AboutRepositoryInterface;
+use App\Repositories\V1\Introduce\IntroduceRepository;
+use App\Repositories\V1\Introduce\IntroduceRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,5 +50,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CuisineRepositoryInterface::class, CuisineRepository::class);
         $this->app->bind(CuisineDetailRepositoryInterface::class, CuisineDetailRepository::class);
         $this->app->bind(AboutRepositoryInterface::class, AboutRepository::class);
+        $this->app->bind(IntroduceRepositoryInterface::class, IntroduceRepository::class);
     }
 }
