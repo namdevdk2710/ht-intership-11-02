@@ -22,7 +22,7 @@
                 <div class="tile-body">
                     <div id="sampleTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-12">
                                 <div id="sampleTable_filter" class="dataTables_filter">
                                     @include('backend.layouts.search', ['route' => route('contact.index')])
                                 </div>
@@ -52,7 +52,7 @@
                                             <td>{{ $contact->phone }}</td>
                                             <td>{{ $contact->email }}</td>
                                             <td>{{ str_limit($contact["content"], 50) }}</td>
-                                            <td>
+                                            <td class = "btn-changstatus-{{$contact->id}}">
                                                 <button
                                                     class="btn btn-{{$contact->status == 1 ? 'warning' : 'success'}}"
                                                 >
@@ -61,7 +61,7 @@
                                             </td>
 
                                             <td>
-                                                <a href="backend/contacts/index/{{ $contact->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $contact->id }}">
+                                                <a href="backend/contacts/index/{{ $contact->id }}"  onclick="changeStatus({{$contact->id}})" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $contact->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
                                             </td>
@@ -82,6 +82,36 @@
     </div>
 </main>
 @endsection
+
+@push('script')
+<script type="text/javascript">
+    function changeStatus(id) {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            dataType: 'json',
+            url: "{{route('contact.changestatus')}}",
+            data: {
+                'id': id
+            },
+            success: function(data) {
+                console.log(data.status)
+                var	button = "";
+                if (data.status) {
+                    button = "<button class='btn btn-warning'> Read </button>";
+                } else {
+                    button = "<button class='btn btn-success'> Unread </button>";
+                }
+                $('.btn-changstatus-' + data.id).empty();
+                $('.btn-changstatus-' + data.id).append(button);
+
+            },
+        });
+    }
+</script>
+@endpush
 
 
 

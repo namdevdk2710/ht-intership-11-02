@@ -57,7 +57,6 @@
                                             </td>
                                             <td class = "btn-changstatus-{{$module->id}}">
                                                 <button
-
                                                     class="btn btn-{{$module->status == 1 ? 'warning' : 'success'}}"
                                                     onclick="changeStatus({{$module->id}})"
                                                 >

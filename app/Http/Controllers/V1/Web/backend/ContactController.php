@@ -98,4 +98,11 @@ class ContactController extends Controller
     {
        //
     }
+
+    public function changestatus(Request $request)
+    {
+        $data = $request->all();
+
+        return $this->repoContact->changestatus($data);
+    }
 }
