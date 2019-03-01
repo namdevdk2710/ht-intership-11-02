@@ -17,5 +17,6 @@ class Room extends Model
         'price',
         'discount',
         'slug',
+        'status',
     ];
 }
