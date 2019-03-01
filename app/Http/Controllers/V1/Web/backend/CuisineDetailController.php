@@ -9,6 +9,7 @@ use App\Repositories\V1\Cuisine\CuisineRepositoryInterFace;
 use App\Models\CuisineDetail;
 use Illuminate\Support\Collection;
 use App\Http\Requests\CuisineDetails\CreateCuisineDetailRequest;
+use App\Http\Requests\CuisineDetails\EditCuisineDetailRequest;
 
 class CuisineDetailController extends Controller
 {
@@ -81,7 +82,10 @@ class CuisineDetailController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cuisine = $this->repoCuisine->listCreate();
+        $cuisineDetail = $this->repoCuisineDetail->find($id);
+
+        return view('backend.cuisine-details.edit', compact('cuisineDetail', 'cuisine'));
     }
 
     /**
@@ -91,9 +95,12 @@ class CuisineDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditGalleryDetailRequest $request, $id)
+    public function update(EditCuisineDetailRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->repoCuisineDetail->update($id, $data);
+
+        return redirect()->route('cuisine_detail.index')->with('msg', 'Edit successful');
     }
 
     /**
@@ -104,6 +111,8 @@ class CuisineDetailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repoCuisineDetail->delete($id);
+
+        return redirect()->route('cuisine_detail.index')->with('msg', 'Delete successful');
     }
 }
