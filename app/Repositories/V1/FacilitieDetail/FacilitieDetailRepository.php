@@ -69,4 +69,14 @@ class FacilitieDetailRepository extends BaseRepository implements FacilitieDetai
 
         return $gacilitie->update($data);
     }
+
+    public function delete($id)
+    {
+        $gacilitieDetail = $this->model->find($id);
+        $nameImageOld = 'uploads/images/gacilitiedetails/' . $gacilitieDetail->image;
+        if (file_exists(public_path($nameImageOld))) {
+            unlink(public_path($nameImageOld));
+        }
+        $gacilitieDetail->delete();
+    }
 }
