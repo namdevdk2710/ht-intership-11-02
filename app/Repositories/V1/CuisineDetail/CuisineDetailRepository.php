@@ -69,4 +69,14 @@ class CuisineDetailRepository extends BaseRepository implements CuisineDetailRep
 
         return $cuisine->update($data);
     }
+
+    public function delete($id)
+    {
+        $cuisineDetail = $this->model->find($id);
+        $nameImageOld = 'uploads/images/cuisinedetails/' . $cuisineDetail->image;
+        if (file_exists(public_path($nameImageOld))) {
+            unlink(public_path($nameImageOld));
+        }
+        $cuisineDetail->delete();
+    }
 }

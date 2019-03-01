@@ -111,6 +111,8 @@ class CuisineDetailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repoCuisineDetail->delete($id);
+
+        return redirect()->route('cuisine_detail.index')->with('msg', 'Delete successful');
     }
 }
