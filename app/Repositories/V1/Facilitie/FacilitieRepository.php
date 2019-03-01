@@ -30,8 +30,14 @@ class FacilitieRepository extends BaseRepository implements FacilitieRepositoryI
 
     public function update($id, $data)
     {
-        $cuisine = $this->model->find($id);
+        $facilitie = $this->model->find($id);
 
-        return $cuisine->update($data);
+        return $facilitie->update($data);
+    }
+
+    public function delete($id)
+    {
+        $facilitie = $this->model->find($id);
+        $facilitie->delete();
     }
 }
