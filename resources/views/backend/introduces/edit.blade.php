@@ -15,7 +15,7 @@
             </li>
             <li class="breadcrumb-item">Introduces</li>
             <li class="breadcrumb-item">
-                <a href="{{route('introduce.index')}}">Edit Introduce </a>
+                <a href="{{route('introduce.index')}}">Edit introduce </a>
             </li>
             <li class="breadcrumb-item">
                 <a href="{{route('introduce.edit', ['id'=>$introduce->id])}}">{{ $introduce->name }} </a>

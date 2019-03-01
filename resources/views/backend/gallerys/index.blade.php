@@ -70,8 +70,8 @@
                                                 </a>
                                                 <a
                                                     href="{{route('gallery.destroy', ['id'=>$gallery->id])}}"
-                                                    class="btn btn-danger btn-delete"
-                                                    onclick=""
+                                                    class="btn btn-danger"
+                                                    onclick="deleteItem({{$gallery->id}},event)"
                                                 >
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 </a>
@@ -79,7 +79,7 @@
                                                     'method' => 'DELETE',
                                                     'route' => ['gallery.destroy',$gallery->id],
                                                     'onsubmit' => 'return confirmDelete()',
-                                                    'id' => 'form-delete'
+                                                    'id' => "form-delete-$gallery->id"
                                                 ])!!}
                                                 {!! Form::close() !!}
                                             </td>
@@ -102,10 +102,10 @@
 
 @push('script')
 <script type="text/javascript">
-    $('.btn-delete').on('click', function(e) {
+    function deleteItem(id,e) {
         e.preventDefault();
-        $('#form-delete').submit();
-    });
+        $('#form-delete-' + id).submit();
+    }
 
     function confirmDelete() {
         var x = confirm("Are you sure you want to delete?");
@@ -117,4 +117,3 @@
     }
 </script>
 @endpush
-
