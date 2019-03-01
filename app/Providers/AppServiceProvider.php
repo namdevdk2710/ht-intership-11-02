@@ -22,6 +22,8 @@ use App\Repositories\V1\About\AboutRepository;
 use App\Repositories\V1\About\AboutRepositoryInterface;
 use App\Repositories\V1\Introduce\IntroduceRepository;
 use App\Repositories\V1\Introduce\IntroduceRepositoryInterface;
+use App\Repositories\V1\Facilitie\FacilitieRepository;
+use App\Repositories\V1\Facilitie\FacilitieRepositoryInterface;
 use App\Repositories\V1\Contact\ContactRepository;
 use App\Repositories\V1\Contact\ContactRepositoryInterface;
 use App\Repositories\V1\Offer\OfferRepository;
@@ -55,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CuisineDetailRepositoryInterface::class, CuisineDetailRepository::class);
         $this->app->bind(AboutRepositoryInterface::class, AboutRepository::class);
         $this->app->bind(IntroduceRepositoryInterface::class, IntroduceRepository::class);
+        $this->app->bind(FacilitieRepositoryInterface::class, FacilitieRepository::class);
         $this->app->bind(ContactRepositoryInterface::class, ContactRepository::class);
         $this->app->bind(OfferRepositoryInterface::class, OfferRepository::class);
     }

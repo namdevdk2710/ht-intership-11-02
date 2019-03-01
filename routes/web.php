@@ -22,6 +22,7 @@ Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend'], function (
     Route::resource('/cuisine_detail', 'CuisineDetailController');
     Route::resource('/about', 'AboutController');
     Route::resource('/introduce', 'IntroduceController');
+    Route::resource('/facilitie', 'FacilitieController');
     Route::resource('/contact', 'ContactController');
     Route::post('/contact/changestatus', 'ContactController@changestatus')->name('contact.changestatus');
     Route::resource('/offer', 'OfferController');
