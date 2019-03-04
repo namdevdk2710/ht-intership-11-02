@@ -27,4 +27,17 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         return $user;
     }
+
+    public function store($data)
+    {
+        $file = $data['avatar'];
+        $forder = 'uploads/images/users';
+        $extensionFile = $file -> getClientOriginalExtension();
+        $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
+        $file->move($forder, $fileName);
+
+        $data['avatar'] = $fileName;
+
+        return $this->model->create($data);
+    }
 }

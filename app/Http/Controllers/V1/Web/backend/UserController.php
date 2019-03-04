@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\V1\User\UserRepositoryInterFace;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use App\Http\Requests\Users\CreateUserRequest;
 
 class UserController extends Controller
 {
@@ -40,7 +41,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.users.create');
     }
 
     /**
@@ -49,9 +50,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        $this->repoUser->store($request->all());
+
+        return redirect()->route('user.index')->with('msg', 'Creation successful');
     }
 
     /**
