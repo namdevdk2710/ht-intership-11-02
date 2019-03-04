@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener">
+                    <a class="treeview-item" href="{{ route('user.create') }}" rel="noopener">
                         <i class="icon fa fa-circle-o"></i> Create User
                     </a>
                 </li>

@@ -55,13 +55,15 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->address }}</td>
                                             <td>
-                                                <img width="100%" src="uploads/images/users/{{ $user->avatar }}">
+                                                @if(!empty($user->avatar))
+                                                    <img width="100%" src="uploads/images/users/{{ $user->avatar }}">
+                                                @endif
                                             </td>
                                             <td>
                                                 <a href="backend/users/index/{{ $user->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $user->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-warning">
+                                                <a href="{{route('user.edit', ['id'=>$user->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
                                                 <a href="#" class="btn btn-danger">

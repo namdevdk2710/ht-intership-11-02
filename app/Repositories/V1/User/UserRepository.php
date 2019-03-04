@@ -30,14 +30,40 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function store($data)
     {
-        $file = $data['avatar'];
-        $forder = 'uploads/images/users';
-        $extensionFile = $file -> getClientOriginalExtension();
-        $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
-        $file->move($forder, $fileName);
-
-        $data['avatar'] = $fileName;
+        $data['password'] = bcrypt($data['password']);
+        if (isset($data['avatar'])) {
+            $file = $data['avatar'];
+            $forder = 'uploads/images/users';
+            $extensionFile = $file -> getClientOriginalExtension();
+            $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
+            $file->move($forder, $fileName);
+            $data['avatar'] = $fileName;
+        }
 
         return $this->model->create($data);
+    }
+
+    public function update($id, $data)
+    {
+        $user = $this->model->find($id);
+        if (!empty($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        }
+        if (isset($data['avatar'])) {
+            $file = $data['avatar'];
+            $nameImageOld = 'uploads/images/users/' . $user->avatar;
+            if (empty(file_exists(public_path($nameImageOld)))) {
+                unlink(public_path($nameImageOld));
+            }
+            $forder = ('uploads/images/users');
+            $extensionFile = $file -> getClientOriginalExtension();
+            $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
+            $file->move($forder, $fileName);
+            $data['avatar'] = $fileName;
+        } else {
+            $data['avatar'] = $user->avatar;
+        }
+
+        return $user->update($data);
     }
 }
