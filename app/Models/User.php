@@ -18,6 +18,7 @@ class User extends Model
     protected $primaryKey = 'id';
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 }
