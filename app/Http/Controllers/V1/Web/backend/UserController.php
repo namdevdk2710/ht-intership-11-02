@@ -76,7 +76,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->repoUser->find($id);
+
+        return view('backend.users.edit', compact('user'));
     }
 
     /**
@@ -88,7 +90,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-       //
+        $data = $request->all();
+        $this->repoUser->update($id, $data);
+
+        return redirect()->route('user.index')->with('msg', 'Edit successful');
     }
 
     /**

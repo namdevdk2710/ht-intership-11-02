@@ -37,6 +37,7 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name.required' => 'Vui lòng nhập trường này',
+            'name.unique' => 'Name đã tồn tại',
             'name.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
             'email.required' => 'Vui lòng nhập trường này',
             'email.unique' => 'Email đã tồn tại',
