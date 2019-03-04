@@ -31,7 +31,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function store($data)
     {
         $data['password'] = bcrypt($data['password']);
-        if(isset($data['avatar'])){
+        if (isset($data['avatar'])) {
             $file = $data['avatar'];
             $forder = 'uploads/images/users';
             $extensionFile = $file -> getClientOriginalExtension();
@@ -46,7 +46,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function update($id, $data)
     {
         $user = $this->model->find($id);
-        if(!empty( $data['password'])){
+        if (!empty($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         }
 
@@ -62,7 +62,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             $file->move($forder, $fileName);
             $data['avatar'] = $fileName;
         } else {
-            $data['avatar'] = $user->avatar;;
+            $data['avatar'] = $user->avatar;
         }
 
         return $user->update($data);
