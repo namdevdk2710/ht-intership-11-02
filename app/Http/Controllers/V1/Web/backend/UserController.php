@@ -104,6 +104,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repoUser->delete($id);
+
+        return redirect()->route('user.index')->with('msg', 'Delete successful');
     }
 }
