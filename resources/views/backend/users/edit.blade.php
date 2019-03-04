@@ -35,13 +35,30 @@
                             </div>
                         @endif
                         <div class="form-group">
-                            {{ Form::checkbox('changePassword','',false,['class'=>'changePassword']) }}
                             {{ Form::label('password','Password') }}<span style="color:red;">*</span>
-                            {{ Form::password('password',['class'=>'form-control password','placeholder'=>'Import Password','disabled'=>'']) }}
+                            {{ Form::password('password',['class'=>'form-control password','placeholder'=>'Import Password']) }}
                         </div>
+                        @if ($errors->has('password'))
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->get('password') as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="form-group">
-                            {{ Form::password('passwordAgain',['class'=>'form-control password','placeholder'=>'Retype Password','disabled'=>'']) }}
+                            {{ Form::password('passwordAgain',['class'=>'form-control password','placeholder'=>'Retype Password']) }}
                         </div>
+                        @if ($errors->has('passwordAgain'))
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->get('passwordAgain') as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="form-group">
                             {{ Form::label('phone', 'Phone:', ['class'=>'control-label']) }}
                             {{ Form::number('phone', $user->phone,['class'=>'form-control','placeholder'=>'Import Phone']) }}
@@ -106,23 +123,3 @@
     </div>
 </main>
 @endsection
-
-@push('script')
-    <script>
-        $(document).ready(function () {
-            $(".changePassword").change(function () {
-            var parent = $( this ).parent();
-            var next = parent.next();
-            var child = next.children( "input[name='passwordAgain']" )
-                if ($(this).is(":checked")) {
-                $(this).siblings("input[name='password'], input[name='passwordAgain']").removeAttr('disabled');
-                child.removeAttr('disabled');
-                }
-                else {
-                $(this).siblings("input[name='password'], input[name='passwordAgain']").attr('disabled','');
-                child.attr('disabled','');
-                }
-            });
-        });
-    </script>
-@endpush

@@ -8,6 +8,7 @@ use App\Repositories\V1\User\UserRepositoryInterFace;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use App\Http\Requests\Users\CreateUserRequest;
+use App\Http\Requests\Users\EditUserRequest;
 
 class UserController extends Controller
 {
@@ -88,11 +89,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditUserRequest $request, $id)
     {
         $data = $request->all();
         $this->repoUser->update($id, $data);
-
         return redirect()->route('user.index')->with('msg', 'Edit successful');
     }
 

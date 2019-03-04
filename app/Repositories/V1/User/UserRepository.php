@@ -49,7 +49,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         if (!empty($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         }
-
         if (isset($data['avatar'])) {
             $file = $data['avatar'];
             $nameImageOld = 'uploads/images/users/' . $user->avatar;
