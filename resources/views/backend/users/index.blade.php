@@ -67,8 +67,6 @@
                                                 <a href="#" class="btn btn-danger">
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 </a>
-
-                                                {{ Form::close() }}
                                             </td>
                                         </tr>
                                         @include('backend.users.detail')
