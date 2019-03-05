@@ -42,6 +42,13 @@ class HomeController extends Controller
         $offers = $this->repoOffer->indexTop(1, ['name', 'image', 'content']);
         $introduces = $this->repoIntroduce->indexTop(2);
 
-        return view('frontend.homes.index', compact('banners', 'abouts', 'destinations', 'facilitieDetails', 'offers', 'introduces'));
+        return view('frontend.homes.index', compact(
+            'banners',
+            'abouts',
+            'destinations',
+            'facilitieDetails',
+            'offers',
+            'introduces'
+        ));
     }
 }
