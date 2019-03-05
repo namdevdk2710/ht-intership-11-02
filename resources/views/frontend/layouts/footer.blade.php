@@ -1,4 +1,4 @@
-<div class="section_footer_as clearfix scrolling-item">
+<div class="section_footer_as clearfix">
     <div class="row copyright mg0">
         <div class="col-md-3 text-left">
             <div class="footer_logo">
