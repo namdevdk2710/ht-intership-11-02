@@ -63,12 +63,19 @@
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
                                                 <a
-                                                href="#"
+                                                href="{{route('room_service.destroy', ['id'=>$roomservice->id])}}"
                                                 class="btn btn-danger"
-                                                onclick=""
+                                                onclick="deleteItem({{ $roomservice->id }}, event)"
                                                 >
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                 </a>
+                                                {!!Form::open([
+                                                    'method' => 'DELETE',
+                                                    'route' => ['room_service.destroy',$roomservice->id],
+                                                    'onsubmit' => 'return confirmDelete()',
+                                                    'id' => "form-delete-$roomservice->id"
+                                                ])!!}
+                                                {!! Form::close() !!}
                                             </td>
                                         </tr>
                                         @include('backend.room-services.detail')

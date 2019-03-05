@@ -43,11 +43,11 @@ class RoomServiceRepository extends BaseRepository implements RoomServiceReposit
 
     public function update($id, $data)
     {
-        $gallery = $this->model->find($id);
+        $roomservice = $this->model->find($id);
 
         if (!empty($data['icon'])) {
             $file = $data['icon'];
-            $nameImageOld = 'uploads/images/roomservices/' . $gallery->icon;
+            $nameImageOld = 'uploads/images/roomservices/' . $roomservice->icon;
             if (file_exists(public_path($nameImageOld))) {
                 unlink(public_path($nameImageOld));
             }
@@ -57,9 +57,15 @@ class RoomServiceRepository extends BaseRepository implements RoomServiceReposit
             $file->move($forder, $fileName);
             $data['icon'] = $fileName;
         } else {
-            $data['icon'] = $gallery->icon;
+            $data['icon'] = $roomservice->icon;
         }
 
-        return $gallery->update($data);
+        return $roomservice->update($data);
+    }
+
+    public function delete($id)
+    {
+        $roomservice = $this->model->find($id);
+        $roomservice->delete();
     }
 }
