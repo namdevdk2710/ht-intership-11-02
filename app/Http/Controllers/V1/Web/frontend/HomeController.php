@@ -32,11 +32,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        $banners = $this->repoBanner->indexTop(2,['image', 'description', 'link']);
-        $abouts = $this->repoAbout->indexTop(2,['name', 'image', 'description', 'slug']);
-        $destinations = $this->repoDestination->indexTop(1,['name', 'image', 'description']);
-        $facilitieDetails = $this->repoFacilitieDetail->indexTop(1,['name', 'image', 'description']);
-        $offers = $this->repoOffer->indexTop(1,['name', 'image', 'content']);
+        $banners = $this->repoBanner->indexTop(2, ['image', 'description', 'link']);
+        $abouts = $this->repoAbout->indexTop(2, ['name', 'image', 'description', 'slug']);
+        $destinations = $this->repoDestination->indexTop(1, ['name', 'image', 'description']);
+        $facilitieDetails = $this->repoFacilitieDetail->indexTop(1, ['name', 'image', 'description']);
+        $offers = $this->repoOffer->indexTop(1, ['name', 'image', 'content']);
 
         return view('frontend.homes.index', compact('banners', 'abouts', 'destinations', 'facilitieDetails', 'offers'));
     }
