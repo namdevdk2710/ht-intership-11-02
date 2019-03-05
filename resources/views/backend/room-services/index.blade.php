@@ -59,7 +59,7 @@
                                                 <a href="backend/room-services/index/{{ $roomservice->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $roomservice->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-warning">
+                                                <a href="{{route('room_service.edit', ['id'=>$roomservice->id])}}" class="btn btn-warning">
                                                     <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                 </a>
                                                 <a

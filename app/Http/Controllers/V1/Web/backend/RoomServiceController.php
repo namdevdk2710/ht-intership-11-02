@@ -8,6 +8,7 @@ use App\Repositories\V1\RoomService\RoomServiceRepositoryInterFace;
 use App\Models\RoomService;
 use Illuminate\Support\Collection;
 use App\Http\Requests\RoomServices\CreateRoomServiceRequest;
+use App\Http\Requests\RoomServices\EditRoomServiceRequest;
 
 class RoomServiceController extends Controller
 {
@@ -49,7 +50,7 @@ class RoomServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateRoomServiceRequest $request)
+    public function store(EditRoomServiceRequest $request)
     {
         $this->repoRoomService->store($request->all());
 
@@ -75,7 +76,9 @@ class RoomServiceController extends Controller
      */
     public function edit($id)
     {
-       //
+        $roomservice = $this->repoRoomService->find($id);
+
+        return view('backend.room-services.edit', compact('roomservice'));
     }
 
     /**
@@ -85,9 +88,11 @@ class RoomServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditRoomServiceRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->repoRoomService->update($id, $data);
+        return redirect()->route('room_service.index')->with('msg', 'Edit successful');
     }
 
     /**

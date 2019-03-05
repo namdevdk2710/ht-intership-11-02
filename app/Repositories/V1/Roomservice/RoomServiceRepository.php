@@ -40,4 +40,26 @@ class RoomServiceRepository extends BaseRepository implements RoomServiceReposit
 
         return $this->model->create($data);
     }
+
+    public function update($id, $data)
+    {
+        $gallery = $this->model->find($id);
+
+        if (!empty($data['icon'])) {
+            $file = $data['icon'];
+            $nameImageOld = 'uploads/images/roomservices/' . $gallery->icon;
+            if (file_exists(public_path($nameImageOld))) {
+                unlink(public_path($nameImageOld));
+            }
+            $forder = ('uploads/images/roomservices');
+            $extensionFile = $file -> getClientOriginalExtension();
+            $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
+            $file->move($forder, $fileName);
+            $data['icon'] = $fileName;
+        } else {
+            $data['icon'] = $gallery->icon;
+        }
+
+        return $gallery->update($data);
+    }
 }
