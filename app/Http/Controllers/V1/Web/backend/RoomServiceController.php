@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\V1\RoomService\RoomServiceRepositoryInterFace;
 use App\Models\RoomService;
 use Illuminate\Support\Collection;
+use App\Http\Requests\RoomServices\CreateRoomServiceRequest;
 
 class RoomServiceController extends Controller
 {
@@ -39,7 +40,7 @@ class RoomServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.room-services.create');
     }
 
     /**
@@ -48,9 +49,11 @@ class RoomServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRoomServiceRequest $request)
     {
-       //
+        $this->repoRoomService->store($request->all());
+
+        return redirect()->route('room_service.index')->with('msg', 'Creation successful');
     }
 
     /**
