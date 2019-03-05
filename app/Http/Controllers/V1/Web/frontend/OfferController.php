@@ -22,7 +22,7 @@ class OfferController extends Controller
         return view('frontend.offers.index', compact('offers'));
     }
 
-    public function detail($slug,$id)
+    public function detail($slug, $id)
     {
         $offerDetail = $this->repoOffer->detail($id);
 
