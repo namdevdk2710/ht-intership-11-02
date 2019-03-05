@@ -79,4 +79,9 @@ class OfferRepository extends BaseRepository implements OfferRepositoryInterface
 
         return $this->model->orderBy('updated_at', 'Desc')->take($limit)->get($columns);
     }
+
+    public function detail($id)
+    {
+        return $offer = $this->model->find($id);
+    }
 }

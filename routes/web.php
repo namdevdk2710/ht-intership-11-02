@@ -1,10 +1,13 @@
 <?php
-
+Route::pattern('id','([0-9]*)');
+Route::pattern('slug','(.*)');
 // Frontend routes
 Route::group(['namespace' => 'V1\Web\frontend'], function () {
-    Route::get('/', 'HomeController@index')->name('home.index');
-    Route::get('/accommodation', 'RoomController@index')->name('room.index');
-    Route::get('/gallery', 'GalleryDetailController@index')->name('gallery_detail.index');
+    Route::get('/', 'HomeController@index')->name('fe.home.index');
+    Route::get('/accommodation', 'RoomController@index')->name('fe.room.index');
+    Route::get('/gallery', 'GalleryDetailController@index')->name('fe.gallery_detail.index');
+    Route::get('/offer', 'OfferController@index')->name('fe.offer.index');
+    Route::get('/offer/{slug}-{id}', 'OfferController@detail')->name('fe.offer.detail');
 });
 
 // backend routes
