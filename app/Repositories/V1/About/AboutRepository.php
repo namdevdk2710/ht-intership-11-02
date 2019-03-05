@@ -73,4 +73,11 @@ class AboutRepository extends BaseRepository implements AboutRepositoryInterface
         }
         $about->delete();
     }
+
+    public function indexTop($limit = null, $columns = ['*'])
+    {
+        $limit = is_null($limit) ? config('repository.pagination.limit', 5) : $limit;
+
+        return $this->model->orderBy('updated_at', 'Desc')->take($limit)->get($columns);
+    }
 }
