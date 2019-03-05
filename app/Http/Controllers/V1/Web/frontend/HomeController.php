@@ -9,6 +9,7 @@ use App\Repositories\V1\About\AboutRepositoryInterFace;
 use App\Repositories\V1\Destination\DestinationRepositoryInterFace;
 use App\Repositories\V1\FacilitieDetail\FacilitieDetailRepositoryInterface;
 use App\Repositories\V1\Offer\OfferRepositoryInterFace;
+use App\Repositories\V1\Introduce\IntroduceRepositoryInterface;
 use App\Models\Banner;
 
 class HomeController extends Controller
@@ -21,13 +22,15 @@ class HomeController extends Controller
         AboutRepositoryInterFace $repoAbout,
         DestinationRepositoryInterFace $repoDestination,
         FacilitieDetailRepositoryInterface $repoFacilitieDetail,
-        OfferRepositoryInterFace $repoOffer
+        OfferRepositoryInterFace $repoOffer,
+        IntroduceRepositoryInterface $repoIntroduce
     ) {
         $this->repoBanner = $repoBanner;
         $this->repoAbout = $repoAbout;
         $this->repoDestination = $repoDestination;
         $this->repoFacilitieDetail = $repoFacilitieDetail;
         $this->repoOffer = $repoOffer;
+        $this->repoIntroduce = $repoIntroduce;
     }
 
     public function index()
@@ -37,7 +40,8 @@ class HomeController extends Controller
         $destinations = $this->repoDestination->indexTop(1, ['name', 'image', 'description']);
         $facilitieDetails = $this->repoFacilitieDetail->indexTop(1, ['name', 'image', 'description']);
         $offers = $this->repoOffer->indexTop(1, ['name', 'image', 'content']);
+        $introduces = $this->repoIntroduce->indexTop(2);
 
-        return view('frontend.homes.index', compact('banners', 'abouts', 'destinations', 'facilitieDetails', 'offers'));
+        return view('frontend.homes.index', compact('banners', 'abouts', 'destinations', 'facilitieDetails', 'offers', 'introduces'));
     }
 }

@@ -183,31 +183,22 @@
                         <a href="vn.html"><img class="img-responsive" src="/frontend/images/UploadImages/logo_grey.png" /></a>
                     </div>
                 </div>
+                @foreach ($introduces as $key => $introduce)
                 <div class="col-md-3 text-left">
                     <div class="footer_logo text_foter">
-                        <span class="text_foter_header">AMARIN RESORT PHÚ QUỐC</span><br/>
-                        <span><span style="font-size:16px;"><span style="font-family:roboto_condensedlight;">Đường Trần Hưng Đạo, Thị Trấn Dương Đông,<br />
-Phú Quốc, Kiên Giang<br />
-Điện thoại: (84 297) 6259 666<br />
-Email: info@amarinresort.com.vn</span></span>
+                    <span class="text_foter_header">{{$introduce->name}}</span><br/>
+                        <span>
+                            <span style="font-size:16px;">
+                                <span style="font-family:roboto_condensedlight;">
+                                    {{$introduce->address}}<br />
+                                    Điện thoại: {{$introduce->phone}}<br />
+                                    Email: {{$introduce->email}}
+                                </span>
+                            </span>
                         </span>
                     </div>
                 </div>
-                <div class="col-md-3 text-left">
-                    <div class="footer_logo text_foter">
-                        <span class="text_foter_header">VĂN PHÒNG ĐẠI DIỆN HCM</span><br/>
-                        <span><span style="font-size:16px;"><span style="font-family:roboto_condensedlight;">Phòng 09, Tầng 14, Tòa nhà Vincom,<br />
-72 Lê Thánh Tôn, Phường Bến Nghé, TP.HCM<br />
-Điện thoại: (84 8) 6868 0245<br />
-Email: sales@amarinresort.com.vn<br />
-<br />
-VĂN PHÒNG ĐẠI DIỆN HÀ NỘI</span></span><br />
-                        <span style="font-size:16px;"><span style="font-family:roboto_condensedlight;">10, Đặng Xuân Bảng, Phường Đại Kim,<br />
-Quận Hoàng Mai, Hà Nội<br />
-Điện thoại: (84 24) 3540 1988</span></span>
-                        </span>
-                    </div>
-                </div>
+                @endforeach
                 <div class="col-md-3 mg0 pd0">
                     <div class="footer_logo">
                         <div class="text-center clearfix">
