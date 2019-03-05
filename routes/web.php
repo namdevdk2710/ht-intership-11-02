@@ -2,9 +2,10 @@
 
 // Frontend routes
 Route::group(['namespace' => 'V1\Web\frontend'], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/accommodation', 'RoomController@index')->name('room.index');
+    Route::get('/gallery', 'GalleryDetailController@index')->name('gallery_detail.index');
 
-    Route::get('/accommodation', 'RoomController@index')->name('room');
 });
 
 // backend routes
