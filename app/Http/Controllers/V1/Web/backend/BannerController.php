@@ -24,9 +24,13 @@ class BannerController extends Controller
         $this->repository = $repository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $banners = $this->repository->paginate();
+
+        if ($request['key']) {
+            $banners = $this->repository->search($request['key']);
+        }
 
         return view('backend.banners.index', compact('banners'));
     }

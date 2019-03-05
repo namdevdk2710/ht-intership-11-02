@@ -11,46 +11,26 @@
             </ul>
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-
+                @foreach ($banners as $banner)
                 <div class="item moving">
-                    <img src="{{asset('frontend/images/UploadImages/banners/Amarin_banner_hompage_1600x1200_P1.jpg')}}">
+                    <img src="../uploads/images/banners/{{ $banner->image }}">
                     <div class="carousel-caption">
                         <div class="item_content_desc_home" data-animation="animated fadeInUp">
                             <div class="line_item_express"></div>
-                            <div class="slide_desc text_desc">Chỉ cách bãi biển vài bước chân, bao quanh bởi hàng dừa xanh tươi, mát mẻ, hồ bơi tại resort sử dụng hệ thống lọc muối điện phân không lưu trữ clo luôn an toàn, bảo vệ môi trường cũng như sức khoẻ cho bạn và cả gia đình tự
-                                tin vẫy vùng thoả thích trong làn nước trong xanh.</div>
+                            <div class="slide_desc text_desc">{{ $banner->description }}</div>
                             <div class="slide_btn">
                                 <div class="button_affect">
                                     <span id="draw_lp_left"></span>
                                     <span id="draw_lp_bottom"></span>
                                     <span id="draw_lp_top" class="lp_top"></span>
                                     <span id="draw_lp_right"></span>
-                                    <a href="#" target="_blank" style="font-size:7pt">CHI TIẾT</a>
+                                    <a href="{{ $banner->link }}" target="_blank" style="font-size:7pt">CHI TIẾT</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="item moving">
-                    <img src="{{asset('frontend/images/UploadImages/banners/Amarin_banner_hompage_1600x1200_P2.jpg">
-                    <div class="carousel-caption">
-                        <div class="item_content_desc_home" data-animation="animated fadeInUp">
-                            <div class="line_item_express"></div>
-                            <div class="slide_desc text_desc">Một hàng dừa xanh mát nghiêng ngả dọc bãi cát trắng, một khu nghỉ dưỡng độc đáo đậm chất sống của miền nhiệt đới với lối thiết kế kiến trúc phong cách đương đại và tối giản, đắm chìm với hoàng hôn dọc bờ biển, Amarin Resort
-                                & Spa không phải chỉ đang mở rộng cửa các căn phòng mà đang mở những cánh cửa giác quan cảm nhận thế giới tự nhiên của bạn.</div>
-                            <div class="slide_btn">
-                                <div class="button_affect">
-                                    <span id="draw_lp_left"></span>
-                                    <span id="draw_lp_bottom"></span>
-                                    <span id="draw_lp_top" class="lp_top"></span>
-                                    <span id="draw_lp_right"></span>
-                                    <a href="#" target="_blank" style="font-size:7pt">CHI TIẾT</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

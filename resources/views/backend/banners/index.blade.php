@@ -29,14 +29,7 @@
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div id="sampleTable_filter" class="dataTables_filter">
-                                    <label>
-                                        Search:
-                                        <input
-                                            type="search"
-                                            class="form-control form-control-sm"
-                                            aria-controls="sampleTable"
-                                        >
-                                    </label>
+                                    @include('backend.layouts.search', ['route' => route('banner.index')])
                                 </div>
                             </div>
                         </div>
@@ -74,11 +67,7 @@
                                             <td style="width:5%;">{{ $key + 1 }}</td>
                                             <td style="width:17%;">{{ $baner->name }}</td>
                                             <td style="width:40%;">{{ str_limit($baner["description"], 50) }}</td>
-                                            <td>
-                                                @if(!empty($baner->image))
-                                                    <img width="100%" src="uploads/images/banners/{{ $baner->image }}">
-                                                @endif
-                                            </td>
+                                            <td><img width="100%" src="uploads/images/banners/{{ $baner->image }}"></td>
                                             <td style="width:17%;">
                                                 <a href="backend/banners/index/{{ $baner->id }}" class="btn btn-info" data-toggle="modal" data-target="#myModa{{ $baner->id }}">
                                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
