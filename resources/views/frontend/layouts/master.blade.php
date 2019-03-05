@@ -1,7 +1,4 @@
 @include('frontend.layouts.header')
 
-<div class="wrapper">
-    @yield('main')
-</div>
+@yield('main')
 
-@include('frontend.layouts.footer-home')
