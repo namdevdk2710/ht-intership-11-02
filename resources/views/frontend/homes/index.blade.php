@@ -1,5 +1,4 @@
-@extends('frontend.layouts.master')
-@section('main')
+@extends('frontend.layouts.master') @section('main')
 <div class="main">
     <!-- page 1-->
     <section id="page1">
@@ -38,64 +37,43 @@
     <section id="page2">
         <div class="line_item_express_page_2"></div>
         <div class="content content_p2">
-            <a href="vn/welcome/about-us.html">
-                <div class="row clearfix content_p2_row">
-                    <div class="col-xs-6 item_pading content_p2_col_6 scrolling-item slideLeft">
+            @foreach ($abouts as $key => $about)
+            <a href="{{$about->slug}}">
+                <div class="row clearfix content_p2_row {{$key % 2 == 0 ?'':'top50'}}">
+                    <div class="col-xs-6 item_pading content_p2_col_6
+                        {{$key % 2 == 0 ?
+                        'scrolling-item slideLeft':
+                        'float_text_right scrolling-item-2 slideRight animated fadeInRight'}}">
                         <div class="item-container-fluid">
                             <div class="item-row-fluid">
-                                <div class="item_contain_right">
-                                    <p class="text-right">
-                                        <span class="color_blue_grey">CHÀO MỪNG BẠN ĐẾN VỚI</span><br/>
-                                        <span class="color_yellow_cu">AMARIN RESORT & SPA</span>
+                                <div class="{{$key % 2 == 0 ?'item_contain_right':'item_contain_left'}}">
+                                    <p class="{{$key % 2 == 0 ?'text-right':'text-left'}}">
+                                        <span class="color_yellow_cu">{{$about->name}}</span>
                                     </p>
                                     <p class="text_desc">
-                                        Amarin Resort & Spa - khu nghỉ dưỡng nằm ngay trung tâm Dương Đông, được xây dựng theo tiêu chuẩn 4 sao bao gồm 96 phòng nghỉ dưỡng với thiết kế hiện đại, không gian sống rộng mở. Đến với Amarin, bạn sẽ có được những góc nhìn tuyệt nhất về một không gian
-                                        ngập tràn gió biển và chan hoà ánh&#8230; </p>
-                                    <div style="width:100%;text-align:right;padding-right:2px;">
-                                        <div class="button_affect" style="float:right">
+                                        {{str_limit($about["description"], 250)}}
+                                    </p>
+                                    <div style="width:100%;{{$key % 2 == 0 ?'text-align:right;padding-right:2px;':'text-align:center;padding-left:2px;'}}">
+                                        <div class="button_affect" style="{{$key % 2 == 0 ?'float:right':''}}">
                                             <span id="draw_lp_left"></span>
                                             <span id="draw_lp_bottom"></span>
                                             <span id="draw_lp_top" class="lp_top"></span>
-                                            <span id="draw_lp_right"></span> CHI TIẾT </div>
+                                            <span id="draw_lp_right"></span> CHI TIẾT
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-6 item_pading content_p2_col_6 scrolling-item-1 slideRight" style="background-image:url(frontend/images/UploadImages/abouts/Amarin_Aboutus2.jpg);background-repeat:no-repeat;background-position:right center;background-size:cover;">
-                        <div class="img-desc-home"><img src="frontend/images/UploadImages/abouts/Amarin_Aboutus2.jpg" alt="" style="width:100%"></div>
+                    <div class="col-xs-6 item_pading content_p2_col_6 {{$key % 2 == 0 ?
+                    'scrolling-item-1 slideRight':
+                    ' float_image_left scrolling-item-2 slideLeft animated fadeInLeft'}}"
+                        style="background-image:url(../uploads/images/abouts/{{$about->image}});background-repeat:no-repeat;background-position:right center;background-size:cover;">
+                        <div class="img-desc-home"><img src="../uploads/images/abouts/{{$about->image}}" alt="" style="width:100%"></div>
                     </div>
                 </div>
             </a>
-            <a href="vn/welcome/about-us.html">
-                <div class="row clearfix content_p2_row top50">
-                    <div class="col-xs-6 item_pading float_text_right content_p2_col_6 scrolling-item-2 slideRight">
-                        <div class="item-container-fluid">
-                            <div class="item-row-fluid">
-                                <div class="item_contain_left">
-                                    <p class="text-left">
-                                        <span class="color_blue_grey">ĐẢO NGỌC</span><br/>
-                                        <span class="color_yellow_cu">PHÚ QUỐC</span>
-                                    </p>
-                                    <p class="text_desc">
-                                        Cách TP.HCM chỉ 45 phút bay, Đảo Ngọc nằm ở vùng biển phía Nam của đất nước này đã níu chân du khách bằng sức hấp dẫn từ thiên nhiên, cảnh sắc đến văn hóa, con người.Phú Quốc chinh phục bạn bằng chính vẻ đẹp thiên nhiên thuần khiết, hoang sơ của bãi Sao,
-                                        bãi Dài, bãi Trường, Hòn Móng Tay…mở ra&#8230; </p>
-                                    <div style="width:100%;text-align:center;padding-left:2px;">
-                                        <div class="button_affect">
-                                            <span id="draw_lp_left"></span>
-                                            <span id="draw_lp_bottom"></span>
-                                            <span id="draw_lp_top" class="lp_top"></span>
-                                            <span id="draw_lp_right"></span> CHI TIẾT </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 item_pading float_image_left content_p2_col_6  scrolling-item-2 slideLeft" style="background-image:url(frontend/images/UploadImages//abouts/imag_PhuQuoc_750x5002.jpg);background-repeat:no-repeat;background-position:left center;background-size:cover;">
-                        <div class="img-desc-home"><img src="frontend/images/UploadImages//abouts/imag_PhuQuoc_750x5002.jpg" alt="" style="width:100%"></div>
-                    </div>
-                </div>
-            </a>
+            @endforeach
         </div>
     </section>
     <!-- page 3 -->
