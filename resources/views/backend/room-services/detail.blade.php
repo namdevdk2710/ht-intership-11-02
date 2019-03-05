@@ -16,13 +16,12 @@
                     {{ $roomservice->description }}
                 </p>
                 <hr>
-                <h5>Icon Room Service: </h5>
+                <h5>Icon: </h5>
                 <p>
                     @if(!empty($roomservice->icon))
-                    <img class="avatar" style=" width:100%;height:100%;" src="backend/upload/images/{{ $roomservice->icon }}">
+                    <img class="avatar" src="uploads/images/roomservices/{{ $roomservice->icon }}">
                     @endif
                 </p>
-                <hr>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
