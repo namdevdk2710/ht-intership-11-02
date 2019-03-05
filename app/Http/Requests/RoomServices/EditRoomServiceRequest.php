@@ -4,7 +4,7 @@ namespace App\Http\Requests\RoomServices;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRoomServiceRequest extends FormRequest
+class EditRoomServiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class CreateRoomServiceRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3',
-            'icon' => 'required|image|max:30',
+            'icon' => 'image|max:30',
         ];
     }
 
@@ -33,10 +33,10 @@ class CreateRoomServiceRequest extends FormRequest
     {
         return [
             'name.required' => 'Vui lòng nhập trường này',
+            'name.unique' => 'Name đã tồn tại',
             'name.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
             'icon.image' => 'Định dạng không đúng file ảnh',
             'icon.max' => 'Vui lòng nhập đúng kích thước của icon',
-            'icon.required' => 'Vui lòng nhập trường này',
         ];
     }
 }
