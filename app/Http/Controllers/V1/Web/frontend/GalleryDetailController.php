@@ -8,8 +8,7 @@ use App\Repositories\V1\GalleryDetail\GalleryDetailRepositoryInterface;
 
 class GalleryDetailController extends Controller
 {
-    protected $repoBanner;
-    protected $repoAbout;
+    protected $repoGalleryDetail;
 
     public function __construct(GalleryDetailRepositoryInterface $repoGalleryDetail)
     {
