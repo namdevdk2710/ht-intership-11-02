@@ -1,7 +1,7 @@
 <?php
 
-Route::pattern('id','([0-9]*)');
-Route::pattern('slug','(.*)');
+Route::pattern('id', '([0-9]*)');
+Route::pattern('slug', '(.*)');
 // Frontend routes
 Route::group(['namespace' => 'V1\Web\frontend'], function () {
     Route::get('/', 'HomeController@index')->name('fe.home.index');
