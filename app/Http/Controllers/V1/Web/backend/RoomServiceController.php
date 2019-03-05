@@ -103,6 +103,8 @@ class RoomServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repoRoomService->delete($id);
+
+        return redirect()->route('room_service.index')->with('msg', 'Delete successful');
     }
 }
