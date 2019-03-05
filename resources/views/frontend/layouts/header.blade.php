@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <link href="{{asset('frontend/css/font.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/js/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('frontend/css/onepage-scroll.1.3.1.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.default.css')}}" id="theme-stylesheet">
     <link href="{{asset('frontend/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
