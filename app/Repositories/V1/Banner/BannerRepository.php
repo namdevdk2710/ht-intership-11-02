@@ -4,6 +4,7 @@ namespace App\Repositories\V1\Banner;
 
 use App\Repositories\BaseRepository;
 use App\Models\Banner;
+use Illuminate\Support\Facades\DB;
 
 class BannerRepository extends BaseRepository implements BannerRepositoryInterface
 {
@@ -16,7 +17,7 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
     {
         $limit = is_null($limit) ? config('repository.pagination.limit', 5) : $limit;
 
-        return $this->model->paginate($limit, $columns);
+        return $this->model->orderBy('updated_at', 'Desc')->paginate($limit, $columns);
     }
 
     public function store($data)
@@ -65,5 +66,20 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
             unlink(public_path($nameImageOld));
         }
         $banner->delete();
+    }
+
+    public function search($key)
+    {
+        $banners = Banner::where('name', 'LIKE', '%' . $key . '%')->paginate(5);
+        $banners->appends(['key' => $key]);
+
+        return $banners;
+    }
+
+    public function indexTop($limit = null, $columns = ['*'])
+    {
+        $limit = is_null($limit) ? config('repository.pagination.limit', 5) : $limit;
+
+        return $this->model->orderBy('updated_at', 'Desc')->take($limit)->get($columns);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Banner;
 
 class BannersTableSeeder extends Seeder
 {
@@ -11,13 +12,6 @@ class BannersTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 10; $i < 20; $i++) {
-            DB::table('banners')->insert([
-                'name' => 'Banner ' . $i,
-                'image' => '/frontend/images/UploadImages/banners/Amarin_banner_hompage_1600x1200_P1.jpg',
-                'slug' => '/accommodation',
-                'link' => '/accommodation',
-            ]);
-        }
+        factory(Banner::class, 5)->create();
     }
 }
