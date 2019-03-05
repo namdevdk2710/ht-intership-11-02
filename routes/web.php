@@ -31,4 +31,5 @@ Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend'], function (
     Route::resource('/room', 'RoomController');
     Route::post('/room/changestatus', 'RoomController@changestatus')->name('room.changestatus');
     Route::resource('/user', 'UserController');
+    Route::resource('/room_service', 'RoomServiceController');
 });

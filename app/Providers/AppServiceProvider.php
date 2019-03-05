@@ -36,6 +36,8 @@ use App\Repositories\V1\Room\RoomRepository;
 use App\Repositories\V1\Room\RoomRepositoryInterface;
 use App\Repositories\V1\User\UserRepository;
 use App\Repositories\V1\User\UserRepositoryInterface;
+use App\Repositories\V1\RoomService\RoomServiceRepository;
+use App\Repositories\V1\RoomService\RoomServiceRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -72,5 +74,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(FacilitieDetailRepositoryInterface::class, FacilitieDetailRepository::class);
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(RoomServiceRepositoryInterface::class, RoomServiceRepository::class);
     }
 }
