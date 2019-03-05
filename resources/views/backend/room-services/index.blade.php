@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <a class="btn btn-primary icon-btn" href="{{ route('room_service.create') }}">
-                                    <i class="fa fa-plus"></i>Create roomservice
+                                    <i class="fa fa-plus"></i>Create Room Service
                                 </a>
                             </div>
                             <div class="col-sm-12 col-md-6">
@@ -49,7 +49,7 @@
                                         <tr role="row" class="odd">
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $roomservice->name }}</td>
-                                            <td>{{ $roomservice->description }}</td>
+                                            <td>{{ str_limit($roomservice["description"], 80) }}</td>
                                             <td>
                                                 @if(!empty($roomservice->icon))
                                                     <img width="100%" src="uploads/images/roomservices/{{ $roomservice->icon }}">

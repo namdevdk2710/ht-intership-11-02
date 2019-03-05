@@ -27,4 +27,17 @@ class RoomServiceRepository extends BaseRepository implements RoomServiceReposit
 
         return $roomservice;
     }
+
+    public function store($data)
+    {
+        $file = $data['icon'];
+        $forder = 'uploads/images/roomservices';
+        $extensionFile = $file -> getClientOriginalExtension();
+        $fileName = str_slug($data['name']) . '-' . time() . '.' . $extensionFile;
+        $file->move($forder, $fileName);
+
+        $data['icon'] = $fileName;
+
+        return $this->model->create($data);
+    }
 }
