@@ -1,11 +1,15 @@
-<div class="banner_one">
+<div class="banner_one clearfix">
     <div class="parent_banner_more">
-        <div class="item moving" style="width:100%;margin:0px;padding:0px"><img src="../frontend/images/UploadImages/banners/Amarin_Banner-Room.jpg" style="width:100%;height:auto"></div>
+        <div class="item moving" style="width:100%;margin:0px;padding:0px">
+            <img src="http://amarinresort.com.vn/uploads/banner/banner_restaurant_P1.jpg" style="width:100%;height:auto">
+        </div>
         <div class="carousel-caption">
-            <div class="item_content_desc_banner_more animated fadeInUp">
-                <div class="line_item_express" style="height: 45px;"></div>
-                <div class="slide_desc text_desc">Khung cảnh mát mẻ, trong lành, hiện ra trong tầm mắt với hàng dừa xanh mát cùng ngọn sóng rì rào kết hợp với nhà hàng sang trọng, ấm cúng, sẽ là đảm nhận các gói tiệc cưới, hội họp và trở thành địa điểm lý tưởng hưởng tuần trăng mật ngọt
-                    ngào trong niềm hạnh phúc trọn vẹn.</div>
+            <div class="item_content_desc_banner_more">
+                <div class="line_item_express"></div>
+                <div class="slide_desc text_desc">
+                    Không gian mở hướng tầm nhìn ngút ngàn ra biển và hồ bơi chen lẫn dưới những hàng dừa xanh ngắt, nơi đây thật sự là nơi lý tưởng để bạn và gia đình thưởng thức những món ăn thuần túy mang hương vị Á - Âu hoặc các món nướng từ hải sản
+                    tươi sốngđược đánh bắt ở làng chài địa phương.ant
+                </div>
             </div>
         </div>
     </div>
