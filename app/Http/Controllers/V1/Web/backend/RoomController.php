@@ -7,6 +7,7 @@ use App\Http\Requests\Rooms\CreateRoomRequest;
 use App\Http\Requests\Rooms\EditRoomRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Room\RoomRepositoryInterFace;
+use App\Repositories\V1\RoomService\RoomServicRepositoryInterFace;
 use App\Models\Room;
 use Illuminate\Support\Collection;
 
@@ -18,10 +19,14 @@ class RoomController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $repoRoom;
+    protected $repoRoomService;
 
-    public function __construct(RoomRepositoryInterFace $repositoryRoom)
-    {
-        $this->repoRoom = $repositoryRoom;
+    public function __construct(
+        RoomRepositoryInterFace $repoRoom,
+        RoomServicRepositoryInterFace $repoRoomService
+    ) {
+        $this->repoRoom = $repoRoom;
+        $this->repoRoomService = $repoRoomService;
     }
 
     public function index()
@@ -38,6 +43,8 @@ class RoomController extends Controller
      */
     public function create()
     {
+        $repoRoomService = $this->repoRoomService->index();
+        dd();
         return view('backend.rooms.create');
     }
 
