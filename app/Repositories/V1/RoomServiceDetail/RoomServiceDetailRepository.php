@@ -13,13 +13,13 @@ class RoomServiceDetailRepository extends BaseRepository implements RoomServiceD
         return RoomServiceDetail::class;
     }
 
-    public function storeRoomServiceDetail($idRoom,$data)
+    public function storeRoomServiceDetail($idRoom, $data)
     {
         foreach ($data['room-service'] as $key => $dt) {
-            $dataDetail = array(
-                'room_id'=> $idRoom,
-                'room_service_id'=> $dt
-            );
+            $dataDetail = [
+                'room_id' => $idRoom,
+                'room_service_id' => $dt
+            ];
             $this->model->create($dataDetail);
         }
 

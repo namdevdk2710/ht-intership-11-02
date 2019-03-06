@@ -49,7 +49,7 @@ class RoomController extends Controller
     {
         $repoRoomServices = $this->repoRoomService->index();
 
-        return view('backend.rooms.create',compact('repoRoomServices'));
+        return view('backend.rooms.create', compact('repoRoomServices'));
     }
 
     /**
@@ -61,8 +61,8 @@ class RoomController extends Controller
     public function store(CreateRoomRequest $request)
     {
         $idRoom = $this->repoRoom->store($request->except('room-service'));
-        if($request->only('room-service')) {
-            $this->repoRoomServiceDetail->storeRoomServiceDetail($idRoom,$request->only('room-service'));
+        if ($request->only('room-service')) {
+            $this->repoRoomServiceDetail->storeRoomServiceDetail($idRoom, $request->only('room-service'));
 
             return redirect()->route('room.index')->with('msg', 'Creation successful');
         } else {

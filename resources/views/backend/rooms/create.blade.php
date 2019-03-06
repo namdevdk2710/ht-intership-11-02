@@ -141,7 +141,7 @@
                         <div class="col-sm-2">
                             <div class="animated-checkbox">
                                 <label>
-                                        {{$repoRoomService->id}}  {{Form::checkbox('room-service[]', $repoRoomService->id)}}<span class="label-text">{{$repoRoomService->name}}</span>
+                                    {{Form::checkbox('room-service[]', $repoRoomService->id)}}<span class="label-text">{{$repoRoomService->name}}</span>
                                 </label>
                             </div>
                         </div>
