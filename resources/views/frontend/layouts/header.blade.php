@@ -14,6 +14,9 @@
     <link href="{{asset('../frontend/css/animations.css')}}" rel="stylesheet">
     <link href="{{asset('../frontend/bootstrap/css/animate.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('../frontend/css/custom.css')}}">
+    <link rel="stylesheet" href="http://amarinresort.com.vn/templates/website/css/onepage-scroll.1.3.1.css">
+    <link rel="stylesheet" href="http://amarinresort.com.vn/templates/website/css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="http://amarinresort.com.vn/templates/website/css/video-default.css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!--[if lt IE 9]>
