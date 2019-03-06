@@ -34,7 +34,7 @@ Quận Hoàng Mai, Hà Nội<br />
             <div class="footer_logo">
                 <div class="text-center clearfix">
                     <div class="social_text">KẾT NỐI VỚI&nbsp;
-                        <a href="https://www.facebook.com/AmarinresortPQ/" target="_blank"><img src="{{asset('../frontend/icon_social/facebook.png" alt="Facebook')}}" title="Facebook" /></a>
+                        <a href="https://www.facebook.com/AmarinresortPQ/" target="_blank"><img src="{{asset('../frontend/icon_social/facebook.png')}}" alt="Facebook" title="Facebook" /></a>
                         <a href="#"><img src="{{asset('../frontend/icon_social/google.png')}}" alt="Google" title="Google" /></a>
                         <a href="#"><img src="{{asset('../frontend/icon_social/instagram.png')}}" alt="Instagram" title="Instagram" /></a>
                     </div>

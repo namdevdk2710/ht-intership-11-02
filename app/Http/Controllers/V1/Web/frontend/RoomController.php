@@ -11,4 +11,9 @@ class RoomController extends Controller
     {
         return view('frontend.homes.index');
     }
+
+    public function bookroom()
+    {
+        return view('frontend.book-rooms.index');
+    }
 }

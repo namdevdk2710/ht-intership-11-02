@@ -6,10 +6,12 @@ Route::pattern('slug', '(.*)');
 Route::group(['namespace' => 'V1\Web\frontend'], function () {
     Route::get('/', 'HomeController@index')->name('fe.home.index');
     Route::get('/accommodation', 'RoomController@index')->name('fe.room.index');
+    Route::get('/bookroom', 'RoomController@bookroom')->name('fe.room.bookroom');
     Route::get('/gallery', 'GalleryDetailController@index')->name('fe.gallery_detail.index');
     Route::get('/offer', 'OfferController@index')->name('fe.offer.index');
     Route::get('/offer/{slug}-{id}', 'OfferController@detail')->name('fe.offer.detail');
     Route::get('/cuisine', 'CuisineDetailController@index')->name('fe.cuisine_detail.index');
+    Route::get('/facilitie', 'FacilitieDetailController@index')->name('fe.facilitie_detail.index');
 });
 
 // backend routes
