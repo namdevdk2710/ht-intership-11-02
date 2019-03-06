@@ -8,6 +8,7 @@ use App\Http\Requests\Rooms\EditRoomRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Room\RoomRepositoryInterFace;
 use App\Repositories\V1\RoomService\RoomServiceRepositoryInterface;
+use App\Repositories\V1\RoomServiceDetail\RoomServiceDetailRepositoryInterface;
 use App\Models\Room;
 use Illuminate\Support\Collection;
 
@@ -20,13 +21,16 @@ class RoomController extends Controller
      */
     protected $repoRoom;
     protected $repoRoomService;
+    protected $repoRoomServiceDetail;
 
     public function __construct(
         RoomRepositoryInterFace $repoRoom,
-        RoomServiceRepositoryInterface $repoRoomService
+        RoomServiceRepositoryInterface $repoRoomService,
+        RoomServiceDetailRepositoryInterface $repoRoomServiceDetail
     ) {
         $this->repoRoom = $repoRoom;
         $this->repoRoomService = $repoRoomService;
+        $this->repoRoomServiceDetail = $repoRoomServiceDetail;
     }
 
     public function index()
@@ -43,9 +47,9 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $repoRoomService = $this->repoRoomService->index();
+        $repoRoomServices = $this->repoRoomService->index();
 
-        return view('backend.rooms.create',compact('repoRoomService'));
+        return view('backend.rooms.create',compact('repoRoomServices'));
     }
 
     /**
@@ -56,9 +60,14 @@ class RoomController extends Controller
      */
     public function store(CreateRoomRequest $request)
     {
-        $this->repoRoom->store($request->all());
+        $idRoom = $this->repoRoom->store($request->except('room-service'));
+        if($request->only('room-service')) {
+            $this->repoRoomServiceDetail->storeRoomServiceDetail($idRoom,$request->only('room-service'));
 
-        return redirect()->route('room.index')->with('msg', 'Creation successful');
+            return redirect()->route('room.index')->with('msg', 'Creation successful');
+        } else {
+            return redirect()->route('room.index')->with('msg', 'Creation successful');
+        }
     }
 
     /**

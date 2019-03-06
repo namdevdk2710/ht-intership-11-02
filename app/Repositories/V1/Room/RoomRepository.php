@@ -4,6 +4,7 @@ namespace App\Repositories\V1\Room;
 
 use App\Repositories\BaseRepository;
 use App\Models\Room;
+use App\Models\RoomService;
 
 class RoomRepository extends BaseRepository implements RoomRepositoryInterface
 {
@@ -31,7 +32,9 @@ class RoomRepository extends BaseRepository implements RoomRepositoryInterface
 
         $data['image'] = $fileName;
 
-        return $this->model->create($data);
+        if($this->model->create($data)) {
+           return $this->model->create($data)->id;
+        }
     }
 
     public function update($id, $data)
