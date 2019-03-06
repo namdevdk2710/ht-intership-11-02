@@ -1,4 +1,7 @@
-@extends('frontend.layouts.master-page-other') @section('main')
+@extends('frontend.layouts.master-page-other')
+
+@section('main')
+
 <div class="orther_room">
     <div class="section_fac_top" style="background-color:#eceff6;">
         <div id="row1" class="row mg0 pd0 clearfix">

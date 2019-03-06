@@ -1,5 +1,10 @@
 @extends('frontend.layouts.master')
 
+@section('css')
+    <link rel="stylesheet" href="{{asset('../frontend/css/onepage-scroll.1.3.1.css')}}">
+    <link rel="stylesheet" href="{{asset('../frontend/css/style.default.css')}}" id="theme-stylesheet">
+    <link rel="stylesheet" href="{{asset('../frontend/css/video-default.css')}}">
+@stop
 @section('main')
 
 <div class="wrapper">
