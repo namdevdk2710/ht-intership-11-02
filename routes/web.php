@@ -6,6 +6,7 @@ Route::pattern('slug', '(.*)');
 Route::group(['namespace' => 'V1\Web\frontend'], function () {
     Route::get('/', 'HomeController@index')->name('fe.home.index');
     Route::get('/accommodation', 'RoomController@index')->name('fe.room.index');
+    Route::get('/accommodation/{slug}-{id}', 'RoomController@detail')->name('fe.room.detail');
     Route::get('/bookroom', 'RoomController@bookroom')->name('fe.room.bookroom');
     Route::get('/gallery', 'GalleryDetailController@index')->name('fe.gallery_detail.index');
     Route::get('/offer', 'OfferController@index')->name('fe.offer.index');
