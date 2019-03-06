@@ -52,9 +52,9 @@ class CuisineRepository extends BaseRepository implements CuisineRepositoryInter
     {
         $aa = DB::table('cuisines')->get();
 
-        foreach ($aa as $a )
+        foreach ($aa as $a)
         {
-            $bb = DB::table('cuisine_details')->where('cuisine_id', $a->id)->get();
+            $bb = DB::table('cuisine_details')->where('cuisine_id', $a->id)->take(2)->get();
             $a->id = $bb;
         }
 
