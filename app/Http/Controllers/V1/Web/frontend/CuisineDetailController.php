@@ -22,8 +22,8 @@ class CuisineDetailController extends Controller
 
     public function index()
     {
-        $cuisines= $this->repoCuisine->index();
-
+        $cuisines= $this->repoCuisine->test();
+        // dd($cuisines);
         return view('frontend.cuisine-details.index', compact('cuisines'));
     }
 }
