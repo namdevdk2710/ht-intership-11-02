@@ -7,7 +7,7 @@ use App\Http\Requests\Rooms\CreateRoomRequest;
 use App\Http\Requests\Rooms\EditRoomRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Room\RoomRepositoryInterFace;
-use App\Repositories\V1\RoomService\RoomServicRepositoryInterFace;
+use App\Repositories\V1\RoomService\RoomServiceRepositoryInterface;
 use App\Models\Room;
 use Illuminate\Support\Collection;
 
@@ -23,7 +23,7 @@ class RoomController extends Controller
 
     public function __construct(
         RoomRepositoryInterFace $repoRoom,
-        RoomServicRepositoryInterFace $repoRoomService
+        RoomServiceRepositoryInterface $repoRoomService
     ) {
         $this->repoRoom = $repoRoom;
         $this->repoRoomService = $repoRoomService;
@@ -44,8 +44,8 @@ class RoomController extends Controller
     public function create()
     {
         $repoRoomService = $this->repoRoomService->index();
-        dd();
-        return view('backend.rooms.create');
+
+        return view('backend.rooms.create',compact('repoRoomService'));
     }
 
     /**

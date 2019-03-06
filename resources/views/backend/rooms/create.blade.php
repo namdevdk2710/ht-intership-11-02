@@ -135,6 +135,26 @@
                         </div>
                     @endif
                 </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <div class="animated-checkbox">
+                            <label>
+                                <input type="checkbox"><span class="label-text">Checkbox</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="animated-checkbox">
+                            <label>
+                                <input type="checkbox"><span class="label-text">Checkbox</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="clearix"></div>
+                </div>
+
+
                 <div class="tile-footer">
                     {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] ) }}
                 </div>
