@@ -15,7 +15,6 @@
     <link href="{{asset('../frontend/bootstrap/css/animate.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('../frontend/css/custom.css')}}">
     @yield('css')
-
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!--[if lt IE 9]>
