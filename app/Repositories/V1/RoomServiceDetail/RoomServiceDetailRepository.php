@@ -18,7 +18,7 @@ class RoomServiceDetailRepository extends BaseRepository implements RoomServiceD
         foreach ($data['room-service'] as $key => $dt) {
             $dataDetail = [
                 'room_id' => $idRoom,
-                'room_service_id' => $dt
+                'room_service_id' => $dt,
             ];
             $this->model->create($dataDetail);
         }

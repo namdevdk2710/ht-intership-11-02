@@ -32,8 +32,8 @@ class RoomRepository extends BaseRepository implements RoomRepositoryInterface
 
         $data['image'] = $fileName;
 
-        if($this->model->create($data)) {
-           return $this->model->create($data)->id;
+        if ($this->model->create($data)) {
+            return $this->model->create($data)->id;
         }
     }
 
