@@ -35,9 +35,9 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown welcome has-child">
-                    <a href="http://amarinresort.com.vn/vn/welcome" class="dropdown-toggle" data-toggle="dropdown">CHÀO MỪNG</a>
+                    <a href="{{ asset('/cuisine') }}" class="dropdown-toggle" data-toggle="dropdown">CHÀO MỪNG</a>
                     <ul class="dropdown-menu child1">
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/welcome/about-us">VỀ AMARIN</a></li>
+                        <li class="no-child"><a href="#">VỀ AMARIN</a></li>
                         <li class="divider"></li>
                         <li class="no-child"><a href="http://amarinresort.com.vn/vn/welcome/destination">ĐIỂM ĐẾN</a></li>
                     </ul>
@@ -67,7 +67,7 @@
                     </ul>
                 </li>
                 <li class="dropdown dinning has-child">
-                    <a href="http://amarinresort.com.vn/vn/dinning" class="dropdown-toggle" data-toggle="dropdown">ẨM THỰC</a>
+                    <a href="{{ asset('/cuisine') }}" class="dropdown-toggle" data-toggle="dropdown">ẨM THỰC</a>
                     <ul class="dropdown-menu child1">
                         <li class="no-child"><a href="http://amarinresort.com.vn/vn/dinning/aroma-restaurant">NHÀ HÀNG AROMA</a></li>
                         <li class="divider"></li>
@@ -76,8 +76,8 @@
                         <li class="no-child"><a href="http://amarinresort.com.vn/vn/dinning/sense-lobby-lounge">SENSE LOUNGE TIỀN SẢNH</a></li>
                     </ul>
                 </li>
-                <li class="gallery no-child"><a href="http://amarinresort.com.vn/vn/gallery">THƯ VIỆN</a></li>
-                <li class="special-offers no-child"><a href="http://amarinresort.com.vn/vn/special-offers">ƯU ĐÃI</a></li>
+                <li class="gallery no-child"><a href="{{ asset('/gallery') }}">THƯ VIỆN</a></li>
+                <li class="special-offers no-child"><a href="{{ asset('/offer') }}">ƯU ĐÃI</a></li>
                 <li class="reservation no-child"><a href="http://amarinresort.com.vn/vn/reservation">ĐẶT PHÒNG</a></li>
                 <li class="contact no-child"><a href="http://amarinresort.com.vn/vn/contact">LIÊN HỆ</a></li>
             </ul>
