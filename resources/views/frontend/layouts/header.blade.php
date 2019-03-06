@@ -14,9 +14,7 @@
     <link href="{{asset('../frontend/css/animations.css')}}" rel="stylesheet">
     <link href="{{asset('../frontend/bootstrap/css/animate.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('../frontend/css/custom.css')}}">
-    <link rel="stylesheet" href="http://amarinresort.com.vn/templates/website/css/onepage-scroll.1.3.1.css">
-    <link rel="stylesheet" href="http://amarinresort.com.vn/templates/website/css/style.default.css" id="theme-stylesheet">
-    <link rel="stylesheet" href="http://amarinresort.com.vn/templates/website/css/video-default.css">
+    @yield('css')
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!--[if lt IE 9]>
@@ -38,9 +36,9 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown welcome has-child">
-                    <a href="http://amarinresort.com.vn/vn/welcome" class="dropdown-toggle" data-toggle="dropdown">CHÀO MỪNG</a>
+                    <a href="{{ asset('/') }}" class="dropdown-toggle" data-toggle="dropdown">CHÀO MỪNG</a>
                     <ul class="dropdown-menu child1">
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/welcome/about-us">VỀ AMARIN</a></li>
+                        <li class="no-child"><a href="#">VỀ AMARIN</a></li>
                         <li class="divider"></li>
                         <li class="no-child"><a href="http://amarinresort.com.vn/vn/welcome/destination">ĐIỂM ĐẾN</a></li>
                     </ul>
@@ -60,7 +58,7 @@
                     </ul>
                 </li>
                 <li class="dropdown facilities has-child">
-                    <a href="http://amarinresort.com.vn/vn/facilities" class="dropdown-toggle" data-toggle="dropdown">TIỆN ÍCH</a>
+                    <a href="{{ asset('/facilitie') }}" class="dropdown-toggle" data-toggle="dropdown">TIỆN ÍCH</a>
                     <ul class="dropdown-menu child1">
                         <li class="no-child"><a href="http://amarinresort.com.vn/vn/facilities/wedding-conference">DỊCH VỤ</a></li>
                         <li class="divider"></li>
@@ -70,7 +68,7 @@
                     </ul>
                 </li>
                 <li class="dropdown dinning has-child">
-                    <a href="http://amarinresort.com.vn/vn/dinning" class="dropdown-toggle" data-toggle="dropdown">ẨM THỰC</a>
+                    <a href="{{ asset('/cuisine') }}" class="dropdown-toggle" data-toggle="dropdown">ẨM THỰC</a>
                     <ul class="dropdown-menu child1">
                         <li class="no-child"><a href="http://amarinresort.com.vn/vn/dinning/aroma-restaurant">NHÀ HÀNG AROMA</a></li>
                         <li class="divider"></li>
@@ -79,9 +77,9 @@
                         <li class="no-child"><a href="http://amarinresort.com.vn/vn/dinning/sense-lobby-lounge">SENSE LOUNGE TIỀN SẢNH</a></li>
                     </ul>
                 </li>
-                <li class="gallery no-child"><a href="http://amarinresort.com.vn/vn/gallery">THƯ VIỆN</a></li>
-                <li class="special-offers no-child"><a href="http://amarinresort.com.vn/vn/special-offers">ƯU ĐÃI</a></li>
-                <li class="reservation no-child"><a href="http://amarinresort.com.vn/vn/reservation">ĐẶT PHÒNG</a></li>
+                <li class="gallery no-child"><a href="{{ asset('/gallery') }}">THƯ VIỆN</a></li>
+                <li class="special-offers no-child"><a href="{{ asset('/offer') }}">ƯU ĐÃI</a></li>
+                <li class="reservation no-child"><a href="{{ asset('/bookroom') }}">ĐẶT PHÒNG</a></li>
                 <li class="contact no-child"><a href="http://amarinresort.com.vn/vn/contact">LIÊN HỆ</a></li>
             </ul>
         </div>

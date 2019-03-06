@@ -47,4 +47,16 @@ class CuisineRepository extends BaseRepository implements CuisineRepositoryInter
         $cuisine = $this->model->find($id);
         $cuisine->delete();
     }
+
+    public function test()
+    {
+        $cuisines = DB::table('cuisines')->get();
+
+        foreach ($cuisines as $cuisine) {
+            $cuisinedetail = DB::table('cuisine_details')->where('cuisine_id', $cuisine->id)->take(2)->get();
+            $cuisine->id = $cuisinedetail;
+        }
+
+        return $cuisines;
+    }
 }
