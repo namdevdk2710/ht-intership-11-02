@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     protected $table='rooms';
+
     protected $fillable = [
         'name',
         'description',
@@ -19,4 +20,9 @@ class Room extends Model
         'slug',
         'status',
     ];
+
+    public function roomServiceDetails()
+    {
+        return $this->hasMany('App\Models\RoomServiceDetail', 'room_id', 'id');
+    }
 }

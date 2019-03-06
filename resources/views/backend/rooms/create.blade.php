@@ -135,6 +135,20 @@
                         </div>
                     @endif
                 </div>
+                <div class="form-group">
+                    <div class="row">
+                        @foreach ($repoRoomServices as $repoRoomService)
+                        <div class="col-sm-2">
+                            <div class="animated-checkbox">
+                                <label>
+                                    {{Form::checkbox('room-service[]', $repoRoomService->id)}}<span class="label-text">{{$repoRoomService->name}}</span>
+                                </label>
+                            </div>
+                        </div>
+                        @endforeach
+                        <div class="clearix"></div>
+                    </div>
+                </div>
                 <div class="tile-footer">
                     {{ Form::button('<i class="fa fa-fw fa-lg fa-check-circle"></i> Create', ['type' => 'submit', 'class' => 'btn btn-primary'] ) }}
                 </div>
