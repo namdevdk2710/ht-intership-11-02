@@ -38,7 +38,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown welcome has-child">
-                    <a href="{{ asset('/cuisine') }}" class="dropdown-toggle" data-toggle="dropdown">CHÀO MỪNG</a>
+                    <a href="{{ asset('/') }}" class="dropdown-toggle" data-toggle="dropdown">CHÀO MỪNG</a>
                     <ul class="dropdown-menu child1">
                         <li class="no-child"><a href="#">VỀ AMARIN</a></li>
                         <li class="divider"></li>
