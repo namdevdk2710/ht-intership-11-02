@@ -47,4 +47,16 @@ class FacilitieRepository extends BaseRepository implements FacilitieRepositoryI
 
         return $facilitieList;
     }
+
+    public function listpage()
+    {
+        $facilities = DB::table('facilities')->get();
+
+        foreach ($facilities as $facilitie) {
+            $facilitiedetail = DB::table('facilitie_details')->where('facilitie_id', $facilitie->id)->take(2)->get();
+            $facilitie->id = $facilitiedetail;
+        }
+
+        return $facilities;
+    }
 }

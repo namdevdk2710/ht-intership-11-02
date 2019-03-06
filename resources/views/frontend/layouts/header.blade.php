@@ -58,7 +58,7 @@
                     </ul>
                 </li>
                 <li class="dropdown facilities has-child">
-                    <a href="http://amarinresort.com.vn/vn/facilities" class="dropdown-toggle" data-toggle="dropdown">TIỆN ÍCH</a>
+                    <a href="{{ asset('/facilitie') }}" class="dropdown-toggle" data-toggle="dropdown">TIỆN ÍCH</a>
                     <ul class="dropdown-menu child1">
                         <li class="no-child"><a href="http://amarinresort.com.vn/vn/facilities/wedding-conference">DỊCH VỤ</a></li>
                         <li class="divider"></li>
@@ -79,7 +79,7 @@
                 </li>
                 <li class="gallery no-child"><a href="{{ asset('/gallery') }}">THƯ VIỆN</a></li>
                 <li class="special-offers no-child"><a href="{{ asset('/offer') }}">ƯU ĐÃI</a></li>
-                <li class="reservation no-child"><a href="http://amarinresort.com.vn/vn/reservation">ĐẶT PHÒNG</a></li>
+                <li class="reservation no-child"><a href="{{ asset('/bookroom') }}">ĐẶT PHÒNG</a></li>
                 <li class="contact no-child"><a href="http://amarinresort.com.vn/vn/contact">LIÊN HỆ</a></li>
             </ul>
         </div>
