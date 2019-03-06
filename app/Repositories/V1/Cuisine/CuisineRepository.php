@@ -50,14 +50,14 @@ class CuisineRepository extends BaseRepository implements CuisineRepositoryInter
 
     public function test()
     {
-        $aa = DB::table('cuisines')->get();
+        $cuisines = DB::table('cuisines')->get();
 
-        foreach ($aa as $a)
+        foreach ($cuisines as $cuisine)
         {
-            $bb = DB::table('cuisine_details')->where('cuisine_id', $a->id)->take(2)->get();
-            $a->id = $bb;
+            $cuisine_detail = DB::table('cuisine_details')->where('cuisine_id', $cuisine->id)->take(2)->get();
+            $cuisine->id = $cuisine_detail;
         }
 
-        return $aa;
+        return $cuisines;
     }
 }
