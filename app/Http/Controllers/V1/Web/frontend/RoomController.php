@@ -32,5 +32,4 @@ class RoomController extends Controller
     {
         return view('frontend.rooms.detail');
     }
-
 }
