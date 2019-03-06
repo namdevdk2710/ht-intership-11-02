@@ -12,11 +12,11 @@
                         <div class="item-row-fluid text-padding">
                             <div class="content pad_content clearfix">
                                 <div class="portfolio-box">
-                                    <a href="accommodation/deluxe-hill-view.html"><img src="../uploads/images/rooms/{{$room->image}}" class="img-responsive" style="width:100%"></a>
+                                    <a href="{{ route('fe.room.detail', ['slug'=>str_slug($room->name), 'id'=>$room->id]) }}"><img src="../uploads/images/rooms/{{$room->image}}" class="img-responsive" style="width:100%"></a>
                                 </div>
                                 <div class="pad_content_accom" style="padding:30px">
                                     <div class="clearfix">
-                                        <a href="accommodation/deluxe-hill-view.html">
+                                        <a href="{{ route('fe.room.detail', ['slug'=>str_slug($room->name), 'id'=>$room->id]) }}">
                                             <div class="color_yellow_cu_room">{{ $room->name}}</div>
                                             <div class="text_desc mm_con_rooms">{{ str_limit($room->description,100) }}&#8230;</div>
                                         </a>
