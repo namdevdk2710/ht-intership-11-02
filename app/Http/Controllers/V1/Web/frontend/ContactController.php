@@ -9,6 +9,8 @@ use App\Repositories\V1\Introduce\IntroduceRepositoryInterface;
 use App\Http\Requests\Contacts\CreateContactRequest;
 use App\Models\Contact;
 use Illuminate\Support\Collection;
+use App\Repositories\V1\Facilitie\FacilitieRepositoryInterface;
+use App\Repositories\V1\Cuisine\CuisineRepositoryInterface;
 
 class ContactController extends Controller
 {
@@ -19,20 +21,28 @@ class ContactController extends Controller
      */
     protected $repoContact;
     protected $repoIntroduce;
+    protected $repoFacilitie;
+    protected $repoCuisine;
 
     public function __construct(
         ContactRepositoryInterFace $repositoryContact,
-        IntroduceRepositoryInterface $repoIntroduce
+        IntroduceRepositoryInterface $repoIntroduce,
+        FacilitieRepositoryInterface $repoFacilitie,
+        CuisineRepositoryInterface $repoCuisine
     ) {
         $this->repoIntroduce = $repoIntroduce;
         $this->repoContact = $repositoryContact;
+        $this->repoFacilitie = $repoFacilitie;
+        $this->repoCuisine = $repoCuisine;
     }
 
     public function index()
     {
         $introduces = $this->repoIntroduce->indexTop(3);
+        $facilities = $this->repoFacilitie->index();
+        $cuisines = $this->repoCuisine->index();
 
-        return view('frontend.contacts.index', compact('introduces'));
+        return view('frontend.contacts.index', compact('introduces', 'facilities', 'cuisines'));
     }
 
     /**

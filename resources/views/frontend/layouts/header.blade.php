@@ -67,7 +67,7 @@
                     <a href="{{ asset('/cuisine') }}" class="dropdown-toggle" data-toggle="dropdown">ẨM THỰC</a>
                     <ul class="dropdown-menu child1">
                         @foreach ($cuisines as $cuisine)
-                            <li class="no-child st"><a href="{{ asset('/facilitie') }}">{{ $cuisine->name }}</a></li>
+                            <li class="no-child st"><a href="#{{ $cuisine->id}}">{{ $cuisine->name }}</a></li>
                             <li class="divider style"></li>
                         @endforeach
                     </ul>
@@ -75,7 +75,7 @@
                 <li class="gallery no-child"><a href="{{ asset('/gallery') }}">THƯ VIỆN</a></li>
                 <li class="special-offers no-child"><a href="{{ asset('/offer') }}">ƯU ĐÃI</a></li>
                 <li class="reservation no-child"><a href="{{ asset('/bookroom') }}">ĐẶT PHÒNG</a></li>
-                <li class="contact no-child"><a href="http://amarinresort.com.vn/vn/contact">LIÊN HỆ</a></li>
+                <li class="contact no-child"><a href="{{ asset('/contact') }}">LIÊN HỆ</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->

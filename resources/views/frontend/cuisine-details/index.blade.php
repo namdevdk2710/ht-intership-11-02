@@ -25,7 +25,7 @@
                            >
                            <div class="pad_content_accom text-padding-poolbar text-left">
                                <div class="option1" style="height: 244px;">
-                                   <div class="color_yellow_cu_room">{{$cuisineDetail->name}}</div>
+                                   <div class="color_yellow_cu_room" id="{{ $cuisine->id }}">{{$cuisineDetail->name}}</div>
                                    <div class="text_desc">{{$cuisineDetail->description}}
                                        <br>
                                    </div>
