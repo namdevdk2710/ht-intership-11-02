@@ -12,8 +12,10 @@ class RoomController extends Controller
     protected $repoRoom;
     protected $repoRoomServiceDetail;
 
-    public function __construct( RoomRepositoryInterface $repoRoom, RoomServiceDetailRepositoryInterface $repoRoomServiceDetail)
-    {
+    public function __construct(
+        RoomRepositoryInterface $repoRoom,
+        RoomServiceDetailRepositoryInterface $repoRoomServiceDetail
+    ) {
         $this->repoRoom = $repoRoom;
         $this->repoRoomServiceDetail = $repoRoomServiceDetail;
     }
@@ -36,6 +38,6 @@ class RoomController extends Controller
         $anotherrooms = $this->repoRoom->anotherRoom($id);
         $roomservice = $this->repoRoomServiceDetail->roomServices($id);
 
-        return view('frontend.rooms.detail', compact('roomDetail','anotherrooms','roomservice'));
+        return view('frontend.rooms.detail', compact('roomDetail', 'anotherrooms', 'roomservice'));
     }
 }
