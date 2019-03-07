@@ -24,5 +24,6 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', 'App\Http\ViewComposers\FooterComposer');
+        view()->composer('*', 'App\Http\ViewComposers\BreadcrumbComposer');
     }
 }

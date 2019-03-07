@@ -75,4 +75,16 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
 
         return $module;
     }
+
+    public function breadCrumb()
+    {
+        $url = "$_SERVER[REQUEST_URI]";
+        $url = ltrim($url, '/');
+
+        if(strpos($url,"/")){
+            $url = explode('/',$url)[0];
+        }
+
+        return $module = Module::where('slug', 'LIKE', '%' . $url . '%')->take(1)->get();
+    }
 }
