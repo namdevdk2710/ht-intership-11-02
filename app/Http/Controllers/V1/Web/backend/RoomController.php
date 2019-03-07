@@ -90,8 +90,10 @@ class RoomController extends Controller
     public function edit($id)
     {
         $room = $this->repoRoom->find($id);
+        $roomServices = $this->repoRoomService->index();
+        $oldRoomServices = $this->repoRoomServiceDetail->initRoomServiceDetail($id);
 
-        return view('backend.rooms.edit', compact('room'));
+        return view('backend.rooms.edit', compact('room', 'roomServices', 'oldRoomServices'));
     }
 
     /**
@@ -103,8 +105,8 @@ class RoomController extends Controller
      */
     public function update(EditRoomRequest $request, $id)
     {
-        $data = $request->all();
-        $this->repoRoom->update($id, $data);
+        $this->repoRoom->update($id,$request->except('room-service'));
+        $this->repoRoomServiceDetail->updateRoomServiceDetail($id, $request->only('room-service'));
 
         return redirect()->route('room.index')->with('msg', 'Edit successful');
     }
