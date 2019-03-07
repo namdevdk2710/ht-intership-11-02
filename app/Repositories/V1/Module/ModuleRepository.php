@@ -81,7 +81,7 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
         $url = "$_SERVER[REQUEST_URI]";
         $url = ltrim($url, '/');
 
-        if(strpos($url, "/")) {
+        if(strpos($url, '/')) {
             $url = explode('/', $url)[0];
         }
 
