@@ -49,7 +49,7 @@
                     <a href="{{ asset('/accommodation') }}" class="dropdown-toggle" data-toggle="dropdown">PHÒNG</a>
                     <ul class="dropdown-menu child1">
                         @foreach ($rooms as $room)
-                            <li class="no-child st"><a href="{{ route('fe.room.detail', ['slug'=>str_slug($room->name), 'id'=>$room->id]) }}"">{{ $room->name }}</a></li>
+                            <li class="no-child st"><a href="{{ route('fe.room.detail', ['slug'=>str_slug($room->name), 'id'=>$room->id]) }}">{{ $room->name }}</a></li>
                             <li class="divider style"></li>
                         @endforeach
                     </ul>
@@ -67,7 +67,7 @@
                     <a href="{{ asset('/cuisine') }}" class="dropdown-toggle" data-toggle="dropdown">ẨM THỰC</a>
                     <ul class="dropdown-menu child1">
                         @foreach ($cuisines as $cuisine)
-                            <li class="no-child st"><a href="http://amarinresort.com.vn/vn/dinning/aroma-restaurant">{{ $cuisine->name }}</a></li>
+                            <li class="no-child st"><a href="{{ asset('/facilitie') }}">{{ $cuisine->name }}</a></li>
                             <li class="divider style"></li>
                         @endforeach
                     </ul>
@@ -80,3 +80,4 @@
         </div>
         <!--/.nav-collapse -->
     </div>
+

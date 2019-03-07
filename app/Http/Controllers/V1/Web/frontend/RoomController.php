@@ -8,7 +8,6 @@ use App\Repositories\V1\Room\RoomRepositoryInterface;
 use App\Repositories\V1\RoomServiceDetail\RoomServiceDetailRepositoryInterface;
 use App\Repositories\V1\Facilitie\FacilitieRepositoryInterface;
 use App\Repositories\V1\Cuisine\CuisineRepositoryInterface;
-use App\Repositories\V1\About\AboutRepositoryInterface;
 
 class RoomController extends Controller
 {
@@ -16,20 +15,17 @@ class RoomController extends Controller
     protected $repoRoomServiceDetail;
     protected $repoFacilitie;
     protected $repoCuisine;
-    protected $repoAbout;
 
     public function __construct(
         RoomRepositoryInterface $repoRoom,
         RoomServiceDetailRepositoryInterface $repoRoomServiceDetail,
         FacilitieRepositoryInterface $repoFacilitie,
-        CuisineRepositoryInterface $repoCuisine,
-        AboutRepositoryInterface $repoAbout
+        CuisineRepositoryInterface $repoCuisine
     ) {
         $this->repoRoom = $repoRoom;
         $this->repoRoomServiceDetail = $repoRoomServiceDetail;
         $this->repoFacilitie = $repoFacilitie;
         $this->repoCuisine = $repoCuisine;
-        $this->repoAbout = $repoAbout;
     }
 
     public function index()
@@ -37,9 +33,8 @@ class RoomController extends Controller
         $rooms= $this->repoRoom->index();
         $facilities = $this->repoFacilitie->index();
         $cuisines= $this->repoCuisine->index();
-        $about = $this->repoAbout->index();
 
-        return view('frontend.rooms.index', compact('rooms', 'facilities', 'cuisines', 'about'));
+        return view('frontend.rooms.index', compact('rooms', 'facilities', 'cuisines'));
     }
 
     public function bookroom()
@@ -47,9 +42,8 @@ class RoomController extends Controller
         $rooms= $this->repoRoom->index();
         $facilities = $this->repoFacilitie->index();
         $cuisines= $this->repoCuisine->index();
-        $about = $this->repoAbout->index();
 
-        return view('frontend.book-rooms.index', compact('rooms', 'facilities', 'cuisines', 'about'));
+        return view('frontend.book-rooms.index', compact('rooms', 'facilities', 'cuisines'));
     }
 
     public function detail($slug, $id)
@@ -60,7 +54,6 @@ class RoomController extends Controller
         $rooms= $this->repoRoom->index();
         $facilities = $this->repoFacilitie->index();
         $cuisines= $this->repoCuisine->index();
-        $about = $this->repoAbout->index();
 
         return view('frontend.rooms.detail', compact(
             'roomDetail',
@@ -68,8 +61,7 @@ class RoomController extends Controller
             'roomservice',
             'rooms',
             'facilities',
-            'cuisines',
-            'about'
+            'cuisines'
         ));
     }
 }
