@@ -105,7 +105,7 @@ class RoomController extends Controller
      */
     public function update(EditRoomRequest $request, $id)
     {
-        $this->repoRoom->update($id,$request->except('room-service'));
+        $this->repoRoom->update($id, $request->except('room-service'));
         $this->repoRoomServiceDetail->updateRoomServiceDetail($id, $request->only('room-service'));
 
         return redirect()->route('room.index')->with('msg', 'Edit successful');
