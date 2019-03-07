@@ -25,6 +25,6 @@ class HomeController extends Controller
         $contacts = $this->repoContact->paginate(5);
         $offers = $this->repoOffer->paginate(5);
 
-        return view('backend.home.index', compact('offers','contacts'));
+        return view('backend.home.index', compact('offers', 'contacts'));
     }
 }
