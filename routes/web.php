@@ -17,10 +17,7 @@ Route::group(['namespace' => 'V1\Web\frontend'], function () {
 
 // backend routes
 Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend'], function () {
-    Route::get('/home', function () {
-        return view('backend.home.index');
-    });
-
+    Route::get('/', 'HomeController@index')->name('home.index');
     Route::resource('/banner', 'BannerController');
     Route::resource('/gallery', 'GalleryController');
     Route::resource('/gallery_detail', 'GalleryDetailController');
