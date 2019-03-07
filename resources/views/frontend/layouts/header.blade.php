@@ -12,6 +12,7 @@
     <link href="{{asset('../frontend/js/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
     <link href="{{asset('../frontend/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('../frontend/css/animations.css')}}" rel="stylesheet">
+    <link href="{{asset('../frontend/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('../frontend/bootstrap/css/animate.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('../frontend/css/custom.css')}}">
     @yield('css')
@@ -38,43 +39,37 @@
                 <li class="dropdown welcome has-child">
                     <a href="{{ asset('/') }}" class="dropdown-toggle" data-toggle="dropdown">CHÀO MỪNG</a>
                     <ul class="dropdown-menu child1">
-                        <li class="no-child"><a href="#">VỀ AMARIN</a></li>
-                        <li class="divider"></li>
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/welcome/destination">ĐIỂM ĐẾN</a></li>
+                        @foreach ($about as $abouts)
+                            <li class="no-child st"><a href="#">{{ $abouts->name }}</a></li>
+                            <li class="divider style"></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="dropdown accommodation has-child">
                     <a href="{{ asset('/accommodation') }}" class="dropdown-toggle" data-toggle="dropdown">PHÒNG</a>
                     <ul class="dropdown-menu child1">
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/accommodation/deluxe-hill-view">DELUXE HILL VIEW</a></li>
-                        <li class="divider"></li>
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/accommodation/deluxe-ocean-view">DELUXE OCEAN VIEW</a></li>
-                        <li class="divider"></li>
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/accommodation/amarin-suite">AMARIN SUITE</a></li>
-                        <li class="divider"></li>
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/accommodation/president-suite">PRESIDENT SUITE</a></li>
-                        <li class="divider"></li>
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/accommodation/room-rates">GIÁ PHÒNG</a></li>
+                        @foreach ($rooms as $room)
+                            <li class="no-child st"><a href="{{ route('fe.room.detail', ['slug'=>str_slug($room->name), 'id'=>$room->id]) }}"">{{ $room->name }}</a></li>
+                            <li class="divider style"></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="dropdown facilities has-child">
                     <a href="{{ asset('/facilitie') }}" class="dropdown-toggle" data-toggle="dropdown">TIỆN ÍCH</a>
                     <ul class="dropdown-menu child1">
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/facilities/wedding-conference">DỊCH VỤ</a></li>
-                        <li class="divider"></li>
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/facilities/spa">SPA</a></li>
-                        <li class="divider"></li>
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/facilities/kids-club">KHU VUI CHƠI TRẺ EM</a></li>
+                        @foreach ($facilities as $facilitie)
+                            <li class="no-child st"><a href="{{ asset('/facilitie') }}">{{ $facilitie->name }}</a></li>
+                            <li class="divider style"></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="dropdown dinning has-child">
                     <a href="{{ asset('/cuisine') }}" class="dropdown-toggle" data-toggle="dropdown">ẨM THỰC</a>
                     <ul class="dropdown-menu child1">
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/dinning/aroma-restaurant">NHÀ HÀNG AROMA</a></li>
-                        <li class="divider"></li>
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/dinning/sunset-pool-bar">BAR HỒ BƠI SUNSET</a></li>
-                        <li class="divider"></li>
-                        <li class="no-child"><a href="http://amarinresort.com.vn/vn/dinning/sense-lobby-lounge">SENSE LOUNGE TIỀN SẢNH</a></li>
+                        @foreach ($cuisines as $cuisine)
+                            <li class="no-child st"><a href="http://amarinresort.com.vn/vn/dinning/aroma-restaurant">{{ $cuisine->name }}</a></li>
+                            <li class="divider style"></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="gallery no-child"><a href="{{ asset('/gallery') }}">THƯ VIỆN</a></li>

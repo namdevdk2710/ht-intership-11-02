@@ -171,7 +171,7 @@
                             <img src="http://amarinresort.com.vn/templates/website/images/photo_temp_video.png" style="width:100%;height:auto">
                         </div>
                         <div class="row clearfix" style="width:330px;height:auto;margin:0 auto">
-                            <a href="http://amarinresort.com.vn/vn/reservation">
+                            <a href="{{ asset('/bookroom') }}">
                                 <div class="button_video" style="float:left;margin-right:10px">
                                     <div class="button_video_bg"></div>
                                     <div class="button_video_text">ĐẶT PHÒNG</div>

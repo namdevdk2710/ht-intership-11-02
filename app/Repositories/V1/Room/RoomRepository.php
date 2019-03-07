@@ -77,7 +77,7 @@ class RoomRepository extends BaseRepository implements RoomRepositoryInterface
     public function anotherRoom($id)
     {
         $room = $this->model->find($id);
-        $anotherrooms = Room::where('id', '!=', $room->id)->take(3)->get();
+        $anotherrooms = Room::where('id', '!=', $room->id)->orderBy('updated_at', 'Desc')->take(3)->get();
 
         return $anotherrooms;
     }
