@@ -5,15 +5,17 @@ namespace App\Http\Controllers\V1\Web\frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\V1\Room\RoomRepositoryInterface;
+use App\Repositories\V1\RoomServiceDetail\RoomServiceDetailRepositoryInterface;
 
 class RoomController extends Controller
 {
     protected $repoRoom;
+    protected $repoRoomServiceDetail;
 
-    public function __construct(
-        RoomRepositoryInterface $repoRoom
-    ) {
+    public function __construct( RoomRepositoryInterface $repoRoom, RoomServiceDetailRepositoryInterface $repoRoomServiceDetail)
+    {
         $this->repoRoom = $repoRoom;
+        $this->repoRoomServiceDetail = $repoRoomServiceDetail;
     }
 
     public function index()
@@ -30,6 +32,10 @@ class RoomController extends Controller
 
     public function detail($slug, $id)
     {
-        return view('frontend.rooms.detail');
+        $roomDetail = $this->repoRoom->detail($id);
+        $anotherrooms = $this->repoRoom->anotherRoom($id);
+        $roomservice = $this->repoRoomServiceDetail->roomServices($id);
+
+        return view('frontend.rooms.detail', compact('roomDetail','anotherrooms','roomservice'));
     }
 }
