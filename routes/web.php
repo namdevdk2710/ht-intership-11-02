@@ -13,6 +13,8 @@ Route::group(['namespace' => 'V1\Web\frontend'], function () {
     Route::get('/offer/{slug}-{id}', 'OfferController@detail')->name('fe.offer.detail');
     Route::get('/cuisine', 'CuisineDetailController@index')->name('fe.cuisine_detail.index');
     Route::get('/facilitie', 'FacilitieDetailController@index')->name('fe.facilitie_detail.index');
+    Route::get('/contact', 'ContactController@index')->name('fe.contact.index');
+    Route::post('/contact', 'ContactController@store')->name('fe.contact.store');
 });
 
 // backend routes

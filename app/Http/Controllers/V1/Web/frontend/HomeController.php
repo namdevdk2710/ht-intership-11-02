@@ -16,6 +16,10 @@ class HomeController extends Controller
 {
     protected $repoBanner;
     protected $repoAbout;
+    protected $repoDestination;
+    protected $repoFacilitieDetail;
+    protected $repoOffer;
+    protected $repoIntroduce;
 
     public function __construct(
         BannerRepositoryInterFace $repoBanner,
