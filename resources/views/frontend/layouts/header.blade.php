@@ -44,7 +44,7 @@
                     </ul>
                 </li>
                 <li class="dropdown accommodation has-child">
-                    <a href="http://amarinresort.com.vn/vn/accommodation" class="dropdown-toggle" data-toggle="dropdown">PHÒNG</a>
+                    <a href="{{ asset('/accommodation') }}" class="dropdown-toggle" data-toggle="dropdown">PHÒNG</a>
                     <ul class="dropdown-menu child1">
                         <li class="no-child"><a href="http://amarinresort.com.vn/vn/accommodation/deluxe-hill-view">DELUXE HILL VIEW</a></li>
                         <li class="divider"></li>
