@@ -43,4 +43,9 @@ class ContactRepository extends BaseRepository implements ContactRepositoryInter
 
         return response()->json($contact);
     }
+
+    public function store($data)
+    {
+        return $this->model->create($data);
+    }
 }
