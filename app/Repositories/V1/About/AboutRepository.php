@@ -80,4 +80,9 @@ class AboutRepository extends BaseRepository implements AboutRepositoryInterface
 
         return $this->model->orderBy('updated_at', 'Desc')->take($limit)->get($columns);
     }
+
+    public function detail($id)
+    {
+        return $roomabout = $this->model->find($id);
+    }
 }

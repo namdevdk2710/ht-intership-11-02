@@ -1182,7 +1182,7 @@ video::-webkit-media-controls-volume-slider {}
     width: 100%;
     height: auto;
     /*background-image:url(../images/about_bg.jpg);*/
-    background-image: url(../../../local/background/about_bg.jpg);
+    background-image: url('../images/about_bg.jpg');
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
