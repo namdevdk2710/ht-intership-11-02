@@ -86,4 +86,13 @@ class HomeController extends Controller
 
         return view('frontend.destinations.index', compact('facilities', 'cuisines', 'destinations'));
     }
+
+    public function getDestinationDetail($slug, $id)
+    {
+        $facilities = $this->repoFacilitie->index();
+        $cuisines= $this->repoCuisine->index();
+        $destination= $this->repoDestination->detail($id);
+
+        return view('frontend.destinations.detail', compact('facilities', 'cuisines', 'destination'));
+    }
 }
