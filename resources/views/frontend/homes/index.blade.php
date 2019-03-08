@@ -32,7 +32,7 @@
                                         <span id="draw_lp_bottom"></span>
                                         <span id="draw_lp_top" class="lp_top"></span>
                                         <span id="draw_lp_right"></span>
-                                        <a href="{{ $banner->link }}" target="_blank" style="font-size:7pt">CHI TIẾT</a>
+                                        <a href="{{ asset('/') }}" target="_blank" style="font-size:7pt">CHI TIẾT</a>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
             <div class="line_item_express_page_2"></div>
             <div class="content content_p2">
                 @foreach ($abouts as $key => $about)
-                <a href="{{$about->slug}}">
+                <a href="{{ route('fe.about.detail_about', ['slug'=>str_slug($about->name), 'id'=>$about->id]) }}">
                     <div class="row clearfix content_p2_row {{$key % 2 == 0 ?'':'top50'}}">
                         <div class="col-xs-6 item_pading content_p2_col_6
                             {{$key % 2 == 0 ?
@@ -75,10 +75,13 @@
                             </div>
                         </div>
                         <div class="col-xs-6 item_pading content_p2_col_6 {{$key % 2 == 0 ?
-                        'scrolling-item-1 slideRight':
-                        ' float_image_left scrolling-item-2 slideLeft animated fadeInLeft'}}"
-                            style="background-image:url(../uploads/images/abouts/{{$about->image}});background-repeat:no-repeat;background-position:right center;background-size:cover;">
-                            <div class="img-desc-home"><img src="../uploads/images/abouts/{{$about->image}}" alt="" style="width:100%"></div>
+                            'scrolling-item-1 slideRight':
+                            ' float_image_left scrolling-item-2 slideLeft animated fadeInLeft'}}"
+                            style="background-image:url(../uploads/images/abouts/{{$about->image}});background-repeat:no-repeat;background-position:right center;background-size:cover;"
+                        >
+                            <div class="img-desc-home">
+                                <img src="../uploads/images/abouts/{{$about->image}}" alt="" style="width:100%">
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -96,7 +99,7 @@
                             <div class="item-container-fluid">
                                 <div class="item-row-fluid">
                                     <div class="item_contain_left bg_none">
-                                        <a href="vn/welcome/destination/kham-pha-cac-hon-dao.html">
+                                        <a href="{{ asset('/destination') }}">
                                             <p class="text-left">
                                                 <span class="color_yellow_cu">{{$destination->name}}</span>
                                             </p>
@@ -108,13 +111,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-6 item_pading float_image_left content_p3_col_6" style="background-image:url(../uploads/images/destinations/{{$destination->image}});background-repeat:no-repeat;background-position:left center;background-size:cover;">
-                            <div class="img-desc-home-p3"><img src="../uploads/images/destinations/{{$destination->image}}" alt="" style="width:100%"></div>
+                        <div
+                            class="col-xs-6 item_pading float_image_left content_p3_col_6"
+                            style="background-image:url(../uploads/images/destinations/{{$destination->image}});background-repeat:no-repeat;background-position:left center;background-size:cover;"
+                        >
+                            <div class="img-desc-home-p3">
+                                <img src="../uploads/images/destinations/{{$destination->image}}" alt="" style="width:100%">
+                            </div>
                         </div>
                     </div>
                     @endforeach
                     @foreach ($offers as $key => $offer)
-                    <a href="vn/special-offers.html">
+                    <a href="{{route('fe.offer.detail', ['slug'=>str_slug($offer->name), 'id'=>$offer->id])}}">
                         <div class="row clearfix content_p3_row top33 scrolling-item-1">
                             <div class="col-xs-6 item_pading content_p3_col_6">
                                 <div class="item-container-fluid">
@@ -130,14 +138,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6 item_pading content_p3_col_6" style="background-image:url(../uploads/images/offers/{{$offer->image}});background-repeat:no-repeat;background-position:right center;background-size:cover;">
-                                <div class="img-desc-home-p3"><img src="../uploads/images/offers/{{$offer->image}}" alt="" style="width:100%"></div>
+                            <div
+                                class="col-xs-6 item_pading content_p3_col_6"
+                                style="background-image:url(../uploads/images/offers/{{$offer->image}});background-repeat:no-repeat;background-position:right center;background-size:cover;"
+                            >
+                                <div class="img-desc-home-p3">
+                                    <img src="../uploads/images/offers/{{$offer->image}}" alt="" style="width:100%">
+                                </div>
                             </div>
                         </div>
                     </a>
                     @endforeach
                     @foreach ($facilitieDetails as $key => $facilitieDetail)
-                    <a href="vn/facilities.html">
+                    <a href="{{ asset('/facilitie') }}">
                         <div class="row clearfix content_p3_row top66 scrolling-item-2">
                             <div class="col-xs-6 item_pading float_text_right content_p3_col_6">
                                 <div class="item-container-fluid">
@@ -153,8 +166,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6 item_pading float_image_left content_p3_col_6" style="background-image:url(../uploads/images/facilitiedetails/{{$facilitieDetail->image}});background-repeat:no-repeat;background-position:left center;background-size:cover;">
-                                <div class="img-desc-home-p3"><img src="../uploads/images/facilitiedetails/{{$facilitieDetail->image}}" alt="" style="width:100%"></div>
+                            <div
+                                class="col-xs-6 item_pading float_image_left content_p3_col_6"
+                                style="background-image:url(../uploads/images/facilitiedetails/{{$facilitieDetail->image}});background-repeat:no-repeat;background-position:left center;background-size:cover;"
+                            >
+                                <div class="img-desc-home-p3">
+                                    <img src="../uploads/images/facilitiedetails/{{$facilitieDetail->image}}" alt="" style="width:100%">
+                                </div>
                             </div>
                         </div>
                     </a>
@@ -168,10 +186,10 @@
                 <div class="item-container-fluid">
                     <div class="item-row-fluid">
                         <div class="row thumbnail video_player clearfix">
-                            <img src="http://amarinresort.com.vn/templates/website/images/photo_temp_video.png" style="width:100%;height:auto">
+                            <img src="{{ asset('../frontend/images/photo_temp_video.png') }}" style="width:100%;height:auto">
                         </div>
                         <div class="row clearfix" style="width:330px;height:auto;margin:0 auto">
-                            <a href="http://amarinresort.com.vn/vn/reservation">
+                            <a href="{{ asset('/bookroom') }}">
                                 <div class="button_video" style="float:left;margin-right:10px">
                                     <div class="button_video_bg"></div>
                                     <div class="button_video_text">ĐẶT PHÒNG</div>
@@ -185,17 +203,22 @@
                     </div>
                 </div>
             </div>
-            <div class="section_footer_as clearfix scrolling-item">
+            <div class="section_footer_as clearfix scrolling-item" style="margin-top: -4em;">
                 <div class="row copyright mg0">
                     <div class="col-md-3 text-left">
                         <div class="footer_logo">
-                            <a href="http://amarinresort.com.vn/vn"><img class="img-responsive" src="http://amarinresort.com.vn/local/logo/logo_grey.png" /></a>
+                            <a href="{{ asset('/') }}">
+                                <img class="img-responsive" src="{{ asset('../frontend/images/logo_grey.png') }}" />
+                            </a>
                         </div>
                     </div>
                     @foreach ($introduces as $key => $introduce)
                     <div class="col-md-3 text-left">
                         <div class="footer_logo text_foter">
-                        <span class="text_foter_header">{{$introduce->name}}</span><br/>
+                            <span class="text_foter_header">
+                                {{$introduce->name}}
+                            </span>
+                            <br/>
                             <span>
                                 <span style="font-size:16px;">
                                     <span style="font-family:roboto_condensedlight;">
@@ -212,18 +235,31 @@
                         <div class="footer_logo">
                             <div class="text-center clearfix">
                                 <div class="social_text">KẾT NỐI VỚI&nbsp;
-                                    <a href="https://www.facebook.com/AmarinresortPQ/" target="_blank"><img src="http://amarinresort.com.vn/templates/website/icon_social/facebook.png" alt="Facebook" title="Facebook" /></a>
-                                    <a href="#"><img src="http://amarinresort.com.vn/templates/website/icon_social/google.png" alt="Google" title="Google" /></a>
-                                    <a href="#"><img src="http://amarinresort.com.vn/templates/website/icon_social/instagram.png" alt="Instagram" title="Instagram" /></a>
+                                    <a href="#" target="_blank">
+                                         <img src="{{ asset('../frontend/icon_social/facebook.png') }}" alt="Facebook" title="Facebook" />
+                                    </a>
+                                    <a href="#">
+                                        <img src="{{ asset('../frontend/icon_social/google.png') }}" alt="Google" title="Google" />
+                                    </a>
+                                    <a href="#">
+                                        <img src="{{ asset('../frontend/icon_social/instagram.png') }}" alt="Instagram" title="Instagram" />
+                                    </a>
                                 </div>
                             </div>
                             <div class="text-center clearfix">
-                                <div class="icon_bottom_menu_ward"><img src="http://amarinresort.com.vn/templates/website/images/icon_menu.png" /></div>
+                                <div class="icon_bottom_menu_ward">
+                                    <img src="{{ asset('../frontend/images/icon_menu.png') }}" />
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="clearfix menu_footer text-center" style="padding-bottom:5px;width:100%;clear:both">
-                        <a href="http://amarinresort.com.vn/vn/welcome/about-us">VỀ AMARIN</a> <span>|</span> <a href="http://amarinresort.com.vn/vn/accommodation">PHÒNG</a> <span>|</span> <a href="http://amarinresort.com.vn/vn/gallery">THƯ VIỆN</a> <span>|</span>                        <a href="http://amarinresort.com.vn/vn/welcome/sitemap">SITEMAP</a> <span>|</span> <a href="http://amarinresort.com.vn/vn/contact">LIÊN HỆ</a>
+                        <a href="{{ asset('/') }}">VỀ AMARIN</a>
+                        <span>|</span>
+                        <a href="{{ asset('/accommodation') }}">PHÒNG</a>
+                        <span>|</span> <a href="{{ asset('/gallery') }}">THƯ VIỆN</a>
+                        <span>|</span><a href="{{ asset('/facilitie') }}">TIỆN ÍCH</a>
+                        <span>|</span> <a href="{{ asset('/contact') }}">LIÊN HỆ</a>
                     </div>
                     <div class="clearfix pull-left" style="padding-top:5px;width:100%;text-align:center;background-color:#c1c6cf">
                         <p class="text_foter">

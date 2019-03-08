@@ -15,6 +15,8 @@ Route::group(['namespace' => 'V1\Web\frontend'], function () {
     Route::get('/facilitie', 'FacilitieDetailController@index')->name('fe.facilitie_detail.index');
     Route::get('/contact', 'ContactController@index')->name('fe.contact.index');
     Route::post('/contact', 'ContactController@store')->name('fe.contact.store');
+    Route::get('/about/{slug}-{id}', 'HomeController@detailAbout')->name('fe.about.detail_about');
+    Route::get('/destination', 'HomeController@getdestination')->name('fe.destination.getdestination');
 });
 
 // backend routes
