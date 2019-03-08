@@ -82,7 +82,8 @@ class HomeController extends Controller
     {
         $facilities = $this->repoFacilitie->index();
         $cuisines= $this->repoCuisine->index();
+        $destinations= $this->repoDestination->indexTop(6, ['id', 'name', 'image', 'description', 'content']);
 
-        return view('frontend.destinations.index', compact('facilities', 'cuisines'));
+        return view('frontend.destinations.index', compact('facilities', 'cuisines', 'destinations'));
     }
 }
