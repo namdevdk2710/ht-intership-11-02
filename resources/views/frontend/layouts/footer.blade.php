@@ -10,7 +10,7 @@
             @foreach ($introducesAll as $introduce)
             <div class="col-md-3 text-left">
                 <div class="footer_logo text_foter">
-                    <span class="text_foter_header">{{ $introduce->name }}</span><br/>
+                    <span class="text_foter_header st">{{ $introduce->name }}</span><br/>
                     <span>
                         <span style="font-size:16px;">
                             <span style="font-family:roboto_condensedlight;">

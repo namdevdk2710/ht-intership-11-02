@@ -99,7 +99,7 @@
                             <div class="item-container-fluid">
                                 <div class="item-row-fluid">
                                     <div class="item_contain_left bg_none">
-                                        <a href="{{ asset('/destination') }}">
+                                        <a href="{{ asset('/destination') }}" style="text-decoration: none;">
                                             <p class="text-left">
                                                 <span class="color_yellow_cu">{{$destination->name}}</span>
                                             </p>
@@ -215,7 +215,7 @@
                     @foreach ($introduces as $key => $introduce)
                     <div class="col-md-3 text-left">
                         <div class="footer_logo text_foter">
-                            <span class="text_foter_header">
+                            <span class="text_foter_header st">
                                 {{$introduce->name}}
                             </span>
                             <br/>

@@ -80,4 +80,9 @@ class DestinationRepository extends BaseRepository implements DestinationReposit
 
         return $this->model->orderBy('updated_at', 'Desc')->take($limit)->get($columns);
     }
+
+    public function detail($id)
+    {
+        return $destination = $this->model->find($id);
+    }
 }
