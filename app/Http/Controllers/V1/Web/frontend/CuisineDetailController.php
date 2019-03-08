@@ -9,7 +9,6 @@ use App\Repositories\V1\CuisineDetail\CuisineDetailRepositoryInterface;
 use App\Repositories\V1\FacilitieDetail\FacilitieDetailRepositoryInterface;
 use App\Repositories\V1\Facilitie\FacilitieRepositoryInterface;
 
-
 class CuisineDetailController extends Controller
 {
     protected $repoCuisine;
@@ -21,12 +20,10 @@ class CuisineDetailController extends Controller
         CuisineRepositoryInterface $repoCuisine,
         CuisineDetailRepositoryInterface $repoCuisineDetail,
         FacilitieRepositoryInterface $repoFacilitie
-
     ) {
         $this->repoCuisine = $repoCuisine;
         $this->repoCuisineDetail = $repoCuisineDetail;
         $this->repoFacilitie = $repoFacilitie;
-
     }
 
     public function index()

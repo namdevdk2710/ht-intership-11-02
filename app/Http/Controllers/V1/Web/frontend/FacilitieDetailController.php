@@ -18,7 +18,6 @@ class FacilitieDetailController extends Controller
         FacilitieRepositoryInterface $repoFacilitie,
         FacilitieDetailRepositoryInterface $repoFacilitieDetail,
         CuisineRepositoryInterface $repoCuisine
-
     ) {
         $this->repoFacilitie = $repoFacilitie;
         $this->repoFacilitieDetail = $repoFacilitieDetail;
@@ -30,6 +29,6 @@ class FacilitieDetailController extends Controller
         $facilities= $this->repoFacilitie->listpage();
         $cuisines= $this->repoCuisine->index();
 
-        return view('frontend.facilitie-details.index', compact('facilities','cuisines'));
+        return view('frontend.facilitie-details.index', compact('facilities', 'cuisines'));
     }
 }

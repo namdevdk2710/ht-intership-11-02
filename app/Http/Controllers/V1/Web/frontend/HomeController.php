@@ -48,9 +48,9 @@ class HomeController extends Controller
     public function index()
     {
         $banners = $this->repoBanner->indexTop(2, ['image', 'description', 'link']);
-        $abouts = $this->repoAbout->indexTop(2, ['id','name', 'image', 'description', 'slug']);
+        $abouts = $this->repoAbout->indexTop(2, ['id', 'name', 'image', 'description', 'slug']);
         $destinations = $this->repoDestination->indexTop(1, ['name', 'image', 'description']);
-        $facilitieDetails = $this->repoFacilitieDetail->indexTop(1, ['id','name', 'image', 'description']);
+        $facilitieDetails = $this->repoFacilitieDetail->indexTop(1, ['id', 'name', 'image', 'description']);
         $offers = $this->repoOffer->indexTop(1, ['id', 'name', 'image', 'content']);
         $introduces = $this->repoIntroduce->indexTop(2);
         $facilities = $this->repoFacilitie->index();
@@ -74,7 +74,7 @@ class HomeController extends Controller
         $facilities = $this->repoFacilitie->index();
         $cuisines= $this->repoCuisine->index();
 
-        return view('frontend.abouts.detail', compact('facilities','cuisines'));
+        return view('frontend.abouts.detail', compact('facilities', 'cuisines'));
     }
 
     public function getdestination()
@@ -82,6 +82,6 @@ class HomeController extends Controller
         $facilities = $this->repoFacilitie->index();
         $cuisines= $this->repoCuisine->index();
 
-        return view('frontend.destinations.index', compact('facilities','cuisines'));
+        return view('frontend.destinations.index', compact('facilities', 'cuisines'));
     }
 }

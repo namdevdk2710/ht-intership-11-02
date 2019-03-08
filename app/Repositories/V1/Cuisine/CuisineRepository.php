@@ -53,7 +53,10 @@ class CuisineRepository extends BaseRepository implements CuisineRepositoryInter
         $cuisines = DB::table('cuisines')->get();
 
         foreach ($cuisines as $cuisine) {
-            $cuisinedetail = DB::table('cuisine_details')->where('cuisine_id', $cuisine->id)->orderBy('updated_at', 'Desc')->take(2)->get();
+            $cuisinedetail = DB::table('cuisine_details')
+                ->where('cuisine_id', $cuisine->id)
+                ->orderBy('updated_at', 'Desc')
+                ->take(2)->get();
             $cuisine->id = $cuisinedetail;
         }
 

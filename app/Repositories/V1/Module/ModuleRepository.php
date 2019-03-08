@@ -83,10 +83,8 @@ class ModuleRepository extends BaseRepository implements ModuleRepositoryInterfa
 
         if (strpos($url, '/')) {
             $url = explode('/', $url)[0];
-
         }
 
         return $module = Module::where('slug', 'LIKE', '%' . $url . '%')->take(1)->get();
-
     }
 }

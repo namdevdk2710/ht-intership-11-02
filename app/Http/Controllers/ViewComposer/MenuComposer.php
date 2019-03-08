@@ -6,7 +6,6 @@ use Illuminate\View\View;
 use App\Repositories\V1\About\AboutRepositoryInterface;
 use App\Repositories\V1\Room\RoomRepositoryInterface;
 
-
 class MenuComposer
 {
     public $repoAbout;
