@@ -36,4 +36,11 @@ class AdminController extends Controller
 
         return redirect()->route('home.index')->with('msg', 'Logged in successfully !');
     }
+
+    public function logout()
+    {
+        $this->repository->logout();
+
+        return redirect()->back();
+    }
 }
