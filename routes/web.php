@@ -42,9 +42,8 @@ Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend', 'middleware
     Route::post('/room/changestatus', 'RoomController@changestatus')->name('room.changestatus');
     Route::resource('/user', 'UserController');
     Route::resource('/room_service', 'RoomServiceController');
-    Route::get('/logout','AdminController@logout');
+    Route::get('/logout', 'AdminController@logout');
 });
 // Login
 Route::get('admin/login', 'V1\Web\backend\AdminController@getLogin')->name('admin.getLogin');
 Route::post('admin/login', 'V1\Web\Backend\AdminController@postLogin')->name('admin.postLogin');
-
