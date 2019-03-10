@@ -21,7 +21,7 @@ Route::group(['namespace' => 'V1\Web\frontend'], function () {
 });
 
 // backend routes
-Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend'], function () {
+Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend', 'middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::resource('/banner', 'BannerController');
     Route::resource('/gallery', 'GalleryController');
@@ -43,3 +43,6 @@ Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend'], function (
     Route::resource('/user', 'UserController');
     Route::resource('/room_service', 'RoomServiceController');
 });
+// Login
+Route::get('admin/login', 'V1\Web\backend\AdminController@getLogin')->name('admin.getLogin');
+Route::post('admin/login', 'V1\Web\Backend\AdminController@postLogin')->name('admin.postLogin');

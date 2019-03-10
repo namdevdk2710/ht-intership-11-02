@@ -3,12 +3,13 @@
     <div class="app-sidebar__user">
         <img
             class="app-sidebar__user-avatar"
-            src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"
+            src="../uploads/images/users/@if(Auth::user()){{Auth::user()->avatar}}@endif"
             alt="User Image"
+            style="height:5em; width:5em;"
         >
         <div>
-            <p class="app-sidebar__user-name">User Name</p>
-            <p class="app-sidebar__user-designation">Frontend Developer</p>
+            <p class="app-sidebar__user-name">@if(Auth::user()){{Auth::user()->name}} @endif</p>
+            <p class="app-sidebar__user-designation">@if(Auth::user()){{Auth::user()->email}} @endif</p>
         </div>
     </div>
     <ul class="app-menu">
