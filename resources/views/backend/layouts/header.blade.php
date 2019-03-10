@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="page-login.html">
+                    <a class="dropdown-item" href="{{ asset('admin/logout') }}">
                         <i class="fa fa-sign-out fa-lg"></i> Logout
                     </a>
                 </li>

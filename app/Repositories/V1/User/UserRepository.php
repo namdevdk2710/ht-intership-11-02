@@ -91,4 +91,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         return 'success';
     }
+
+    public function logout()
+    {
+        return Auth::logout();
+    }
 }
