@@ -32,7 +32,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email.required' => 'Vui lòng nhập email !',
-            'password.required'=>'Vui lòng nhập password !',
+            'password.required' => 'Vui lòng nhập password !',
         ];
     }
 }

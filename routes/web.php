@@ -21,7 +21,7 @@ Route::group(['namespace' => 'V1\Web\frontend'], function () {
 });
 
 // backend routes
-Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend', 'middleware'=>'auth'], function () {
+Route::group(['prefix' => '/admin', 'namespace' => 'V1\Web\backend', 'middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::resource('/banner', 'BannerController');
     Route::resource('/gallery', 'GalleryController');
