@@ -5,6 +5,8 @@ namespace App\Repositories\V1\User;
 use App\Repositories\BaseRepository;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
@@ -71,5 +73,22 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         $user = $this->model->find($id);
         $user->delete();
+    }
+
+    public function login($request)
+    {
+        $user = $this->model->where('email', $request->email)->first();
+        if (!$user) {
+            return 'email';
+        }
+        $data = [
+            'email' => $request['email'],
+            'password' => $request['password'],
+        ];
+        if (Auth::attempt($data)) {
+            return 'password';
+        }
+
+        return 'success';
     }
 }
