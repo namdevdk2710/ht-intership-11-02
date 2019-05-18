@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('todos', 'V1\API\TodoController');
+Route::resource('modules', 'V1\API\ModuleController');

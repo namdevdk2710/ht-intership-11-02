@@ -76,7 +76,7 @@
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>
-                                        @include('backend.abouts.detail')
+                                        {{-- @include('backend.abouts.detail') --}}
                                     @endforeach
                                     </tbody>
                                 </table>
