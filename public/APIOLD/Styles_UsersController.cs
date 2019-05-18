@@ -41,7 +41,7 @@ namespace MusicAPIStore.Controllers
                                     p.UserName == u.ID_User.ToString() &&
                                     p.Active == true &&
                                     p.IsInTrash == false
-                                    select new { Image = "Thumb.ashx?s=400&file=/" + p.Image}).ToList().Count>1
+                                    select new { Image = "Thumb.ashx?s=400&file=/" + p.Image }).ToList().Count > 1
                  select new
                  {
                      Users = new
@@ -58,10 +58,11 @@ namespace MusicAPIStore.Controllers
                                  product.UserName == u.ID_User.ToString() &&
                                  product.Active == true &&
                                  product.IsInTrash == false
-                                 select new {
+                                 select new
+                                 {
                                      Image = "Thumb.ashx?s=400&file=/" + product.Image,
                                  }).Take(2),
-                  
+
                  }).OrderByDescending(u => u.Users.ID_Role).ThenBy(u => Guid.NewGuid()).Take(top).ToList();
 
 
@@ -99,7 +100,19 @@ namespace MusicAPIStore.Controllers
         {
             try
             {
-                var list = db.Styles_Users.Where(e => e.ID_User == idUser && e.IsStore == true).ToList();
+                //var list = db.Styles_Users.Where(e => e.ID_User == idUser && e.IsStore == true).ToList();
+                var list =
+               (
+                   from u in db.Styles_Users
+                   join uT in db.Styles_Users_Translation on u.ID_User equals uT.ID_User
+                   where u.ID_User == idUser && u.IsStore == true
+                   select new
+                   {
+                       Logo = u.Logo,
+                       CompanyName = u.CompanyName,
+                       Description = uT.Description
+                   }
+               ).ToList();
                 var resp = Request.CreateResponse<RegisterResponseModel>(
                     HttpStatusCode.OK,
                     new RegisterResponseModel()
@@ -266,7 +279,7 @@ namespace MusicAPIStore.Controllers
                 return resp;
             }
         }
-   
+
         //Tổng theo dõi gian hàng
         [HttpGet]
         [Route("api/GetStyles_Users_FollowCount/{idStore}")]
@@ -276,7 +289,7 @@ namespace MusicAPIStore.Controllers
             {
                 var list =
                (from p in db.Styles_Users_Follow
-                where p.ID_User_Object == idStore 
+                where p.ID_User_Object == idStore
                 group p by p.ID_User_Object into playerGroup
                 select new
                 {
@@ -313,7 +326,7 @@ namespace MusicAPIStore.Controllers
 
         public class ModelSearchStoreHint
         {
-            
+
             public int ID_User { get; set; }
             public string Title { get; set; }
             public string UserName { get; set; }
@@ -446,20 +459,28 @@ namespace MusicAPIStore.Controllers
                 {
                     patternSearch = TiengViet.RemoveUnicode(TiengViet.BoDauKhongVietHoa(strsearchmap), true).Replace("-", " ");
                 }
-
-                var list = db.Database.SqlQuery<Styles_Users_Search_By_Key>("SELECT top("+top+") Logo,UserName,FullName,Styles_Users.ID_User,TotalView,RegTime FROM Styles_Users,Styles_Users_Locations_Translation where Styles_Users.ID_Location = Styles_Users_Locations_Translation.ID_Location and IsStore = 1 and Styles_Users.Active = 1 and Styles_Users_Locations_Translation.LanguageCode='" + lang + "' and LocationName like N'%" + patternSearch + "%' order by ID_Role DESC").ToList();
+                var list = db.Database.SqlQuery<Styles_Users_Search_By_Key>(@"SELECT top (" + top + @") Logo,UserName,FullName,
+                ID_User,CompanyName
+                FROM Styles_Users where IsStore = 1 and Active = 1 and  CompanyName like N'%" + patternSearch + "%' order by Styles_Users.ID_Role DESC").ToList();
+                //var list = db.Database.SqlQuery<Styles_Users_Search_By_Key>(@"SELECT top(" + top + @") Logo,UserName,FullName,
+                //Styles_Users.ID_User,TotalView,RegTime 
+                //FROM Styles_Users,Styles_Users_Locations_Translation 
+                //where Styles_Users.ID_Location = Styles_Users_Locations_Translation.ID_Location 
+                //and IsStore = 1 and Styles_Users.Active = 1 
+                //and Styles_Users_Locations_Translation.LanguageCode='" + lang + "' and LocationName like N'%" + patternSearch + "%' order by ID_Role DESC").ToList();
                 foreach (Styles_Users_Search_By_Key d in list)
                 {
                     var ID_UserStore = d.ID_User;
                     d.ImageRole = (from user in db.Styles_Users
-                                    join role in db.Styles_Users_Roles on user.ID_Role equals role.ID_Role
-                                    join roleT in db.Styles_Users_Roles_Translation on role.ID_Role equals roleT.ID_Role
-                                    where roleT.LanguageCode == lang  && user.ID_User == ID_UserStore select role).FirstOrDefault().Image.ToString();
-                    d.RoleName = (from user in db.Styles_Users
                                    join role in db.Styles_Users_Roles on user.ID_Role equals role.ID_Role
                                    join roleT in db.Styles_Users_Roles_Translation on role.ID_Role equals roleT.ID_Role
                                    where roleT.LanguageCode == lang && user.ID_User == ID_UserStore
-                                   select roleT).FirstOrDefault().RoleName.ToString();
+                                   select role).FirstOrDefault().Image.ToString();
+                    d.RoleName = (from user in db.Styles_Users
+                                  join role in db.Styles_Users_Roles on user.ID_Role equals role.ID_Role
+                                  join roleT in db.Styles_Users_Roles_Translation on role.ID_Role equals roleT.ID_Role
+                                  where roleT.LanguageCode == lang && user.ID_User == ID_UserStore
+                                  select roleT).FirstOrDefault().RoleName.ToString();
 
                 }
                 var resp = Request.CreateResponse<RegisterResponseModel>(
@@ -506,7 +527,13 @@ namespace MusicAPIStore.Controllers
                 {
                     patternSearch = TiengViet.RemoveUnicode(TiengViet.BoDauKhongVietHoa(strsearchmap), true).Replace("-", " ");
                 }
-                var list = db.Database.SqlQuery<Styles_Users_Search_By_Key>("SELECT top ("+top+ ") Styles_Users .* FROM Styles_Users where IsStore = 1 and Active = 1 and  CompanyName like N'%" + patternSearch + "%' order by Styles_Users.ID_Role DESC").ToList();
+                var list = db.Database.SqlQuery<Styles_Users_Search_By_Key>(@"SELECT top(" + top + @") Logo,UserName,FullName,
+                Styles_Users.ID_User,TotalView,RegTime,CompanyName
+                FROM Styles_Users,Styles_Users_Locations_Translation 
+                where Styles_Users.ID_Location = Styles_Users_Locations_Translation.ID_Location 
+                and IsStore = 1 and Styles_Users.Active = 1 
+                and Styles_Users_Locations_Translation.LanguageCode='" + lang + "' and LocationName like N'%" + patternSearch + "%' order by ID_Role DESC").ToList();
+                //var list = db.Database.SqlQuery<Styles_Users_Search_By_Key>("SELECT top (" + top + ") Styles_Users .* FROM Styles_Users where IsStore = 1 and Active = 1 and  CompanyName like N'%" + patternSearch + "%' order by Styles_Users.ID_Role DESC").ToList();
                 foreach (Styles_Users_Search_By_Key d in list)
                 {
                     var ID_UserStore = d.ID_User;
@@ -555,21 +582,18 @@ namespace MusicAPIStore.Controllers
         {
             try
             {
-            var list =
-           (from certificate in db.Styles_Users_Certificates
-            where
-            certificate.Active == true &&
-            certificate.ID_User == idStore
-            select new
-            {
-                FileCapacityProfile = (from u in db.Styles_Users
-                                       where u.ID_User == idStore
-                            select u.FileCapacityProfile),
-                Certificate = certificate
-            }).ToList();
-
-               
-
+                var list =
+               (from certificate in db.Styles_Users_Certificates
+                where
+                certificate.Active == true &&
+                certificate.ID_User == idStore
+                select new
+                {
+                    Certificate = certificate,
+                    FileCapacityProfile = (from u in db.Styles_Users
+                                           where u.ID_User == idStore
+                                           select u.FileCapacityProfile)
+                }).ToList();
                 var resp = Request.CreateResponse<RegisterResponseModel>(
                     HttpStatusCode.OK,
                     new RegisterResponseModel()
@@ -638,103 +662,14 @@ namespace MusicAPIStore.Controllers
 
     }
 
-    public class Styles_Users_Search_By_Key 
+    public class Styles_Users_Search_By_Key
     {
         public string ImageRole { get; set; }
         public string RoleName { get; set; }
-        public Styles_Users_Search_By_Key()
-        {
-            this.Styles_Users_Translation = new HashSet<Styles_Users_Translation>();
-        }
-
         public int ID_User { get; set; }
         public string UserName { get; set; }
-        public string Password { get; set; }
         public string FullName { get; set; }
-        public string NickName { get; set; }
-        public string Image { get; set; }
-        public System.DateTime Birthday { get; set; }
-        public bool Gender { get; set; }
-        public string Email { get; set; }
-        public string AlterEmail { get; set; }
-        public string Telephone { get; set; }
-        public string Address { get; set; }
-        public System.DateTime RegTime { get; set; }
-        public Nullable<bool> Active { get; set; }
-        public Nullable<bool> Lock { get; set; }
-        public string LanguageCode { get; set; }
-        public string Yahoo { get; set; }
-        public string Skype { get; set; }
-        public string FaceBook { get; set; }
-        public System.DateTime LastLogin { get; set; }
-        public string Last_IP { get; set; }
-        public string CMND { get; set; }
-        public string PassPort { get; set; }
-        public Nullable<int> ID_Role { get; set; }
         public string Logo { get; set; }
-        public Nullable<bool> IsStore { get; set; }
-        public string StoreID { get; set; }
-        public Nullable<double> Latitude { get; set; }
-        public Nullable<double> Longitude { get; set; }
-        public string ListProductViewed { get; set; }
-        public string SearchHistory { get; set; }
-        public Nullable<double> RatingAverage { get; set; }
-        public string ShopConfig { get; set; }
-        public Nullable<bool> IsCompany { get; set; }
         public string CompanyName { get; set; }
-        public string CompanyNumber { get; set; }
-        public string TaxNumber { get; set; }
-        public Nullable<System.DateTime> IDDate { get; set; }
-        public Nullable<int> TotalView { get; set; }
-        public Nullable<int> IDPlace { get; set; }
-        public Nullable<int> Point { get; set; }
-        public Nullable<int> PointB { get; set; }
-        public Nullable<System.DateTime> StartTime { get; set; }
-        public Nullable<System.DateTime> ExpTime { get; set; }
-        public string FileCapacityProfile { get; set; }
-        public string FileCatalog { get; set; }
-        public Nullable<double> TotalRevenue { get; set; }
-        public string CellPhone { get; set; }
-        public string Website { get; set; }
-        public string Zalo { get; set; }
-        public string WhatApps { get; set; }
-        public Nullable<int> ID_Location { get; set; }
-        public string BuySellBoth { get; set; }
-        public Nullable<int> ID_BusinessType { get; set; }
-        public Nullable<int> NumberOfMember { get; set; }
-        public Nullable<int> NumberOfEmployee { get; set; }
-        public Nullable<int> YearEstablished { get; set; }
-        public string ExportMarkets { get; set; }
-        public Nullable<double> ResponseRate { get; set; }
-        public Nullable<double> ResponseTime { get; set; }
-        public string UserCode { get; set; }
-        public string CompanyRepresentative { get; set; }
-        public string RegisteredAddress { get; set; }
-        public string AddressSalesOffice { get; set; }
-        public string FactoryAddress { get; set; }
-        public string LogoStore { get; set; }
-        public string MainProduct { get; set; }
-        public Nullable<int> ID_Business_Enterprise { get; set; }
-        public Nullable<int> ID_Status { get; set; }
-        public Nullable<int> ID_Source { get; set; }
-        public string BusinessCapital { get; set; }
-        public string ManageCertificate { get; set; }
-        public string AdminUser { get; set; }
-        public Nullable<int> StoreType { get; set; }
-        public string Theme { get; set; }
-        public Nullable<int> Level { get; set; }
-        public Nullable<int> ID_Theme { get; set; }
-        public string LogoBuyer { get; set; }
-        public string BannerImage { get; set; }
-        public string AboutStore { get; set; }
-        public string LogoPending { get; set; }
-        public Nullable<bool> LockPending { get; set; }
-        public Nullable<int> ID_Type { get; set; }
-        public Nullable<bool> IsRegisterTeam { get; set; }
-        public Nullable<bool> IsOnline { get; set; }
-        public Nullable<int> NumberPeopleTeam { get; set; }
-        public Nullable<bool> Hidden { get; set; }
-
-        public virtual ICollection<Styles_Users_Translation> Styles_Users_Translation { get; set; }
     }
 }

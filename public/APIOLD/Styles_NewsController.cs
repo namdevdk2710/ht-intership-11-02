@@ -55,12 +55,18 @@ namespace MusicAPIStore.Controllers
 
         // GET: api/GetStyles_News_Category
         [HttpGet]
-        [Route("api/GetStyles_News_Category/{idCate}")]
-        public HttpResponseMessage GetStyles_News_Category(int idCate)
+        [Route("api/GetStyles_News_Category/{idCate}/{lang}")]
+        public HttpResponseMessage GetStyles_News_Category(int idCate,string lang)
         {
             try
             {
-                var list = db.Styles_News.Where(e => e.ID_Cate == idCate).OrderByDescending(o => o.Weight).ToList();
+                //var list = db.Styles_News.Where(e => e.ID_Cate == idCate).OrderByDescending(o => o.Weight).ToList();
+                var list = db.Database.SqlQuery<News>(@"select Styles_News.ID_News,Styles_News_Translation.Link_SEO,Image,Title,Styles_News.AddTime,
+        Styles_News_Category_Translation.CategoryName,Styles_News_Category_Translation.Link_SEO as LinkSEOCate 
+        from Styles_News,Styles_News_Translation,Styles_News_Category_Translation where Styles_News_Category_Translation.ID_Cate=Styles_News.ID_Cate 
+        and Styles_News_Category_Translation.LanguageCode='" + lang + @"' and Styles_News.ID_Cate in (Select ID_Cate from Styles_News_Category 
+        where Styles_News_Category.ID_Cate=" + idCate + " or Styles_News_Category.ID_Parent=" + idCate + @") 
+        and Styles_News.Active = 1 and Styles_News.ID_News = Styles_News_Translation.ID_News and Styles_News_Translation.LanguageCode = '"+ lang + @"' ").ToList();
                 var resp = Request.CreateResponse<RegisterResponseModel>(
                     HttpStatusCode.OK,
                     new RegisterResponseModel()
@@ -120,5 +126,15 @@ namespace MusicAPIStore.Controllers
                 return resp;
             }
         }
+    }
+
+    public class News
+    {
+        public string Link_SEO { get; set; }
+        public string LinkSEOCate { get; set; }
+        public string Title { get; set; }
+        public int ID_News { get; set; }
+        public string Image { get; set; }
+        public Nullable<System.DateTime> AddTime { get; set; }
     }
 }
