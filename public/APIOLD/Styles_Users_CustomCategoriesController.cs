@@ -22,12 +22,26 @@ namespace MusicAPIStore.Controllers
 
         // GET: api/GetStyles_Users_CustomCategories/{idStore}
         [HttpGet]
-        [Route("api/GetStyles_Users_CustomCategories/{idStore}")]
-        public HttpResponseMessage GetStyles_Users_CustomCategories(int idStore)
+        [Route("api/GetStyles_Users_CustomCategories/{idStore}/{lang}")]
+        public HttpResponseMessage GetStyles_Users_CustomCategories(int idStore, string lang)
         {
             try
             {
-                var list = db.Styles_Users_CustomCategories.Where(d => d.ID_User == idStore && d.Active == true).ToList();
+                //var list = db.Styles_Users_CustomCategories.Where(d => d.ID_User == idStore && d.Active == true).ToList();
+                var list =
+               (
+                   from c in db.Styles_Users_CustomCategories
+                   join cT in db.Styles_Users_CustomCategories_Translation on c.ID_Category equals cT.ID_Category
+                   where c.ID_User == idStore && c.Active == true && cT.LanguageCode == lang
+                   select new
+                   {
+                       Image = c.Image,
+                       Icon = c.Icon,
+                       CategoryName = cT.CategoryName,
+                       Link_SEO = cT.Link_SEO
+                   }
+               ).ToList();
+
                 var resp = Request.CreateResponse<RegisterResponseModel>(
                     HttpStatusCode.OK,
                     new RegisterResponseModel()

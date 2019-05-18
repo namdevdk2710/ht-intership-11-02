@@ -159,22 +159,23 @@ namespace MusicAPIStore.Controllers
                 {
                     if (d.ServiceOrProduct == true)
                     {
-                        if (d.PriceType.ToString() == "s") {
+                        if (d.PriceType.ToString() == "s")
+                        {
                             //d.Price = d.CurrencyCode + "|||" + d.ProductDiscounts + "|||" + d.ProductPrice + "|||" + d.UnitName
                             //    + "|||" + d.MinOfQuantity;
                             d.PriceText = "";
                         }
                         else
                         {
-                            if(lang=="vi")
+                            if (lang == "vi")
                             {
                                 d.PriceText = "Giá thương lượng";
                             }
                             else
                             {
-                                d.PriceText = "Price negotiable";     
+                                d.PriceText = "Price negotiable";
                             }
-                            
+
                         }
                     }
                     else
@@ -193,8 +194,8 @@ namespace MusicAPIStore.Controllers
                             d.ProductPrice = Maxprice;
                         }
                     }
-                       
-                   
+
+
                 }
                 ////Cập nhập danh sách sản phẩm đã xem
                 //Cls_Users updateUser = Cls_Users.getOject_Key((Session["WebsiteUser"] as Cls_Users).ID_User);
@@ -236,7 +237,7 @@ namespace MusicAPIStore.Controllers
         // GET: api/GetStyles_Shops_Products/Detail/{idProduct}/{idUser}/{lang}
         [HttpGet]
         [Route("api/GetStyles_Shops_Products/Detail/{idProduct}/{idUser}/{lang}")]
-        public HttpResponseMessage GetStyles_Shops_Product(int idProduct,int idUser, string lang)
+        public HttpResponseMessage GetStyles_Shops_Product(int idProduct, int idUser, string lang)
         {
             try
             {
@@ -295,7 +296,7 @@ namespace MusicAPIStore.Controllers
                 //updateUser.ListProductViewed = updateUser.ListProductViewed + "," + id;
                 //updateUser.ListProductViewed = updateUser.ListProductViewed.TrimStart(',');
                 //updateUser.doUpdate();
-                if(idUser!=0)
+                if (idUser != 0)
                 {
                     Styles_Users update = db.Styles_Users.Find(idUser);
                     if (!update.ListProductViewed.Contains(idProduct.ToString()))
@@ -304,7 +305,7 @@ namespace MusicAPIStore.Controllers
                         db.Entry(update).State = EntityState.Modified;
                         db.SaveChanges();
                     }
-                    
+
 
                 }
                 var resp = Request.CreateResponse<RegisterResponseModel>(
@@ -332,6 +333,58 @@ namespace MusicAPIStore.Controllers
                 return resp;
             }
         }
+        //Đơn vị cung cấp
+        public string getSupplyAbilityTime(object SupplyAbilityTime, object lang)
+        {
+            string str = SupplyAbilityTime.ToString();
+            string result = "";
+            if (lang.ToString() == "vi")
+            {
+                switch (str)
+                {
+                    case "D":
+                        result = "Ngày";
+                        break;
+
+                    case "Q":
+                        result = "Quý";
+                        break;
+                    case "W":
+                        result = "Tuần";
+                        break;
+                    case "M":
+                        result = "Tháng";
+                        break;
+                    case "Y":
+                        result = "Năm";
+                        break;
+                }
+            }
+            else
+            {
+                switch (str)
+                {
+                    case "D":
+                        result = "Day";
+                        break;
+
+                    case "Q":
+                        result = "Quarter";
+                        break;
+                    case "W":
+                        result = "Week";
+                        break;
+                    case "M":
+                        result = "Month";
+                        break;
+                    case "Y":
+                        result = "Year";
+                        break;
+                }
+            }
+
+            return result;
+        }
 
         // Thông tin nhanh chi tiết sản phẩm
         [HttpGet]
@@ -349,6 +402,7 @@ namespace MusicAPIStore.Controllers
 
                 foreach (Styles_Shops_Products_ServiceInfo d in list)
                 {
+                    d.SupplyAbilityTime = getSupplyAbilityTime(d.SupplyAbilityTime, lang);
                     if (d.ListShippingOption.ToString() == "") continue;
                     string[] ListShippingOption = d.ListShippingOption.ToString().Split(',');
                     string ShippingTemp = "";
@@ -512,8 +566,16 @@ namespace MusicAPIStore.Controllers
             {
                 Styles_Shops_Products styles_Shops_Products = db.Styles_Shops_Products.Find(idProduct);
                 int UserName = Convert.ToInt32(styles_Shops_Products.UserName);
-                var list = db.Styles_Users.Where(e => e.ID_User == UserName).ToList();
-
+                var list =
+                (
+                    from u in db.Styles_Users
+                    where u.ID_User == UserName
+                    select new
+                    {
+                        Logo = u.Logo,
+                        CompanyName = u.CompanyName
+                    }
+                ).ToList();
                 var resp = Request.CreateResponse<RegisterResponseModel>(
                     HttpStatusCode.OK,
                     new RegisterResponseModel()
@@ -584,40 +646,82 @@ namespace MusicAPIStore.Controllers
             }
         }
 
-        public int getCatalogByID(int ID_Catalog, int result)
+        public string getCatalogByID(int ID_Catalog)
         {
-            Styles_Shops_Catalogs Catalog = db.Styles_Shops_Catalogs.Find(ID_Catalog);
-            result = Catalog.ID_Catalog;
-            if (Catalog.ID_Parent == 0)
-            {
-                return result;
-            }
-            else
-            {
-                result = getCatalogByID(Catalog.ID_Parent, result);
-                return result;
-            }
+            int idCate = Convert.ToInt32(ID_Catalog);
+            string ListChild = db.Database.SqlQuery<ModelListChildCatalog>(@"Select ListChild from Styles_Shops_Catalogs where ID_Parent = 0 and (ListChild like ('%|' + '" + idCate + "' + '|%') or ListChild like ('' + '" + idCate + "' + '|%') or ListChild like ('%|' + '" + idCate + "' + ''))  ").FirstOrDefault().ListChild.ToString();
+            return ListChild;
         }
 
+        public class ModelListChildCatalog
+        {
+            public string ListChild { get; set; }
+       
+        }
+        public class Styles_Shops_Products_Relates_Catalog
+        {
+            public int ID_Product { get; set; }
+            public Nullable<System.DateTime> EditTime { get; set; }
+            public Nullable<bool> ServiceOrProduct { get; set; }
+            public Nullable<int> MinOfQuantity { get; set; }
+            public string PriceType { get; set; }
+            public Nullable<int> ID_Role { get; set; }
+            public string ImageRole { get; set; }
+            public string CompanyName { get; set; }
+            public string CurrencyCode { get; set; }
+            public string UnitName { get; set; }
+            public string UserName { get; set; }
+            public Nullable<int> HitsTotal { get; set; }
+            public string SaleMode { get; set; }
+            public Nullable<double> ProductPrice { get; set; }
+            public Nullable<double> ProductDiscounts { get; set; }
+            public Nullable<int> TotalLike { get; set; }
+            public string Image { get; set; }
+            public string ProductCode { get; set; }
+            public string LinkSEOCatalog { get; set; }
+            public string Link_SEO { get; set; }
+            public string ProductName { get; set; }
+        }
         //Sản phẩm cùng ngành hàng
         [HttpGet]
-        [Route("api/GetStyles_Shops_Products_Relates_Catalog/{idProduct}/{top}")]
-        public HttpResponseMessage GetStyles_Shops_Products_Relates_Catalog(int idProduct, int top)
+        [Route("api/GetStyles_Shops_Products_Relates_Catalog/{idProduct}/{top}/{lang}")]
+        public HttpResponseMessage GetStyles_Shops_Products_Relates_Catalog(int idProduct, int top, string lang)
         {
             try
             {
                 Styles_Shops_Products styles_Shops_Products = db.Styles_Shops_Products.Find(idProduct);
                 int idCate = Convert.ToInt32(styles_Shops_Products.ID_Catalog);
+                int ID_Store = Convert.ToInt32(styles_Shops_Products.UserName);
+                //string ListChild = db.Database.SqlQuery<ModelListChildCatalog>(@"Select ListChild from Styles_Shops_Catalogs where ID_Parent = 0 and (ListChild like ('%|' + '" + idCate + "' + '|%') or ListChild like ('' + '" + idCate + "' + '|%') or ListChild like ('%|' + '" + idCate + "' + ''))  ").ToString();
+                string ListChild = getCatalogByID(idCate);
+                ListChild = ListChild.Replace('|',',');
 
-                int idCateLast = getCatalogByID(idCate, idCate);
-                Styles_Shops_Catalogs Catalog = db.Styles_Shops_Catalogs.Find(idCateLast);
-                string ListChild = Catalog.ListChild;
-                //var list = db.Styles_Shops_Products.Where(e => (e.ID_Product != idProduct) && (e.ID_Catalog == idCate)).ToList();
-                var list =
-                    (from product in db.Styles_Shops_Products
-                     where product.ID_Product != idProduct && ListChild.Contains(product.ID_Catalog.ToString())
-                     select product
-                     ).OrderBy(x => Guid.NewGuid()).Take(top).ToList();
+                var list = db.Database.SqlQuery<Styles_Shops_Products_Relates_Catalog>(@"Select Top (" + top + @") * 
+        from (SELECT Styles_Shops_Products.EditTime,ServiceOrProduct,MinOfQuantity,PriceType,
+        (Select ID_Role from Styles_Users as b where b.ID_User=Styles_Shops_Products.UserName) as ID_Role,
+        (Select Styles_Users_Roles.Image from Styles_Users_Roles,Styles_Users as b where Styles_Users_Roles.ID_Role=b.ID_Role and b.ID_User=Styles_Shops_Products.UserName) as ImageRole,
+        (Select CompanyName from Styles_Users as b where b.ID_User=Styles_Shops_Products.UserName) as CompanyName,
+        (select CurrencyCode from Styles_Shops_Currencies where Styles_Shops_Currencies.ID_Currency=Styles_Shops_Products.ID_Currency) as CurrencyCode,
+        (select UnitName from Styles_Shops_Units_Translation where Styles_Shops_Units_Translation.ID_Unit=Styles_Shops_Products.ID_Unit and
+        Styles_Shops_Units_Translation.LanguageCode='" + lang + @"') as UnitName,UserName,HitsTotal,SaleMode,ProductPrice,ProductDiscounts,
+        TotalLike,Image,ProductCode,Styles_Shops_Products_Translation.*,Styles_Shops_Catalogs_Translation.Link_SEO as LinkSEOCatalog
+        from Styles_Shops_Products,Styles_Shops_Catalogs_Translation,Styles_Shops_Products_Translation 
+        where Styles_Shops_Catalogs_Translation.LanguageCode='" + lang + @"' and 
+        Styles_Shops_Products.ID_Product=Styles_Shops_Products_Translation.ID_Product 
+        and Styles_Shops_Products_Translation.LanguageCode='" + lang + @"'
+        and Styles_Shops_Products.ID_Catalog=Styles_Shops_Catalogs_Translation.ID_Catalog 
+        and Styles_Shops_Products.ID_Catalog in (" + ListChild + @")  
+        and cast(Styles_Shops_Products.UserName as int) <> " + ID_Store + @" and Styles_Shops_Products.Active=1 
+        and Styles_Shops_Products.IsInTrash = 0 and ServiceOrProduct = 0) as a where ID_Role <> 0 order by ID_Role desc, NEWID()").ToList();
+
+                //int idCateLast = getCatalogByID(idCate, idCate);
+                //Styles_Shops_Catalogs Catalog = db.Styles_Shops_Catalogs.Find(idCateLast);
+                //string ListChild = Catalog.ListChild;
+                //var list =
+                //    (from product in db.Styles_Shops_Products
+                //     where product.ID_Product != idProduct && ListChild.Contains(product.ID_Catalog.ToString())
+                //     select product
+                //     ).OrderBy(x => Guid.NewGuid()).Take(top).ToList();
 
                 var resp = Request.CreateResponse<RegisterResponseModel>(
                     HttpStatusCode.OK,
@@ -654,10 +758,8 @@ namespace MusicAPIStore.Controllers
             {
                 Styles_Shops_Products styles_Shops_Products = db.Styles_Shops_Products.Find(idProduct);
                 int idCate = Convert.ToInt32(styles_Shops_Products.ID_Catalog);
-
-                int idCateLast = getCatalogByID(idCate, idCate);
-                Styles_Shops_Catalogs Catalog = db.Styles_Shops_Catalogs.Find(idCateLast);
-                string ListChild = Catalog.ListChild; 
+                string[] ListChild = getCatalogByID(idCate).Split('|');
+               
                 var list =
                   (from product in db.Styles_Shops_Products
                    join u in db.Styles_Users on product.UserName equals u.ID_User.ToString()
@@ -703,9 +805,8 @@ namespace MusicAPIStore.Controllers
                 Styles_Shops_Products styles_Shops_Products = db.Styles_Shops_Products.Find(idProduct);
                 int idCate = Convert.ToInt32(styles_Shops_Products.ID_Catalog);
 
-                int idCateLast = getCatalogByID(idCate, idCate);
-                Styles_Shops_Catalogs Catalog = db.Styles_Shops_Catalogs.Find(idCateLast);
-                string ListChild = Catalog.ListChild;
+             
+                string[] ListChild = getCatalogByID(idCate).Split('|');
                 var list =
                   (from product in db.Styles_Shops_Products
                    join u in db.Styles_Users on product.UserName equals u.ID_User.ToString()
@@ -750,7 +851,7 @@ namespace MusicAPIStore.Controllers
 
         }
 
-        //Đánh giá sản phẩm
+        //Đánh giá tổng sản phẩm
         [HttpGet]
         [Route("api/GetStyles_Shops_Product_AvgProductRating/{idProduct}")]
         public HttpResponseMessage GetStyles_Shops_Product_AvgProductRating(int idProduct)
@@ -793,6 +894,49 @@ namespace MusicAPIStore.Controllers
                 return resp;
             }
         }
+
+        //Đánh giá chi tiết 1  sản phẩm
+        [HttpGet]
+        [Route("api/GetStyles_Shops_Product_Detail_AvgProductRating/{idProduct}")]
+        public HttpResponseMessage GetStyles_Shops_Product_Detail_AvgProductRating(int idProduct)
+        {
+            try
+            {
+                var list = db.Database.SqlQuery<ModelStylesShopsAvgProductRating>(@"
+                Select ISNULL(Count(Rating),0) as CountRating1,ISNULL(Sum(Rating),0) as TotalRating1  
+                from Styles_Shops_Product_Ratings where ID_Product =" + idProduct + @" ").ToList();
+
+                foreach (ModelStylesShopsAvgProductRating d in list)
+                {
+                    d.AvgProductRating = Convert.ToDouble(Math.Round(Convert.ToDouble(Convert.ToDouble(d.TotalRating1) / Convert.ToDouble(d.CountRating1)), 2));
+                }
+
+                var resp = Request.CreateResponse<RegisterResponseModel>(
+                    HttpStatusCode.OK,
+                    new RegisterResponseModel()
+                    {
+                        status = true,
+                        data = list,
+                        error_message = ""
+                    }
+                    );
+                return resp;
+            }
+            catch (System.Exception ex)
+            {
+                var resp = Request.CreateResponse<RegisterResponseModel>(
+                    HttpStatusCode.OK,
+                    new RegisterResponseModel()
+                    {
+                        status = false,
+                        data = "",
+                        error_message = ex.Message
+                    }
+                );
+                return resp;
+            }
+        }
+
 
         public class ModelStylesShopsAvgReply
         {
@@ -890,7 +1034,7 @@ namespace MusicAPIStore.Controllers
                 //from Styles_Users_Messages where ID_Receiver=" + ID_User + @"'").ToList();
 
                 double result = (TotalReply / TotalReceiver) * 100;
-               
+
                 //foreach (ModelStylesShopsRateResponse d in list)
                 //{
                 //    d.RateResponse = Convert.ToDouble(Math.Round(result, 2));
@@ -1001,39 +1145,55 @@ namespace MusicAPIStore.Controllers
         }
 
         //Danh sách sản phẩm theo danh mục
-        // GET: api/GetStyles_Shops_Products_Shops_By_Catalog/{idCatalog}/{top}
         [HttpGet]
-        [Route("api/GetStyles_Shops_Products_Shops_By_Catalog/{idCatalog}/{top}")]
-        public HttpResponseMessage GetStyles_Shops_Products_Shops_By_Catalog(int idCatalog, int top)
+        [Route("api/GetStyles_Shops_Products_Shops_By_Catalog/{idCatalog}/{top}/{lang}")]
+        public HttpResponseMessage GetStyles_Shops_Products_Shops_By_Catalog(int idCatalog, int top, string lang)
         {
             try
             {
+                //var ListChildCustom = from c in db.Styles_Shops_Catalogs
+                //                      where c.ID_Catalog == idCatalog
+                //                      select c;
+                //string[] ListChildCustoms = ListChildCustom.ToList().FirstOrDefault().ListChild.ToString().Split('|');
+                //var list =
+                //   (from p in db.Styles_Shops_Products
+                //    where ListChildCustoms.Contains(p.ID_Catalog.ToString())
+                //    && p.Active == true
+                //    select new
+                //    {
+                //        Product = p,
+                //        RatingValue = (from r in db.Styles_Shops_Product_Ratings
+                //                       where r.ID_Product == p.ID_Product
+                //                       select r.Rating).DefaultIfEmpty(0).Average()
+                //    }
+                //    ).Take(top).ToList();
 
-                var ListChildCustom = from c in db.Styles_Shops_Catalogs
-                                      where c.ID_Catalog == idCatalog
-                                      select c;
-                //  var a = ListChildCustom.ToList().FirstOrDefault().ListChild;
-                //  string[] ListChildCustoms = ListChildCustom.ToList().FirstOrDefault().ListTreeInCatalog.ToString().Split(',');
-                string[] ListChildCustoms = ListChildCustom.ToList().FirstOrDefault().ListChild.ToString().Split('|');
 
+                var list = db.Database.SqlQuery<Styles_Shops_Products_Template>(@"[dbo].[st_AUC_List_Products_By_IDCatalogParent1] 
+                  @LanguageCode, 
+                  @Catalogs, 
+                  @FeatureHash, 
+                  @BrandHash, 
+                  @LocationHash,
+                  @RoleHash,
+                  @Min,
+                  @Max",
+                  new SqlParameter("LanguageCode", lang),
+                  new SqlParameter("Catalogs", idCatalog.ToString()),
+                  new SqlParameter("FeatureHash", "-1"),
+                  new SqlParameter("BrandHash", "-1"),
+                  new SqlParameter("LocationHash", "-1"),
+                  new SqlParameter("RoleHash", "-1"),
+                  new SqlParameter("Min", "0"),
+                  new SqlParameter("Max", "0")
+               ).ToList();
 
-
-                //var list = db.Styles_Shops_Products.Where(d => (ListChildCustoms.ToList().Contains(d.ID_Catalog.ToString())) && d.Active == true).Take(top).ToList();
-
-                var list =
-                   (from p in db.Styles_Shops_Products
-                    where ListChildCustoms.Contains(p.ID_Catalog.ToString())
-                    && p.Active == true
-                    select new
-                    {
-                       Product = p,        
-                       RatingValue = (from r in db.Styles_Shops_Product_Ratings
-                                      where r.ID_Product == p.ID_Product
-                                      select r.Rating).DefaultIfEmpty(0).Average()
-
-                    }
-                    ).Take(top).ToList();
-
+                foreach (Styles_Shops_Products_Template d in list)
+                {
+                    d.RatingValue = (from r in db.Styles_Shops_Product_Ratings
+                                     where r.ID_Product == d.ID_Product
+                                     select r.Rating).DefaultIfEmpty(0).Average();
+                }
                 var resp = Request.CreateResponse<RegisterResponseModel>(
                     HttpStatusCode.OK,
                     new RegisterResponseModel()
@@ -1253,7 +1413,7 @@ namespace MusicAPIStore.Controllers
         public string UserName { get; set; }
         public string Description { get; set; }
         public Nullable<int> TotalLike { get; set; }
-    
+
         public string PriceText { get; set; }
     }
 
@@ -1264,6 +1424,7 @@ namespace MusicAPIStore.Controllers
         public Nullable<int> SupplyAbility { get; set; }
         public Nullable<int> SupplyAbilityUnit { get; set; }
         public string SupplyAbilityTime { get; set; }
+        public string SupplyAbilityName { get; set; }
         public string CatalogName { get; set; }
         public string ListPaymentOption { get; set; }
         public string OtherPaymentOptionText { get; set; }

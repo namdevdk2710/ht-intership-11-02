@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,10 +15,54 @@ using MusicAPIStore.Models;
 
 namespace MusicAPIStore.Controllers
 {
-   [APIAPPAuthorizeAttribute]
+    [APIAPPAuthorizeAttribute]
     public class Styles_Shops_CatalogsController : ApiController
     {
         private DatabaseContext db = new DatabaseContext();
+
+
+        //Danh mục sản phẩm 
+        [HttpGet]
+        [Route("api/GetStyles_Shops_Catalogs_Menu/{top}/{lang}")]
+        public HttpResponseMessage GetStyles_Shops_Catalogs_Menu(int top, string lang)
+        {
+            try
+            {
+                //var list = db.Database.SqlQuery<Styles_Shops_Catalogs_Menu>(@"[dbo].[st_AUC_List_Catalogs_Menu_TopN] 
+                //    @LanguageCode,@TopN",new SqlParameter("LanguageCode", lang),new SqlParameter("TopN", top)).ToList();
+
+                var list = db.Database.SqlQuery<Styles_Shops_Catalogs_Menu>(@"[dbo].[st_AUC_List_Catalogs_Menu_TopN] 
+                    @LanguageCode,                     
+                    @TopN",
+                  new SqlParameter("LanguageCode", lang),
+                  new SqlParameter("TopN", top)
+                  ).ToList();
+                var resp = Request.CreateResponse<RegisterResponseModel>(
+                    HttpStatusCode.OK,
+                    new RegisterResponseModel()
+                    {
+                        status = true,
+                        data = list,
+                        error_message = ""
+                    }
+                    );
+                return resp;
+            }
+            catch (System.Exception ex)
+            {
+                var resp = Request.CreateResponse<RegisterResponseModel>(
+                    HttpStatusCode.OK,
+                    new RegisterResponseModel()
+                    {
+                        status = false,
+                        data = "",
+                        error_message = ex.Message
+                    }
+                );
+                return resp;
+            }
+        }
+
 
         // GET: api/Styles_Shops_Catalogs
         [HttpGet]
@@ -26,7 +71,7 @@ namespace MusicAPIStore.Controllers
         {
             try
             {
-                var list = db.Styles_Shops_Catalogs.Where(d => d.ID_Parent == 0).ToList();
+                var list = db.Styles_Shops_Catalogs.Where(d => d.ID_Parent == 0 & d.Active == true).OrderBy(x => Guid.NewGuid()).ToList();
                 foreach (Styles_Shops_Catalogs d in list)
                 {
                     d.Image2 = "Thumb.ashx?s=400&file=/" + d.Image2;
@@ -73,16 +118,64 @@ namespace MusicAPIStore.Controllers
 
 
                 // var list = db.Styles_Shops_Catalogs.Where(d => ListChildCustoms.ToList().Contains(d.ID_Catalog.ToString())).Take(top).ToList();
-               // var a = from c in db.Styles_Shops_Catalogs
-              //               where c.ID_Parent == idCatalog && c.Active==true orderby c.Weight
-              //          select c ;
-               // var list = a.ToList();
+                // var a = from c in db.Styles_Shops_Catalogs
+                //               where c.ID_Parent == idCatalog && c.Active==true orderby c.Weight
+                //          select c ;
+                // var list = a.ToList();
 
                 var list = db.Styles_Shops_Catalogs.Where(e => e.ID_Parent == idCatalog & e.Active == true).OrderBy(x => Guid.NewGuid()).Take(top).ToList();
                 foreach (Styles_Shops_Catalogs d in list)
                 {
                     d.Image2 = "Thumb.ashx?s=400&file=/" + d.Image2;
                 }
+                var resp = Request.CreateResponse<RegisterResponseModel>(
+                        HttpStatusCode.OK,
+                        new RegisterResponseModel()
+                        {
+                            status = true,
+                            data = list,
+                            error_message = ""
+                        }
+                        );
+                return resp;
+            }
+            catch (System.Exception ex)
+            {
+                var resp = Request.CreateResponse<RegisterResponseModel>(
+                     HttpStatusCode.OK,
+                     new RegisterResponseModel()
+                     {
+                         status = false,
+                         data = "",
+                         error_message = ex.Message
+                     }
+                 );
+                return resp;
+            }
+        }
+
+
+        [HttpGet]
+        [Route("api/GetStyles_Shops_Catalogs_Fixed/{idCatalog}/{top}/{lang}")]
+        public HttpResponseMessage GetStyles_Shops_Catalogs_Fixed(int idCatalog, int top, string lang)
+        {
+            try
+            {
+                var list =
+              (
+                  from c in db.Styles_Shops_Catalogs
+                  join cT in db.Styles_Shops_Catalogs_Translation on c.ID_Catalog equals cT.ID_Catalog
+                  where c.ID_Parent == idCatalog && c.Active == true  && cT.LanguageCode == lang
+                  orderby c.Weight
+                  select new
+                  {
+                      ID_Catalog = c.ID_Catalog,
+                      Link_SEO = cT.Link_SEO,
+                      ImagePromo = c.ImagePromo,
+                      CatalogName = cT.CatalogName
+                  }
+              ).ToList();
+
                 var resp = Request.CreateResponse<RegisterResponseModel>(
                         HttpStatusCode.OK,
                         new RegisterResponseModel()
@@ -197,7 +290,7 @@ namespace MusicAPIStore.Controllers
         {
             try
             {
-            
+
                 var list =
                     (from catalogT in db.Styles_Shops_Catalogs_Translation
                      join catalog in db.Styles_Shops_Catalogs
@@ -205,8 +298,9 @@ namespace MusicAPIStore.Controllers
                      where catalogT.CatalogName.Contains(key)
                      && catalog.Active == true
                      orderby catalog.Weight
-                     select new {
-                         catalogT.CatalogName ,
+                     select new
+                     {
+                         catalogT.CatalogName,
                          catalogT.Link_SEO
                      }
                      ).Take(top).ToList();
@@ -238,4 +332,16 @@ namespace MusicAPIStore.Controllers
             }
         }
     }
+
+    public class Styles_Shops_Catalogs_Menu
+    {
+        public int ID_Catalog { get; set; }
+        public int ChildNumber { get; set; }
+        public string Link_SEO { get; set; }
+        public string Icon { get; set; }
+        public string CatalogName { get; set; }
+        public string ImagePromo { get; set; }
+        public string URLPromo { get; set; }
+    }
+
 }
